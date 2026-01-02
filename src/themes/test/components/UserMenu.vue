@@ -9,7 +9,7 @@ const menu = [
   { path: '/node_list', name: '节点' },
   { path: '/tutorial', name: '教程' },
   { path: '/cc', name: '个性化' },
-  { path: '/signout', name: '登出' }
+  { path: '/signout', name: '登出' },
 ]
 import { useRouter, useRoute } from 'vue-router'
 const route = useRoute()
@@ -18,16 +18,25 @@ const router = useRouter()
 const activePath = computed(() => {
   return route.path
 })
-const handleSelect = (key: string, keyPath: string[]) => { }
+const handleSelect = (key: string, keyPath: string[]) => {}
 </script>
 <template>
   <div class="menu box">
     <div></div>
     <div class="top-menu">
-      <el-menu :default-active="activePath" class="el-menu-demo" mode="vertical" @select="handleSelect"
-        menu-trigger="click">
-        <el-menu-item v-for="item in menu" :key="item.path" :index="item.path"
-          @click="router.push({ path: item.path })">
+      <el-menu
+        :default-active="activePath"
+        class="el-menu-demo"
+        mode="vertical"
+        @select="handleSelect"
+        menu-trigger="click"
+      >
+        <el-menu-item
+          v-for="item in menu"
+          :key="item.path"
+          :index="item.path"
+          @click="router.push({ path: item.path })"
+        >
           <span>
             {{ item.name }}
           </span>

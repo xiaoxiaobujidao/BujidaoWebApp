@@ -12,18 +12,18 @@ const menu = [
   {
     name: '我的',
     icon: UserFilled,
-    path: '/user'
+    path: '/user',
   },
   {
     name: '订阅中心',
     icon: SubscribeItem,
-    path: '/sub'
+    path: '/sub',
   },
   {
     name: '公告',
     icon: ListItem,
-    path: '/announcement'
-  }
+    path: '/announcement',
+  },
 ]
 const activePath = computed(() => router.currentRoute.value.path)
 const go_telegram = () => {
@@ -141,7 +141,7 @@ const bujidao = () => {
   color: var(--el-text-color-regular);
   box-shadow: 0px 0px 10px -7px var(--el-text-color-regular);
 
-  >div {
+  > div {
     display: flex;
     flex-direction: column;
     align-content: center;

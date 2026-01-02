@@ -12,7 +12,7 @@ function go_to_user() {
   ElMessage.success('登录成功，跳转到用户中心')
   router.push({
     path: '/user',
-    query: {}
+    query: {},
   })
 }
 const g_token = ref()

@@ -1,7 +1,7 @@
 <template>
-    <RouterView />
-    <ScreenSize />
-    <ThemeSwitcher />
+  <RouterView />
+  <ScreenSize />
+  <ThemeSwitcher />
 </template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
@@ -10,12 +10,12 @@ import ThemeSwitcher from '@bujidao/components/ThemeSwitcher.vue'
 </script>
 <style lang="scss">
 .dark {
-    .box {
-        background-color: #2e303d !important;
-    }
+  .box {
+    background-color: #2e303d !important;
+  }
 
-    .box.phone {
-        padding: 8px;
-    }
+  .box.phone {
+    padding: 8px;
+  }
 }
 </style>
