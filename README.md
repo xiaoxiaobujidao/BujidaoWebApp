@@ -1,5 +1,9 @@
 # Bujidao Web App
 
+[简体中文](./README.md) | [English](./README-en.md)
+
+[官网](https://bujidao.org/) [TG群](https://t.me/bujidaoChat)
+
 一个基于 Vue 3 的现代化 Web 应用，采用模块化主题系统，支持多设备响应式设计。
 
 ## 技术栈
