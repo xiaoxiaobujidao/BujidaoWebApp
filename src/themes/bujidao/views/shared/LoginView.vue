@@ -72,10 +72,6 @@ const login_with_email_passwd = () => {
     icon: markRaw(User),
   })
     .then(({ value }) => {
-      if (!isEmail(value)) {
-        ElMessage.error('请输入正确的邮箱地址，代码复制来的😮，有问题请反馈')
-        return
-      }
       let email = value
       ElMessageBox.prompt('请输入您的密码', '', {
         confirmButtonText: '确认',
@@ -149,10 +145,6 @@ const login_with_email = () => {
     type: 'info',
   })
     .then(({ value }) => {
-      if (!isEmail(value)) {
-        ElMessage.error('请输入正确的邮箱地址，代码复制来的😮，有问题请反馈')
-        return
-      }
       loginWithEmail(value, inviter.value)
         .then((res: any) => {
           if (res.result) {
