@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
         // 指向主题目录 需要同时更改 tsconfig.app.json
         '@bujidao': fileURLToPath(new URL('./src/themes/bujidao', import.meta.url)),
         '@test': fileURLToPath(new URL('./src/themes/test', import.meta.url)),
+        '@kohara-fuwari': fileURLToPath(new URL('./src/themes/kohara-fuwari', import.meta.url)),
       },
     },
     // 代理 /json_rpc/

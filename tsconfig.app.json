@@ -8,7 +8,8 @@
     "paths": {
       "@/*": ["./src/*"],
       "@bujidao/*": ["./src/themes/bujidao/*"],
-      "@test/*": ["./src/themes/test/*"]
+      "@test/*": ["./src/themes/test/*"],
+      "@kohara-fuwari/*": ["./src/themes/kohara-fuwari/*"]
     }
   }
 }
