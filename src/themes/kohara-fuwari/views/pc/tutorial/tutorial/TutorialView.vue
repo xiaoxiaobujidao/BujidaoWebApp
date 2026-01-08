@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import UserMainView from '../UserMainView.vue'
+import UserMainView from '../../UserMainView.vue'
 import CC from './components/CC.vue'
 import AndroidTutorial from './components/AndroidTutorial.vue'
 import iOS from './components/iOS.vue'
