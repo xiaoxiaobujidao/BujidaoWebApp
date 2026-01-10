@@ -131,6 +131,20 @@ const email = ref()
 const email_ref = ref()
 const passwd = ref()
 const login = () => {
+  if (!email.value || !passwd.value) {
+    ElMessage.warning('请输入邮箱地址和密码')
+    return
+  }
+
+  // 验证邮箱格式
+  const emailRegex =
+    /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+  if (!emailRegex.test(email.value)) {
+    ElMessage.warning('请输入有效的邮箱地址')
+    return
+  }
+
+  isLoading.value = true
   loginWithEmailPasswd(email.value, passwd.value)
     .then((res: any) => {
       if (res.result) {
@@ -138,47 +152,50 @@ const login = () => {
         userInfoStore.setToken(res.result.login_token)
         go_to_user()
       } else {
-        ElMessage.error(res.error?.message)
+        ElMessage.error(res.error?.message || '登录失败，请检查邮箱和密码')
       }
     })
     .catch((e: any) => {
       console.log(e)
       ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
     })
+    .finally(() => {
+      isLoading.value = false
+    })
 }
 
 const login_with_email = () => {
-  ElMessageBox.prompt('请输入您的邮箱地址', '', {
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    inputPattern:
-      /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-    inputErrorMessage: 'Invalid Email',
-    inputType: 'email',
-    // autoComplete: true,
-    autofocus: true,
-    type: 'info',
-  })
-    .then(({ value }) => {
-      loginWithEmail(value, inviter.value)
-        .then((res: any) => {
-          if (res.result) {
-            ElMessage.success('登陆邮件发送成功，请使用邮件中的登陆链接登陆')
-          } else {
-            ElMessage.error('邮件发送失败，如邮箱正确，请联系管理员')
-            ElMessage.error(res.error?.message)
-          }
-        })
-        .catch((e: any) => {
-          console.log(e)
-          ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
-        })
+  if (!email.value) {
+    ElMessage.warning('请输入您的邮箱地址')
+    return
+  }
+
+  // 验证邮箱格式
+  const emailRegex =
+    /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/
+  if (!emailRegex.test(email.value)) {
+    ElMessage.warning('请输入有效的邮箱地址')
+    return
+  }
+
+  isLoading.value = true
+  loginWithEmail(email.value, inviter.value)
+    .then((res: any) => {
+      if (res.result) {
+        ElMessage.success('登陆邮件发送成功，请使用邮件中的登陆链接登陆')
+      } else {
+        ElMessage.error('邮件发送失败，如邮箱正确，请联系管理员')
+        if (res.error?.message) {
+          ElMessage.error(res.error?.message)
+        }
+      }
     })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Input canceled',
-      })
+    .catch((e: any) => {
+      console.log(e)
+      ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
+    })
+    .finally(() => {
+      isLoading.value = false
     })
 }
 // 谷歌登录
@@ -219,7 +236,7 @@ const focus_email = () => {
   email_ref.value.focus()
 }
 // 登录方式切换相关
-const activeTab = ref('password') // 默认显示密码登录
+const activeTab = ref('email') // 默认显示邮件登录
 const agreeTerms = ref(false)
 const rememberMe = ref(false)
 const isLoading = ref(false)
@@ -305,10 +322,20 @@ const go_chat = () => {
 
           <!-- 登录方式切换标签 -->
           <div class="login-tabs">
-            <button id="email-tab" class="tab-button tab-active" @click="switchToEmail">
+            <button
+              id="email-tab"
+              class="tab-button"
+              :class="{ 'tab-active': activeTab === 'email' }"
+              @click="switchToEmail"
+            >
               <FontAwesomeIcon icon="fa-solid fa-envelope" class="mr-2" />邮件登录
             </button>
-            <button id="password-tab" class="tab-button" @click="switchToPassword">
+            <button
+              id="password-tab"
+              class="tab-button"
+              :class="{ 'tab-active': activeTab === 'password' }"
+              @click="switchToPassword"
+            >
               <FontAwesomeIcon icon="fa-solid fa-key" class="mr-2" />账号密码登录
             </button>
           </div>
@@ -399,12 +426,10 @@ const go_chat = () => {
               :loading="isLoading"
             >
               <span v-if="!isLoading">登录</span>
-              <span v-else><i class="fas fa-spinner fa-spin mr-2"></i>登录中...</span>
+              <span v-else
+                ><FontAwesomeIcon icon="fa-solid fa-spinner" class="fa-spin mr-2" />登录中...</span
+              >
             </el-button>
-
-            <div class="register-link">
-              <p>还没有账户？ <a href="#" class="register-text">立即注册</a></p>
-            </div>
           </form>
 
           <!-- 第三方登录 -->
