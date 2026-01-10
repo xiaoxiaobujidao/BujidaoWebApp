@@ -13,6 +13,7 @@ import { ref } from 'vue'
 import { Lock, User } from '@element-plus/icons-vue'
 import GoogleOauth from '@test/components/icons/GoogleOauth.vue'
 import TelegramImage from '@test/components/icons/TelegramImage.vue'
+import TelegramWhite from '@test/components/icons/TelegramWhite.vue'
 
 import { useDark, useToggle } from '@vueuse/core'
 
@@ -69,6 +70,13 @@ function onTelegramAuth(user: any) {
     })
 }
 window.onTelegramAuth = onTelegramAuth
+const bot_id = import.meta.env.VITE_BOT_ID
+function telegramDirectAuth() {
+  const origin = window.location.origin
+  const authUrl = `https://oauth.telegram.org/auth?bot_id=${bot_id}&origin=${encodeURIComponent(origin)}&embed=1&return_to=${encodeURIComponent(origin)}/login`
+  // 弹出窗口或重定向
+  window.location.href = authUrl
+}
 function isEmail(email: string) {
   let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
   return regex.test(email)
@@ -449,8 +457,16 @@ const go_chat = () => {
               >
                 <GoogleOauth />使用谷歌账号登录或注册
               </el-button>
+              <el-button
+                type="primary"
+                size="large"
+                @click="telegramDirectAuth"
+                class="third-party-button"
+              >
+                <TelegramWhite />使用 Telegram 登录或注册
+              </el-button>
 
-              <div class="telegram-widget">
+              <div class="telegram-widget" style="display: none">
                 <component
                   :is="'script'"
                   async
