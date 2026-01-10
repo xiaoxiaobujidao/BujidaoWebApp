@@ -13,6 +13,7 @@ import { ref } from 'vue'
 import { Lock, User } from '@element-plus/icons-vue'
 import GoogleOauth from '@test/components/icons/GoogleOauth.vue'
 import TelegramImage from '@test/components/icons/TelegramImage.vue'
+import TelegramWhite from '@test/components/icons/TelegramWhite.vue'
 
 import { useDark, useToggle } from '@vueuse/core'
 import { useUserInfoStore } from '@/stores/userInfoStore'
@@ -38,7 +39,7 @@ if (userInfoStore.getToken()) {
 
 // TG验证
 declare const window: any
-const bot_id = import.meta.env.VITE_BOT_ID
+const bot_name = import.meta.env.VITE_BOT_NAME
 function onTelegramAuth(user: any) {
   loginWithTelegram(user, inviter.value)
     .then((res_data: any) => {
@@ -54,9 +55,12 @@ function onTelegramAuth(user: any) {
     })
 }
 window.onTelegramAuth = onTelegramAuth
-function isEmail(email: string) {
-  let regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/
-  return regex.test(email)
+const bot_id = import.meta.env.VITE_BOT_ID
+function telegramDirectAuth() {
+  const origin = window.location.origin;
+  const authUrl = `https://oauth.telegram.org/auth?bot_id=${bot_id}&origin=${encodeURIComponent(origin)}&embed=1&return_to=${encodeURIComponent(origin)}/login`;
+  // 弹出窗口或重定向
+  window.location.href = authUrl;
 }
 
 const login_with_email_passwd = () => {
@@ -219,24 +223,18 @@ const go_chat = () => {
       <div class="login-button">
         <div>
           <!-- <el-tooltip content="没有账号会自动注册" placement="top"> -->
-          <el-button type="primary" size="large" @click="login_with_email" round
-            >邮件登陆或注册</el-button
-          >
+          <el-button type="primary" size="large" @click="login_with_email" round>邮件登陆或注册</el-button>
           <!-- </el-tooltip> -->
         </div>
         <div v-if="false">
-          <el-button type="primary" size="large" @click="login_with_email_passwd" round
-            >账号密码登陆</el-button
-          >
+          <el-button type="primary" size="large" @click="login_with_email_passwd" round>账号密码登陆</el-button>
         </div>
         <div>
           <el-button type="primary" size="large" @click="show_login" round>账号密码登陆</el-button>
         </div>
       </div>
       <div v-if="false">
-        <el-button type="primary" size="large" @click="login_with_email" round
-          >恢复密钥登陆</el-button
-        >
+        <el-button type="primary" size="large" @click="login_with_email" round>恢复密钥登陆</el-button>
       </div>
       <div class="c_h">
         <div class="c_g"></div>
@@ -244,54 +242,31 @@ const go_chat = () => {
         <div class="c_g"></div>
       </div>
       <div>
-        <el-button type="primary" size="large" @click="google_login" round>
+        <el-button type="primary" size="large" @click="google_login" round class="login-button">
           <GoogleOauth />使用谷歌账号登录或注册
         </el-button>
       </div>
-      <div>
-        <component
-          :is="'script'"
-          async
-          src="https://telegram.org/js/telegram-widget.js?22"
-          :data-telegram-login="bot_id"
-          data-size="large"
-          data-onauth="window.onTelegramAuth(user)"
-        >
+      <!-- 只隐藏，需要保留以便于自动调用方法 -->
+      <div style="display: none;">
+        <component :is="'script'" async src="https://telegram.org/js/telegram-widget.js?22"
+          :data-telegram-login="bot_name" data-size="large" data-onauth="window.onTelegramAuth(user)">
         </component>
+      </div>
+      <div>
+        <el-button type="primary" size="large" @click="telegramDirectAuth" round class="login-button">
+          <TelegramWhite />使用 Telegram 登录或注册
+        </el-button>
       </div>
     </div>
   </div>
-  <el-dialog
-    v-if="login_with_email_passwd_show"
-    v-model="login_with_email_passwd_show"
-    title="登录"
-    width="420"
-    destroy-on-close
-    align-center
-    @opened="focus_email"
-  >
+  <el-dialog v-if="login_with_email_passwd_show" v-model="login_with_email_passwd_show" title="登录" width="420"
+    destroy-on-close align-center @opened="focus_email">
     <div class="login-box">
       <div>
-        <el-input
-          v-model="email"
-          @keyup.enter="login"
-          placeholder="您的邮箱地址"
-          type="email"
-          autocomplete
-          autofocus
-          ref="email_ref"
-          :prefix-icon="User"
-        />
-        <el-input
-          v-model="passwd"
-          @keyup.enter="login"
-          style="width: 240px"
-          type="password"
-          placeholder="您的密码"
-          show-password
-          autocomplete
-          :prefix-icon="Lock"
-        />
+        <el-input v-model="email" @keyup.enter="login" placeholder="您的邮箱地址" type="email" autocomplete autofocus
+          ref="email_ref" :prefix-icon="User" />
+        <el-input v-model="passwd" @keyup.enter="login" style="width: 240px" type="password" placeholder="您的密码"
+          show-password autocomplete :prefix-icon="Lock" />
       </div>
       <div class="login-button">
         <el-button type="primary" autofocus @click="login">登录</el-button>
@@ -372,7 +347,7 @@ h1 {
   min-width: 280px;
 }
 
-.login-card > div {
+.login-card>div {
   margin-bottom: 10px;
 }
 
@@ -381,6 +356,15 @@ h1 {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+
+  :deep(>span) {
+  gap: .2em;
+
+    svg {
+      width: 1.5em;
+      height: 1.5em;
+    }
+  }
 }
 
 .logo {

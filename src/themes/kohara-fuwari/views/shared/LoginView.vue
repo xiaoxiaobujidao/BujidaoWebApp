@@ -53,7 +53,7 @@ if (userInfoStore.getToken()) {
 
 // TG验证
 declare const window: any
-const bot_id = import.meta.env.VITE_BOT_ID
+const bot_name = import.meta.env.VITE_BOT_NAME
 function onTelegramAuth(user: any) {
   loginWithTelegram(user, inviter.value)
     .then((res_data: any) => {
@@ -455,7 +455,7 @@ const go_chat = () => {
                   :is="'script'"
                   async
                   src="https://telegram.org/js/telegram-widget.js?22"
-                  :data-telegram-login="bot_id"
+                  :data-telegram-login="bot_name"
                   data-size="large"
                   data-onauth="window.onTelegramAuth(user)"
                 >
