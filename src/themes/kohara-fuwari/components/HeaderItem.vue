@@ -75,7 +75,7 @@ const activePath = computed(() => {
         <span class="icon-[tabler--smart-home] mr-2 text-[1.5rem]"></span> 布吉岛
       </h1>
     </a>
-    
+
     <!-- 导航菜单容器 -->
     <!-- flex: 弹性布局, overflow-x-auto: 横向滚动, no-scrollbar: 隐藏滚动条 -->
     <div class="flex space-x-4 overflow-x-auto flex-1 justify-center py-2 no-scrollbar">
@@ -92,7 +92,7 @@ const activePath = computed(() => {
         </a>
       </div>
     </div>
-    
+
     <!-- 右侧功能按钮容器 -->
     <div class="flex space-x-4">
       <!-- 暗黑模式切换按钮 -->
@@ -136,11 +136,11 @@ const activePath = computed(() => {
  */
 @keyframes fade-in-up {
   from {
-    opacity: 0;          /* 初始透明度为0，完全透明 */
+    opacity: 0; /* 初始透明度为0，完全透明 */
     transform: translateY(20px); /* 初始位置向下偏移20px */
   }
   to {
-    opacity: 1;          /* 结束透明度为1，完全不透明 */
+    opacity: 1; /* 结束透明度为1，完全不透明 */
     transform: translateY(0); /* 结束位置回到原位置 */
   }
 }
@@ -164,16 +164,16 @@ const activePath = computed(() => {
  * 实现毛玻璃效果的导航栏容器
  */
 .card-base {
-  background: var(--card-bg);         /* 使用CSS变量定义背景色 */
-  backdrop-filter: blur(14px);        /* 毛玻璃效果，模糊度14px */
+  background: var(--card-bg); /* 使用CSS变量定义背景色 */
+  backdrop-filter: blur(14px); /* 毛玻璃效果，模糊度14px */
   -webkit-backdrop-filter: blur(14px); /* Safari浏览器兼容 */
   border: 1px solid var(--card-border); /* 使用CSS变量定义边框色 */
-  border-radius: 0 0 30px 30px;       /* 底部圆角30px */
+  border-radius: 0 0 30px 30px; /* 底部圆角30px */
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.12); /* 阴影效果 */
-  position: sticky;                   /* 粘性定位，顶部固定 */
-  top: 0;                           /* 固定在顶部 */
-  max-width: 80%;                     /* 设置导航宽度为屏幕的80% */
-  padding: 0 5em 0 2em;               /* 内边距：上0，右5em，下0，左2em */
+  position: sticky; /* 粘性定位，顶部固定 */
+  top: 0; /* 固定在顶部 */
+  max-width: 80%; /* 设置导航宽度为屏幕的80% */
+  padding: 0 5em 0 2em; /* 内边距：上0，右5em，下0，左2em */
 }
 
 /* --------------------------
@@ -204,17 +204,17 @@ const activePath = computed(() => {
  * 基础按钮样式
  */
 .btn-plain {
-  display: inline-flex;               /* 内联弹性布局 */
-  align-items: center;                /* 垂直居中 */
-  justify-content: center;            /* 水平居中 */
-  background: transparent;            /* 透明背景 */
-  border-radius: 12px;                /* 圆角12px */
-  cursor: pointer;                    /* 鼠标指针为手型 */
+  display: inline-flex; /* 内联弹性布局 */
+  align-items: center; /* 垂直居中 */
+  justify-content: center; /* 水平居中 */
+  background: transparent; /* 透明背景 */
+  border-radius: 12px; /* 圆角12px */
+  cursor: pointer; /* 鼠标指针为手型 */
   transition: all 0.25s cubic-bezier(0.2, 0.6, 0.2, 1); /* 过渡效果，自定义缓动函数 */
-  color: #333;                        /* 文字颜色 */
-  padding: 3.14px 1em 3.14px 1em;     /* 内边距 */
-  margin: 0.618em;                    /* 外边距，黄金比例 */
-  text-decoration: none;              /* 移除下划线 */
+  color: #333; /* 文字颜色 */
+  padding: 3.14px 1em 3.14px 1em; /* 内边距 */
+  margin: 0.618em; /* 外边距，黄金比例 */
+  text-decoration: none; /* 移除下划线 */
 }
 
 /* --------------------------
@@ -225,14 +225,14 @@ const activePath = computed(() => {
  * 点击缩放动画
  */
 .scale-animation {
-  transition: transform 0.18s;        /* 变换过渡效果 */
+  transition: transform 0.18s; /* 变换过渡效果 */
 }
 
 /**
  * 点击时的缩放效果
  */
 .scale-animation:active {
-  transform: scale(0.95);             /* 缩小到95% */
+  transform: scale(0.95); /* 缩小到95% */
 }
 
 /**
@@ -241,8 +241,8 @@ const activePath = computed(() => {
 .btn-plain:hover {
   background: rgba(255, 255, 255, 0.68); /* 半透明白色背景 */
   border: 1px solid #cccccc83 !important; /* 半透明边框，!important确保优先级 */
-  margin: 0.314em;                    /* 外边距变化 */
-  transition: margin 0.5s 0.2s;       /* 外边距过渡，延迟0.2秒 */
+  margin: 0.314em; /* 外边距变化 */
+  transition: margin 0.5s 0.2s; /* 外边距过渡，延迟0.2秒 */
 }
 
 /**
@@ -251,7 +251,7 @@ const activePath = computed(() => {
 .btn-plain.active,
 .btn-plain[aria-current='page'] {
   background: rgba(76, 141, 246, 0.15); /* 主色调半透明背景 */
-  color: var(--primary);              /* 使用CSS变量定义主色调文字 */
+  color: var(--primary); /* 使用CSS变量定义主色调文字 */
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08) inset; /* 内阴影效果 */
 }
 
@@ -263,8 +263,8 @@ const activePath = computed(() => {
  * 图标基础样式
  */
 .icon {
-  font-size: 1.25rem;                 /* 图标大小 */
-  margin-right: 0.4rem;               /* 右侧外边距 */
-  opacity: 0.9;                       /* 透明度90% */
+  font-size: 1.25rem; /* 图标大小 */
+  margin-right: 0.4rem; /* 右侧外边距 */
+  opacity: 0.9; /* 透明度90% */
 }
 </style>

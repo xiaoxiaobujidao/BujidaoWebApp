@@ -25,18 +25,11 @@ import {
   faUserCheck,
   faEnvelope,
   faKey,
-  faSpinner
+  faSpinner,
 } from '@fortawesome/free-solid-svg-icons'
 
 // 添加图标到库
-library.add(
-  faShieldAlt,
-  faBolt,
-  faUserCheck,
-  faEnvelope,
-  faKey,
-  faSpinner
-)
+library.add(faShieldAlt, faBolt, faUserCheck, faEnvelope, faKey, faSpinner)
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import DarkTheme from '@test/components/DarkTheme.vue'
 const isDark = useDark()
@@ -258,12 +251,12 @@ const go_chat = () => {
             <img src="/favicon.ico" alt="logo" class="logo" />
             <span class="logo-text">布吉岛</span>
           </div>
-          
+
           <h1 class="welcome-title">欢迎回来</h1>
           <p class="welcome-text">
             使用多种安全便捷的方式登录您的账户。我们提供邮件登录、密码登录以及第三方登录，确保您能快速访问。
           </p>
-          
+
           <div class="features-list">
             <div class="feature-item">
               <div class="feature-icon security-icon">
@@ -274,7 +267,7 @@ const go_chat = () => {
                 <p class="feature-desc">采用行业标准加密技术保护您的数据</p>
               </div>
             </div>
-            
+
             <div class="feature-item">
               <div class="feature-icon speed-icon">
                 <FontAwesomeIcon icon="fa-solid fa-bolt" />
@@ -284,7 +277,7 @@ const go_chat = () => {
                 <p class="feature-desc">一键登录，无需记住复杂密码</p>
               </div>
             </div>
-            
+
             <div class="feature-item">
               <div class="feature-icon sync-icon">
                 <FontAwesomeIcon icon="fa-solid fa-user-check" />
@@ -296,12 +289,12 @@ const go_chat = () => {
             </div>
           </div>
         </div>
-        
+
         <div class="copyright">
           <p>© 2023 布吉岛. 保留所有权利。</p>
         </div>
       </div>
-      
+
       <!-- 右侧登录区域 -->
       <div class="login-section">
         <div class="login-content">
@@ -309,7 +302,7 @@ const go_chat = () => {
             <h2 class="login-title">登录您的账户</h2>
             <p class="login-subtitle">选择您喜欢的登录方式</p>
           </div>
-          
+
           <!-- 登录方式切换标签 -->
           <div class="login-tabs">
             <button id="email-tab" class="tab-button tab-active" @click="switchToEmail">
@@ -319,7 +312,7 @@ const go_chat = () => {
               <FontAwesomeIcon icon="fa-solid fa-key" class="mr-2" />账号密码登录
             </button>
           </div>
-          
+
           <!-- 邮件登录表单 -->
           <form v-if="activeTab === 'email'" @submit.prevent="login_with_email" class="login-form">
             <div class="form-group">
@@ -337,20 +330,28 @@ const go_chat = () => {
               />
               <p class="form-hint">我们将向该邮箱发送一个安全的登录链接</p>
             </div>
-            
+
             <div class="form-group">
               <div class="checkbox-group">
-                <input id="terms" type="checkbox" v-model="agreeTerms" class="custom-checkbox">
+                <input id="terms" type="checkbox" v-model="agreeTerms" class="custom-checkbox" />
                 <label for="terms" class="checkbox-label">我同意接收登录链接邮件</label>
               </div>
             </div>
-            
-            <el-button type="primary" size="large" @click="login_with_email" class="submit-button" :loading="isLoading">
+
+            <el-button
+              type="primary"
+              size="large"
+              @click="login_with_email"
+              class="submit-button"
+              :loading="isLoading"
+            >
               <span v-if="!isLoading">发送登录链接</span>
-              <span v-else><FontAwesomeIcon icon="fa-solid fa-spinner" class="fa-spin mr-2" />发送中...</span>
+              <span v-else
+                ><FontAwesomeIcon icon="fa-solid fa-spinner" class="fa-spin mr-2" />发送中...</span
+              >
             </el-button>
           </form>
-          
+
           <!-- 密码登录表单 -->
           <form v-else @submit.prevent="login" class="login-form">
             <div class="form-group">
@@ -367,7 +368,7 @@ const go_chat = () => {
                 class="form-input"
               />
             </div>
-            
+
             <div class="form-group">
               <label for="passwd" class="form-label">密码</label>
               <el-input
@@ -381,25 +382,31 @@ const go_chat = () => {
                 class="form-input"
               />
             </div>
-            
+
             <div class="form-group">
               <div class="checkbox-group">
-                <input id="remember" type="checkbox" v-model="rememberMe" class="custom-checkbox">
+                <input id="remember" type="checkbox" v-model="rememberMe" class="custom-checkbox" />
                 <label for="remember" class="checkbox-label">记住我</label>
               </div>
               <a href="#" class="forgot-password">忘记密码？</a>
             </div>
-            
-            <el-button type="primary" size="large" @click="login" class="submit-button" :loading="isLoading">
+
+            <el-button
+              type="primary"
+              size="large"
+              @click="login"
+              class="submit-button"
+              :loading="isLoading"
+            >
               <span v-if="!isLoading">登录</span>
               <span v-else><i class="fas fa-spinner fa-spin mr-2"></i>登录中...</span>
             </el-button>
-            
+
             <div class="register-link">
               <p>还没有账户？ <a href="#" class="register-text">立即注册</a></p>
             </div>
           </form>
-          
+
           <!-- 第三方登录 -->
           <div class="third-party-login">
             <div class="divider">
@@ -407,12 +414,17 @@ const go_chat = () => {
               <span class="divider-text">或使用第三方登录</span>
               <div class="divider-line"></div>
             </div>
-            
+
             <div class="third-party-buttons">
-              <el-button type="primary" size="large" @click="google_login" class="third-party-button">
+              <el-button
+                type="primary"
+                size="large"
+                @click="google_login"
+                class="third-party-button"
+              >
                 <GoogleOauth />使用谷歌账号登录或注册
               </el-button>
-              
+
               <div class="telegram-widget">
                 <component
                   :is="'script'"
@@ -461,7 +473,9 @@ const go_chat = () => {
   align-items: center;
   padding: 20px;
   background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, 'Helvetica Neue', Arial, sans-serif;
+  font-family:
+    -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
+    'Helvetica Neue', Arial, sans-serif;
 }
 
 // 容器样式
@@ -473,7 +487,9 @@ const go_chat = () => {
   background-color: white;
   border-radius: 20px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08), 0 10px 20px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 40px rgba(0, 0, 0, 0.08),
+    0 10px 20px rgba(0, 0, 0, 0.04);
   animation: fadeIn 0.5s ease-in-out;
 }
 
@@ -809,15 +825,15 @@ const go_chat = () => {
   .login-container {
     flex-direction: row;
   }
-  
+
   .info-section {
     width: 40%;
   }
-  
+
   .login-section {
     width: 60%;
   }
-  
+
   .third-party-buttons {
     flex-direction: row;
   }
@@ -827,23 +843,23 @@ const go_chat = () => {
   .login-main {
     padding: 10px;
   }
-  
+
   .info-section {
     padding: 24px;
   }
-  
+
   .login-section {
     padding: 24px;
   }
-  
+
   .welcome-title {
     font-size: 28px;
   }
-  
+
   .welcome-text {
     font-size: 16px;
   }
-  
+
   .login-title {
     font-size: 24px;
   }
@@ -856,7 +872,9 @@ const go_chat = () => {
 
   .login-container {
     background-color: #2d3748;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2), 0 10px 20px rgba(0, 0, 0, 0.1);
+    box-shadow:
+      0 20px 40px rgba(0, 0, 0, 0.2),
+      0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   .info-section {
