@@ -346,6 +346,7 @@ onUnmounted(() => {
   cursor: pointer;
   color: var(--el-text-color-regular, #606266);
   transition: background-color 0.2s;
+  white-space: nowrap;
 }
 
 .theme-menu-item:hover {
