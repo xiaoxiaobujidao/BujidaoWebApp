@@ -1,29 +1,24 @@
 <script setup lang="ts">
-import { ElMessage, ElMessageBox } from 'element-plus'
-import {
-  checkLoginKey,
-  loginWithTelegram,
-  loginWithEmail,
-  loginWithEmailPasswd,
-} from '@/utils/user'
+import { ElMessage } from 'element-plus'
+import { checkLoginKey, loginWithTelegram, loginWithEmailPasswd } from '@/utils/user'
 import { useRouter } from 'vue-router'
 const router = useRouter()
-import { markRaw } from 'vue'
 import { ref } from 'vue'
-import { Lock, User } from '@element-plus/icons-vue'
 import GoogleOauth from '@test/components/icons/GoogleOauth.vue'
 import TelegramImage from '@test/components/icons/TelegramImage.vue'
 import TelegramWhite from '@test/components/icons/TelegramWhite.vue'
 
-import { useDark, useToggle } from '@vueuse/core'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import DarkTheme from '@test/components/DarkTheme.vue'
-const isDark = useDark()
+import EmailLogin from './components/EmailLogin.vue'
+import PasswordLogin from './components/PasswordLogin.vue'
 const userInfoStore = useUserInfoStore()
 
 // 获取邀请码
 const inviter = ref()
 const login_key = ref()
+const email_login_show = ref(false)
+const password_login_show = ref(false)
 
 // 跳转
 function go_to_user() {
@@ -63,113 +58,6 @@ function telegramDirectAuth() {
   window.location.href = authUrl
 }
 
-const login_with_email_passwd = () => {
-  ElMessageBox.prompt('请输入您的邮箱地址', '', {
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    inputPattern:
-      /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-    inputErrorMessage: 'Invalid Email',
-    inputType: 'email',
-    autofocus: true,
-    type: 'info',
-    icon: markRaw(User),
-  })
-    .then(({ value }) => {
-      let email = value
-      ElMessageBox.prompt('请输入您的密码', '', {
-        confirmButtonText: '确认',
-        cancelButtonText: '取消',
-        inputType: 'password',
-        type: 'info',
-        icon: markRaw(Lock),
-      })
-        .then(({ value }) => {
-          let passwd = value
-          loginWithEmailPasswd(email, passwd)
-            .then((res: any) => {
-              if (res.result) {
-                ElMessage.success('登陆成功')
-                userInfoStore.setToken(res.result.login_token)
-                go_to_user()
-              } else {
-                ElMessage.error(res.error?.message)
-              }
-            })
-            .catch((e: any) => {
-              console.log(e)
-              ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
-            })
-        })
-        .catch(() => {
-          ElMessage({
-            type: 'info',
-            message: 'Input canceled',
-          })
-        })
-    })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Input canceled',
-      })
-    })
-}
-// 邮件密码登录
-const email = ref()
-const email_ref = ref()
-const passwd = ref()
-const login = () => {
-  loginWithEmailPasswd(email.value, passwd.value)
-    .then((res: any) => {
-      if (res.result) {
-        ElMessage.success('登陆成功')
-        userInfoStore.setToken(res.result.login_token)
-        go_to_user()
-      } else {
-        ElMessage.error(res.error?.message)
-      }
-    })
-    .catch((e: any) => {
-      console.log(e)
-      ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
-    })
-}
-
-const login_with_email = () => {
-  ElMessageBox.prompt('请输入您的邮箱地址', '', {
-    confirmButtonText: '确认',
-    cancelButtonText: '取消',
-    inputPattern:
-      /[\w!#$%&'*+/=?^_`{|}~-]+(?:\.[\w!#$%&'*+/=?^_`{|}~-]+)*@(?:[\w](?:[\w-]*[\w])?\.)+[\w](?:[\w-]*[\w])?/,
-    inputErrorMessage: 'Invalid Email',
-    inputType: 'email',
-    // autoComplete: true,
-    autofocus: true,
-    type: 'info',
-  })
-    .then(({ value }) => {
-      loginWithEmail(value, inviter.value)
-        .then((res: any) => {
-          if (res.result) {
-            ElMessage.success('登陆邮件发送成功，请使用邮件中的登陆链接登陆')
-          } else {
-            ElMessage.error('邮件发送失败，如邮箱正确，请联系管理员')
-            ElMessage.error(res.error?.message)
-          }
-        })
-        .catch((e: any) => {
-          console.log(e)
-          ElMessage.error('网络连接失败，请检查网络后重试，如有疑问请联系管理员')
-        })
-    })
-    .catch(() => {
-      ElMessage({
-        type: 'info',
-        message: 'Input canceled',
-      })
-    })
-}
 // 谷歌登录
 const google_id = import.meta.env.VITE_GOOGLE_OAUTH
 const google_login = function () {
@@ -203,12 +91,11 @@ const init = () => {
   }
 }
 init()
-const login_with_email_passwd_show = ref(false)
-const show_login = () => {
-  login_with_email_passwd_show.value = true
+const login_with_email = () => {
+  email_login_show.value = true
 }
-const focus_email = () => {
-  email_ref.value.focus()
+const show_login = () => {
+  password_login_show.value = true
 }
 const go_chat = () => {
   location.href = 'https://bujidaoChat.t.me'
@@ -222,15 +109,8 @@ const go_chat = () => {
       <h1>登陆到布吉岛</h1>
       <div class="login-button">
         <div>
-          <!-- <el-tooltip content="没有账号会自动注册" placement="top"> -->
           <el-button type="primary" size="large" @click="login_with_email" round
             >邮件登陆或注册</el-button
-          >
-          <!-- </el-tooltip> -->
-        </div>
-        <div v-if="false">
-          <el-button type="primary" size="large" @click="login_with_email_passwd" round
-            >账号密码登陆</el-button
           >
         </div>
         <div>
@@ -277,49 +157,12 @@ const go_chat = () => {
       </div>
     </div>
   </div>
-  <el-dialog
-    v-if="login_with_email_passwd_show"
-    v-model="login_with_email_passwd_show"
-    title="登录"
-    width="420"
-    destroy-on-close
-    align-center
-    @opened="focus_email"
-  >
-    <div class="login-box">
-      <div>
-        <el-input
-          v-model="email"
-          @keyup.enter="login"
-          placeholder="您的邮箱地址"
-          type="email"
-          autocomplete
-          autofocus
-          ref="email_ref"
-          :prefix-icon="User"
-        />
-        <el-input
-          v-model="passwd"
-          @keyup.enter="login"
-          style="width: 240px"
-          type="password"
-          placeholder="您的密码"
-          show-password
-          autocomplete
-          :prefix-icon="Lock"
-        />
-      </div>
-      <div class="login-button">
-        <el-button type="primary" autofocus @click="login">登录</el-button>
-      </div>
-    </div>
-  </el-dialog>
+  <EmailLogin v-model="email_login_show" :inviter="inviter" />
+  <PasswordLogin v-model="password_login_show" />
   <div class="help" @click="go_chat()">
     <TelegramImage />
   </div>
   <DarkTheme />
-  <div class="left"></div>
-  <div class="right"></div>
 </template>
 
 <style lang="scss" scoped>
@@ -336,39 +179,6 @@ const go_chat = () => {
 
 h1 {
   margin: 25px 0;
-}
-
-.login-box {
-  --el-messagebox-title-color: var(--el-text-color-primary);
-  --el-messagebox-width: 420px;
-  --el-messagebox-border-radius: 4px;
-  --el-messagebox-box-shadow: var(--el-box-shadow);
-  --el-messagebox-font-size: var(--el-font-size-large);
-  --el-messagebox-content-font-size: var(--el-font-size-base);
-  --el-messagebox-content-color: var(--el-text-color-regular);
-  --el-messagebox-error-font-size: 12px;
-  --el-messagebox-padding-primary: 12px;
-  --el-messagebox-font-line-height: var(--el-font-line-height-primary);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  background-color: var(--el-bg-color);
-  border-radius: var(--el-messagebox-border-radius);
-  // box-shadow: var(--el-messagebox-box-shadow);
-  box-sizing: border-box;
-  display: inline-block;
-  font-size: var(--el-messagebox-font-size);
-  max-width: var(--el-messagebox-width);
-  overflow: hidden;
-  overflow-wrap: break-word;
-  padding: var(--el-messagebox-padding-primary);
-  position: relative;
-  text-align: left;
-  vertical-align: middle;
-  width: 100%;
-
-  .el-input {
-    margin-bottom: 10px;
-  }
 }
 
 .login-main {

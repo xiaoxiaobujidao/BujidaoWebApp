@@ -16,7 +16,7 @@ function checkLoginKey(login_key: string): Promise<jsonRpcResponse> {
 }
 function loginWithTelegram(
   telegram_authorization: any,
-  inviter = null,
+  inviter: string | null = null,
 ): Promise<loginWithTelegramResponse> {
   const params: Record<string, any> = { telegram_authorization }
   if (inviter) {
@@ -26,7 +26,7 @@ function loginWithTelegram(
 }
 function loginWithGoogle(
   google_oauth_token: any,
-  inviter = null,
+  inviter: string | null = null,
 ): Promise<loginWithTelegramResponse> {
   const params: Record<string, any> = { google_oauth_token }
   if (inviter) {
@@ -38,7 +38,10 @@ function loginWithGoogle(
 interface loginWithEmailResponse extends jsonRpcResponse {
   result?: { status: boolean }
 }
-function loginWithEmail(email: string, inviter = null): Promise<loginWithEmailResponse> {
+function loginWithEmail(
+  email: string,
+  inviter: string | null = null,
+): Promise<loginWithEmailResponse> {
   return jsonRpc('login_with_email', {
     email,
     inviter,
