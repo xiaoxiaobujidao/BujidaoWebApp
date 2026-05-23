@@ -12,7 +12,6 @@ import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
 
 const userInfoStore = useUserInfoStore()
-userInfoStore.updateUserInfo()
 const user_info = computed(() => userInfoStore.getUserInfo())
 // 当前宽度
 const screenStore = useScreenStore()

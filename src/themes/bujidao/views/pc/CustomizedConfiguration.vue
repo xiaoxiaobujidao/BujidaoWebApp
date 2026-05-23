@@ -39,12 +39,21 @@ const show_cc = (name: string, type: string) => {
 }
 const only_self = ref(true)
 const view_data = computed(() => {
-  return configuration_list.value
-    ? (only_self.value
-        ? configuration_list.value.filter((v: any) => v.user_id == user_info?.value?.user_id)
-        : configuration_list.value
-      ).filter((v: any) => JSON.stringify(v).toLowerCase().includes(search.value.toLowerCase()))
-    : []
+  if (!configuration_list.value) return []
+  const list = only_self.value
+    ? configuration_list.value.filter((v: any) => v.user_id == user_info?.value?.user_id)
+    : configuration_list.value
+  if (!search.value) return list
+  const keyword = search.value.toLowerCase()
+  return list.filter(
+    (v: any) =>
+      String(v.name || '')
+        .toLowerCase()
+        .includes(keyword) ||
+      String(v.type || '')
+        .toLowerCase()
+        .includes(keyword),
+  )
 })
 
 function del_cc(name: string, type: string) {

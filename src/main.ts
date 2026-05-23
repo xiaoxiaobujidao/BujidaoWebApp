@@ -47,17 +47,16 @@ async function initApp() {
   // 设置路由守卫，没有找到匹配路由，直接回首页
   router.beforeEach((to, from, next) => {
     if (to.matched.length === 0) {
-      // 没找到匹配路由，直接回首页
       next('/')
     } else {
       next()
     }
   })
-  // 设置路由导航守卫 - 版本检查
-  router.beforeEach((to, from, next) => {
-    checkVersion()
-    next()
-  })
+
+  // 启动时检查版本
+  checkVersion()
+  // 每20分钟定期检查版本
+  setInterval(checkVersion, 1000 * 60 * 20)
 
   app.use(router)
 

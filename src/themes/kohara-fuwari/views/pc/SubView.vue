@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { changeUuid, changeSubKey, changeWireguardPriKey } from '@/utils/user'
 import { touchCopy } from '@/utils/copy'
+import { base64Encode } from '@/utils/utils'
 import { ElMessage } from 'element-plus'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import UserMainView from './UserMainView.vue'
@@ -9,10 +10,8 @@ import UserMainView from './UserMainView.vue'
 const userInfoStore = useUserInfoStore()
 userInfoStore.updateUserInfo()
 const user_info = computed(() => userInfoStore.getUserInfo())
+const btoa = base64Encode
 
-const btoa = (str: string) => {
-  return window.btoa(str)
-}
 function change_uuid() {
   changeUuid().then((res: any) => {
     if (res.error) {

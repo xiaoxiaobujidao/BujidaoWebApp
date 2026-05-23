@@ -10,4 +10,8 @@ function is_ios(): boolean {
   return /(iPhone|iPad|iPod|iOS)/i.test(navigator.userAgent)
 }
 
-export { utf8_to_b64, is_ios }
+function base64Encode(str: string): string {
+  return window.btoa(str)
+}
+
+export { utf8_to_b64, is_ios, base64Encode }

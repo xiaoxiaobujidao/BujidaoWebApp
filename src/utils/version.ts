@@ -24,9 +24,9 @@ async function sha1(text: string): Promise<string> {
  * 获取页面内容并计算 SHA1 哈希值
  */
 async function fetchAndHash(): Promise<string> {
-  const response = await fetch('/')
-  const text = await response.text()
-  return await sha1(text)
+  const response = await fetch('/', { method: 'HEAD' })
+  const etag = response.headers.get('ETag') || response.headers.get('Last-Modified') || ''
+  return await sha1(etag)
 }
 
 /**
