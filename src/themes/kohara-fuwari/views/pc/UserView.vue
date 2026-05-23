@@ -115,6 +115,7 @@ watch(
   { immediate: true },
 )
 const init = async function () {
+  await userInfoStore.updateUserInfo()
   if (!user_info.value) return
   // 充值奖励
   if (sessionStorage.getItem('gift_shown') == undefined) {
@@ -127,8 +128,6 @@ const init = async function () {
       show_announcement_pin.value = true
     }
   }
-
-  userInfoStore.updateUserInfo()
 }
 function change_email() {
   ElMessageBox.prompt('请输入您的邮箱地址', '', {
@@ -194,7 +193,12 @@ init()
 
 <template>
   <UserMainView>
-    <div class="box" v-if="user_info">
+    <div class="box loading-box" v-if="!user_info">
+      <div class="loading-spinner">
+        <span class="icon-[tabler--loader-2] animate-spin text-[2rem] text-[var(--primary)]"></span>
+      </div>
+    </div>
+    <div class="box" v-else>
       <div class="user-main">
         <div>
           <h2>余额</h2>
@@ -318,6 +322,19 @@ init()
 .box {
   min-height: calc(100vh - 100px);
   border-radius: 15px;
+}
+
+.loading-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 100px);
+}
+
+.loading-spinner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .user-main {

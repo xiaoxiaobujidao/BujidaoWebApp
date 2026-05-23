@@ -1,8 +1,8 @@
 <template>
   <svg
     fill="#54a9eb"
-    height="800px"
-    width="800px"
+    width="24px"
+    height="24px"
     version="1.1"
     id="Capa_1"
     xmlns="http://www.w3.org/2000/svg"

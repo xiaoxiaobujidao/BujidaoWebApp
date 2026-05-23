@@ -333,13 +333,6 @@ const go_chat = () => {
               <p class="form-hint">我们将向该邮箱发送一个安全的登录链接</p>
             </div>
 
-            <div class="form-group">
-              <div class="checkbox-group">
-                <input id="terms" type="checkbox" v-model="agreeTerms" class="custom-checkbox" />
-                <label for="terms" class="checkbox-label">我同意接收登录链接邮件</label>
-              </div>
-            </div>
-
             <el-button
               type="primary"
               size="large"
@@ -411,7 +404,7 @@ const go_chat = () => {
           <div class="third-party-login">
             <div class="divider">
               <div class="divider-line"></div>
-              <span class="divider-text">或使用第三方登录</span>
+              <span class="divider-text">第三方登录</span>
               <div class="divider-line"></div>
             </div>
 
@@ -462,13 +455,35 @@ const go_chat = () => {
 <style lang="scss" scoped>
 .help {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  bottom: 24px;
+   left: 24px;
   z-index: 1000;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(84, 169, 235, 0.15);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(84, 169, 235, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.2, 0.6, 0.2, 1);
+
+  &:hover {
+    background: rgba(84, 169, 235, 0.25);
+    transform: scale(1.08);
+    box-shadow: 0 4px 16px rgba(84, 169, 235, 0.25);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
 
   svg {
-    width: 50px;
-    height: 50px;
+    width: 22px;
+    height: 22px;
   }
 }
 
@@ -696,7 +711,7 @@ const go_chat = () => {
 .login-form {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 12px;
 }
 
 .form-group {
