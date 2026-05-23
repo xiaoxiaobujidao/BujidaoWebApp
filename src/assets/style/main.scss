@@ -319,7 +319,6 @@
 
   /* 页面背景 */
   body {
-    background: var(--page-bg);
     color: var(--deep-text);
     transition: background-color var(--duration-fast) var(--ease-standard),
                 color var(--duration-fast) var(--ease-standard);

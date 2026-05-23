@@ -19,7 +19,7 @@ import HeaderItem from '@kohara-fuwari/components/HeaderItem.vue'
   .content {
     position: relative;
     top: 60px;
-    padding: 20px;
+    padding: 0 6%;
   }
 }
 </style>
