@@ -78,7 +78,7 @@ const unpin_announcement_list = computed(() => {
   flex: 1 1 auto;
   margin: 2vh;
   padding: 2vh;
-  border: 1px solid #ccc;
+  border: 1px solid var(--card-border);
 }
 
 .timeline {

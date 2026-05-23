@@ -33,6 +33,6 @@ h2 {
   text-align: center;
   margin-top: 300px;
   font-size: 20px;
-  color: #333;
+  color: var(--deep-text);
 }
 </style>

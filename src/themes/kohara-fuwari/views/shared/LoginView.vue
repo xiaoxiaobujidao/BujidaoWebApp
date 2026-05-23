@@ -1070,5 +1070,24 @@ const go_chat = () => {
   .right {
     background: linear-gradient(225deg, #208dec, #222);
   }
+
+  .help {
+    background: rgba(84, 169, 235, 0.2);
+    border: 1px solid rgba(84, 169, 235, 0.3);
+
+    &:hover {
+      background: rgba(84, 169, 235, 0.3);
+      box-shadow: 0 4px 16px rgba(84, 169, 235, 0.3);
+    }
+  }
+
+  .submit-button {
+    background: linear-gradient(135deg, #4f8ef7, #3b6fe8);
+  }
+
+  .submit-button:hover {
+    background: linear-gradient(135deg, #3b6fe8, #2d5ad4);
+    box-shadow: 0 8px 20px rgba(59, 130, 246, 0.4);
+  }
 }
 </style>

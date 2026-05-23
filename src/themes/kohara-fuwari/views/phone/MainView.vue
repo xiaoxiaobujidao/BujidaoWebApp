@@ -68,11 +68,13 @@ const bujidao = () => {
 <style lang="scss" scoped>
 .dark {
   .header {
+    background-color: #1c1b22fe;
     background-image: linear-gradient(1deg, #1c1b22f0, #1c1b22fe);
     box-shadow: none;
   }
 
   .menu {
+    background-color: #1c1b22fe;
     background-image: linear-gradient(179deg, #1c1b22f0, #1c1b22fe);
     box-shadow: none;
   }
