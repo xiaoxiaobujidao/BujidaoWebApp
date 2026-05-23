@@ -279,44 +279,11 @@ const go_chat = () => {
 
           <h1 class="welcome-title">欢迎回来</h1>
           <p class="welcome-text">
-            使用多种安全便捷的方式登录您的账户。我们提供邮件登录、密码登录以及第三方登录，确保您能快速访问。
+            布吉岛什么都布吉岛
           </p>
-
-          <div class="features-list">
-            <div class="feature-item">
-              <div class="feature-icon security-icon">
-                <FontAwesomeIcon icon="fa-solid fa-shield-alt" />
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">安全可靠</h3>
-                <p class="feature-desc">采用行业标准加密技术保护您的数据</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon speed-icon">
-                <FontAwesomeIcon icon="fa-solid fa-bolt" />
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">快速便捷</h3>
-                <p class="feature-desc">一键登录，无需记住复杂密码</p>
-              </div>
-            </div>
-
-            <div class="feature-item">
-              <div class="feature-icon sync-icon">
-                <FontAwesomeIcon icon="fa-solid fa-user-check" />
-              </div>
-              <div class="feature-content">
-                <h3 class="feature-title">多设备同步</h3>
-                <p class="feature-desc">在任意设备上访问您的账户</p>
-              </div>
-            </div>
-          </div>
         </div>
-
         <div class="copyright">
-          <p>© 2023 布吉岛. 保留所有权利。</p>
+          <p>© 2026 布吉岛. 保留所有权利。</p>
         </div>
       </div>
 
@@ -519,15 +486,17 @@ const go_chat = () => {
     'Helvetica Neue', Arial, sans-serif;
 }
 
-// 容器样式
 .login-container {
   display: flex;
   flex-direction: column;
   width: 100%;
   max-width: 1200px;
-  background-color: white;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
   border-radius: 20px;
   overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.5);
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.08),
     0 10px 20px rgba(0, 0, 0, 0.04);
@@ -536,49 +505,57 @@ const go_chat = () => {
 
 // 左侧信息区域
 .info-section {
+  position: relative;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   padding: 40px;
-  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-right: 1px solid rgba(255, 255, 255, 0.6);
 }
 
 .info-content {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
 }
 
 .logo-section {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
 }
 
 .logo {
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 48px;
+  height: 48px;
   object-fit: cover;
 }
 
 .logo-text {
-  font-size: 24px;
+  font-size: 22px;
   font-weight: bold;
   color: #334155;
 }
 
 .welcome-title {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: bold;
   color: #1e293b;
   line-height: 1.2;
 }
 
 .welcome-text {
-  font-size: 18px;
+  font-size: 16px;
   color: #64748b;
   line-height: 1.6;
+  max-width: 280px;
 }
 
 // 特性列表
@@ -640,16 +617,23 @@ const go_chat = () => {
 
 // 版权信息
 .copyright {
-  margin-top: 40px;
-  padding-top: 20px;
-  border-top: 1px solid #e2e8f0;
-  font-size: 14px;
+  position: absolute;
+  bottom: 24px;
+  left: 40px;
+  right: 40px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(226, 232, 240, 0.6);
+  font-size: 12px;
   color: #94a3b8;
+  text-align: center;
 }
 
 // 右侧登录区域
 .login-section {
   padding: 40px;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
 }
 
 .login-content {
@@ -894,11 +878,11 @@ const go_chat = () => {
   }
 
   .welcome-title {
-    font-size: 28px;
+    font-size: 32px;
   }
 
   .welcome-text {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .login-title {
@@ -912,14 +896,20 @@ const go_chat = () => {
   }
 
   .login-container {
-    background-color: #2d3748;
+    background: rgba(20, 20, 40, 0.5);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
     box-shadow:
       0 20px 40px rgba(0, 0, 0, 0.2),
       0 10px 20px rgba(0, 0, 0, 0.1);
   }
 
   .info-section {
-    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    background: rgba(30, 30, 50, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-right: 1px solid rgba(255, 255, 255, 0.08);
   }
 
   .logo-text {
@@ -943,12 +933,14 @@ const go_chat = () => {
   }
 
   .copyright {
-    border-top: 1px solid #4a5568;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
     color: #a0aec0;
   }
 
   .login-section {
-    background-color: #2d3748;
+    background: rgba(30, 30, 50, 0.6);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
   .login-title {
