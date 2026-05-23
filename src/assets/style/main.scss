@@ -117,6 +117,9 @@
   --btn-card-bg-hover: oklch(0.3 0.03 var(--hue));
   --btn-card-bg-active: oklch(0.35 0.035 var(--hue));
 
+  --deep-text: oklch(0.85 0.02 var(--hue));
+  --title-active: oklch(0.75 0.1 var(--hue));
+
   --line-divider: rgba(255, 255, 255, 0.08);
   --line-color: rgba(255, 255, 255, 0.1);
   --meta-divider: rgba(255, 255, 255, 0.2);
@@ -166,21 +169,17 @@
                 border-color var(--duration-fast) var(--ease-standard);
   }
 
-  /* 浮动面板 */
+  /* 浮动面板 — 不含 top，由使用方按需指定 */
   .float-panel {
-    top: 5.25rem;
     border-radius: var(--radius-large);
     overflow: hidden;
     background: var(--card-bg);
-    transition: color var(--duration-fast) var(--ease-standard),
-                background-color var(--duration-fast) var(--ease-standard),
-                border-color var(--duration-fast) var(--ease-standard);
     box-shadow: var(--shadow-xl);
     border: 1px solid rgba(0, 0, 0, 0.05);
   }
 
   :root.dark .float-panel {
-    border-color: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.08);
   }
 
   .float-panel-closed {
@@ -191,6 +190,12 @@
 
   .float-panel-closed * {
     pointer-events: none;
+  }
+
+  /* 下拉面板选中项 */
+  .current-theme-btn {
+    background: var(--btn-plain-bg-hover);
+    color: var(--primary);
   }
 
   /* 按钮样式 */
@@ -315,7 +320,13 @@
   /* 页面背景 */
   body {
     background: var(--page-bg);
-    transition: background-color var(--duration-fast) var(--ease-standard);
+    color: var(--deep-text);
+    transition: background-color var(--duration-fast) var(--ease-standard),
+                color var(--duration-fast) var(--ease-standard);
+  }
+
+  :root.dark body {
+    color-scheme: dark;
   }
 
   html {
@@ -331,7 +342,23 @@
 }
 
 /* ============================================
-   5. 全局动画
+   5. 导航栏基础样式
+   ============================================ */
+#navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+}
+
+#navbar > div {
+  background: var(--card-bg);
+  border: 1px solid transparent;
+  border-radius: 0 0 0.75rem 0.75rem;
+  transition: all var(--duration-medium) var(--ease-standard);
+}
+
+/* ============================================
+   6. 全局动画
    ============================================ */
 
 @keyframes fade-in-up {
