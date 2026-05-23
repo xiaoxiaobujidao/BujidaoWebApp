@@ -11,7 +11,7 @@ import ThemeSwitcher from '@kohara-fuwari/components/ThemeSwitcher.vue'
 <style lang="scss">
 .dark {
   .box {
-    background-color: #2e303d !important;
+    background-color: var(--card-bg) !important;
   }
 
   .box.phone {
