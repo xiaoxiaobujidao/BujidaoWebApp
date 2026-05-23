@@ -1,4 +1,5 @@
 <p align="center">
+  <img src="https://bujidao.org/favicon.ico" alt="BujidaoLogo" />
   <strong>Bujidao Web App</strong>
 </p>
 
