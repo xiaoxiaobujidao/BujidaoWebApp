@@ -5,8 +5,8 @@
 <p align="center"><strong>Bujidao user portal frontend for account management, subscription access, node overview, and theme switching.</strong></p>
 
 <p align="center">
-  <a href="https://github.com/koharachan/BujidaoWebApp"><img src="https://img.shields.io/github/stars/koharachan/BujidaoWebApp?style=flat-square" alt="GitHub stars" /></a>
-  <a href="https://github.com/koharachan/BujidaoWebApp/actions"><img src="https://img.shields.io/github/actions/workflow/status/koharachan/BujidaoWebApp/ci.yml?branch=main&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="https://github.com/xiaoxiaobujidao/BujidaoWebApp"><img src="https://img.shields.io/github/stars/xiaoxiaobujidao/BujidaoWebApp?style=flat-square" alt="GitHub stars" /></a>
+  <a href="https://github.com/xiaoxiaobujidao/BujidaoWebApp/actions"><img src="https://img.shields.io/github/actions/workflow/status/xiaoxiaobujidao/BujidaoWebApp/ci.yml?branch=test&style=flat-square" alt="GitHub Workflow Status" /></a>
   <img src="https://img.shields.io/badge/Vue-3.5%2B-3BA776?style=flat-square&logo=vue" alt="Vue 3" />
   <img src="https://img.shields.io/badge/TypeScript-%3E=5.9-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Vite-%3E=5.0-646CFF?style=flat-square&logo=vite" alt="Vite" />
@@ -15,7 +15,7 @@
 <p align="center">
   <a href="https://bujidao.org">Website</a> ·
   <a href="https://t.me/bujidaoChat">Telegram</a> ·
-  <a href="https://github.com/koharachan/BujidaoWebApp">GitHub</a>
+  <a href="https://github.com/xiaoxiaobujidao/BujidaoWebApp">GitHub</a>
 </p>
 
 ## Overview
@@ -70,5 +70,5 @@ Contributions are welcome. Please read [CONTRIBUTING.md](./CONTRIBUTING.md) for 
 
 - Official Website: <https://bujidao.org/>
 - Telegram: <https://t.me/bujidaoChat>
-- GitHub: <https://github.com/koharachan/BujidaoWebApp>
+- GitHub: <https://github.com/xiaoxiaobujidao/BujidaoWebApp>
 
