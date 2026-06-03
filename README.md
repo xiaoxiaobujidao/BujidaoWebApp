@@ -8,7 +8,7 @@
 
 <p align="center">
   <a href="https://github.com/koharachan/BujidaoWebApp"><img src="https://img.shields.io/github/stars/koharachan/BujidaoWebApp?style=flat-square" alt="GitHub stars" /></a>
-  <a href="https://github.com/koharachan/BujidaoWebApp/actions"><img src="https://img.shields.io/github/actions/workflow/status/koharachan/BujidaoWebApp/ci.yml?branch=test&style=flat-square" alt="GitHub Workflow Status" /></a>
+  <a href="https://github.com/xiaoxiaobujidao/BujidaoWebApp/actions"><img src="https://img.shields.io/github/actions/workflow/status/xiaoxiaobujidao/BujidaoWebApp/ci.yml?branch=test&style=flat-square" alt="GitHub Workflow Status" /></a>
   <img src="https://img.shields.io/badge/Vue-3.5%2B-3BA776?style=flat-square&logo=vue" alt="Vue 3" />
   <img src="https://img.shields.io/badge/TypeScript-%3E=5.9-3178C6?style=flat-square&logo=typescript" alt="TypeScript" />
   <img src="https://img.shields.io/badge/Vite-%3E=5.0-646CFF?style=flat-square&logo=vite" alt="Vite" />
