@@ -490,8 +490,9 @@ const go_chat = () => {
 // 主容器样式
 .login-main {
   display: flex;
-  height: 100vh;
-  width: 100vw;
+  min-height: 100vh;
+  min-height: 100svh;
+  width: 100%;
   justify-content: center;
   align-items: center;
   padding: 20px;
@@ -834,6 +835,21 @@ const go_chat = () => {
   width: 100%;
   border-radius: 12px;
   transition: all 0.3s ease;
+  margin-left: 0 !important;
+
+  :deep(span) {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-width: 0;
+  }
+
+  :deep(svg) {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
 }
 
 // 忘记密码
@@ -881,27 +897,189 @@ const go_chat = () => {
 
 @media (max-width: 767px) {
   .login-main {
-    padding: 10px;
+    align-items: flex-start;
+    min-height: 100svh;
+    padding: max(12px, env(safe-area-inset-top)) 12px max(88px, env(safe-area-inset-bottom));
+    overflow-x: hidden;
+    overflow-y: auto;
+  }
+
+  .login-container {
+    width: 100%;
+    max-width: 430px;
+    border-radius: 18px;
+    overflow: visible;
+    box-shadow:
+      0 16px 32px rgba(59, 130, 246, 0.12),
+      0 8px 16px rgba(15, 23, 42, 0.06);
   }
 
   .info-section {
-    padding: 24px;
+    padding: 24px 20px 14px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.58);
+  }
+
+  .info-content {
+    gap: 12px;
+  }
+
+  .logo-section {
+    gap: 10px;
+  }
+
+  .logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .copyright {
+    display: none;
   }
 
   .login-section {
-    padding: 24px;
+    padding: 22px 18px 24px;
   }
 
   .welcome-title {
-    font-size: 32px;
+    font-size: 28px;
   }
 
   .welcome-text {
     font-size: 14px;
+    max-width: 240px;
+  }
+
+  .login-header {
+    margin-bottom: 22px;
+    text-align: center;
   }
 
   .login-title {
     font-size: 24px;
+    line-height: 1.25;
+  }
+
+  .login-subtitle {
+    font-size: 14px;
+  }
+
+  .login-tabs {
+    margin-bottom: 24px;
+  }
+
+  .tab-button {
+    min-width: 0;
+    padding: 10px 8px;
+    font-size: 14px;
+    line-height: 1.25;
+    white-space: normal;
+  }
+
+  .login-form {
+    gap: 14px;
+  }
+
+  .form-hint,
+  .forgot-password,
+  .checkbox-label {
+    font-size: 13px;
+  }
+
+  .submit-button,
+  .third-party-button {
+    min-height: 44px;
+    padding: 12px 10px;
+    white-space: normal;
+    line-height: 1.3;
+  }
+
+  .third-party-login {
+    margin-top: 28px;
+  }
+
+  .divider {
+    margin-bottom: 18px;
+  }
+
+  .divider-text {
+    padding: 0 10px;
+    white-space: nowrap;
+  }
+
+  .third-party-buttons {
+    gap: 12px;
+  }
+
+  .help {
+    left: 16px;
+    bottom: max(16px, env(safe-area-inset-bottom));
+    width: 42px;
+    height: 42px;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-main {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .login-container {
+    border-radius: 16px;
+  }
+
+  .info-section {
+    padding: 20px 16px 12px;
+  }
+
+  .login-section {
+    padding: 20px 14px 22px;
+  }
+
+  .welcome-title {
+    font-size: 26px;
+  }
+
+  .login-title {
+    font-size: 22px;
+  }
+
+  .tab-button {
+    font-size: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .login-tabs {
+    flex-direction: column;
+  }
+
+  .tab-button {
+    min-height: 40px;
+  }
+}
+
+@media (max-height: 680px) and (max-width: 767px) {
+  .login-main {
+    padding-top: 8px;
+  }
+
+  .info-section {
+    padding-top: 16px;
+    padding-bottom: 10px;
+  }
+
+  .welcome-title {
+    font-size: 24px;
+  }
+
+  .welcome-text {
+    display: none;
   }
 }
 

@@ -372,4 +372,29 @@ onUnmounted(() => {
 .dark .theme-menu-item:hover {
   background-color: var(--el-fill-color-light, #3a3c4a);
 }
+
+@media (max-width: 576px) {
+  .theme-button {
+    width: 42px;
+    height: 42px;
+    padding: 0;
+    justify-content: center;
+    border-radius: 50%;
+  }
+
+  .theme-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .theme-menu {
+    right: -8px;
+    min-width: 132px;
+  }
+
+  .theme-menu-item {
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+}
 </style>

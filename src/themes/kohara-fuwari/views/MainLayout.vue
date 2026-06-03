@@ -7,6 +7,7 @@
 import { RouterView } from 'vue-router'
 import ScreenSize from '@kohara-fuwari/components/ScreenSize.vue'
 import ThemeSwitcher from '@kohara-fuwari/components/ThemeSwitcher.vue'
+import '@kohara-fuwari/assets/style/main.scss'
 </script>
 <style lang="scss">
 .dark {
