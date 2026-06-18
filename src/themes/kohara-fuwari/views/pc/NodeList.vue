@@ -19,9 +19,7 @@ const connect_info_visible = ref(false)
 const node_name = ref('')
 const node_text = ref('')
 const node_qr_code = ref('')
-function show_connect_info(node_id: string) {
-  let i = node_list.value.findIndex((e: any) => e.node_id == node_id)
-  let node = node_list.value[i]
+function show_connect_info(node: any) {
   node_name.value = node.name
   if (node.node_type == 'wireguard') {
     node_text.value =
@@ -182,6 +180,7 @@ function show_connect_info(node_id: string) {
       <!-- <h2>用户可使用节点等级小于自身余额的节点</h2> -->
       <el-table
         :data="node_list"
+        row-key="node_id"
         height="100%"
         stripe
         table-layout="auto"
@@ -196,7 +195,7 @@ function show_connect_info(node_id: string) {
         </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">
-            <el-button type="primary" size="small" @click="show_connect_info(scope.row.node_id)">
+            <el-button type="primary" size="small" @click="show_connect_info(scope.row)">
               查看
             </el-button>
           </template>
@@ -221,6 +220,7 @@ function show_connect_info(node_id: string) {
             <a :href="node_qr_code" target="_blank">
               <div class="qr">
                 <vue-qr
+                  :key="node_qr_code"
                   :text="node_qr_code"
                   :size="2400"
                   :margin="50"
