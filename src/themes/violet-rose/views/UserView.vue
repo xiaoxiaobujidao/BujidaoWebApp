@@ -131,16 +131,38 @@ function toggleEmailOptIn() {
   })
 }
 
+const cancelStep1Visible = ref(false)
+const cancelStep2Visible = ref(false)
+const cancelLoading = ref(false)
+
 function confirmCancel() {
-  if (!confirm('确认注销账户？此操作不可撤销。')) return
-  cancel().then((res) => {
+  cancelStep1Visible.value = true
+}
+
+function closeCancelDialogs() {
+  cancelStep1Visible.value = false
+  cancelStep2Visible.value = false
+}
+
+function proceedCancelStep1() {
+  cancelStep1Visible.value = false
+  cancelStep2Visible.value = true
+}
+
+async function executeCancel() {
+  cancelLoading.value = true
+  try {
+    const res = await cancel()
     if (res.result) {
       ElMessage.success('注销成功')
+      closeCancelDialogs()
       closeTelegramWebApp()
     } else {
       ElMessage.error('注销失败')
     }
-  })
+  } finally {
+    cancelLoading.value = false
+  }
 }
 </script>
 
@@ -223,6 +245,47 @@ function confirmCancel() {
       <template #footer>
         <VrButton variant="ghost" @click="cancelPrompt">取消</VrButton>
         <VrButton @click="confirmPrompt">确认</VrButton>
+      </template>
+    </VrModal>
+
+    <VrModal v-model="cancelStep1Visible" title="确认注销账户">
+      <div class="cancel-dialog">
+        <p class="cancel-dialog__lead">
+          您即将<strong>注销账号</strong>，此操作与<strong>退出登录</strong>完全不同，请仔细区分：
+        </p>
+        <ul class="cancel-compare">
+          <li class="cancel-compare__item cancel-compare__item--safe">
+            <span class="cancel-compare__tag">退出登录</span>
+            <span>暂时离开，账号与数据保留，可随时重新登录</span>
+          </li>
+          <li class="cancel-compare__item cancel-compare__item--danger">
+            <span class="cancel-compare__tag">注销账号</span>
+            <span>永久删除账号及全部数据，无法恢复</span>
+          </li>
+        </ul>
+        <p class="cancel-dialog__note">如需暂时离开，请使用页面上的「退出」按钮，而非注销账户。</p>
+      </div>
+      <template #footer>
+        <VrButton variant="ghost" @click="closeCancelDialogs">取消</VrButton>
+        <VrButton variant="danger" @click="proceedCancelStep1">继续注销</VrButton>
+      </template>
+    </VrModal>
+
+    <VrModal v-model="cancelStep2Visible" title="最后确认">
+      <div class="cancel-dialog">
+        <div class="cancel-dialog__alert">
+          <p class="cancel-dialog__alert-title">此操作不可撤销</p>
+          <p class="cancel-dialog__alert-text">
+            注销后，您的账户余额、订阅地址、使用记录等所有数据将被永久删除，且无法恢复。
+          </p>
+        </div>
+        <p class="cancel-dialog__confirm">确定要注销账号吗？</p>
+      </div>
+      <template #footer>
+        <VrButton variant="ghost" :disabled="cancelLoading" @click="closeCancelDialogs">取消</VrButton>
+        <VrButton variant="danger" :disabled="cancelLoading" @click="executeCancel">
+          {{ cancelLoading ? '注销中…' : '确认注销' }}
+        </VrButton>
       </template>
     </VrModal>
   </DashboardLayout>
@@ -327,5 +390,107 @@ function confirmCancel() {
 
 .rich :deep(*) {
   line-height: 1.7;
+}
+
+.cancel-dialog {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.cancel-dialog__lead {
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--color-text-primary);
+}
+
+.cancel-dialog__lead strong {
+  color: var(--color-accent-deep);
+}
+
+.cancel-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 0.65rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.cancel-compare__item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 0.75rem 0.9rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  border-radius: var(--radius-md);
+  border: 1px solid transparent;
+}
+
+.cancel-compare__item--safe {
+  color: var(--color-text-secondary);
+  background: rgba(171, 71, 188, 0.08);
+  border-color: rgba(171, 71, 188, 0.2);
+}
+
+.cancel-compare__item--danger {
+  color: #8b1a1a;
+  background: rgba(198, 40, 40, 0.08);
+  border-color: rgba(198, 40, 40, 0.25);
+}
+
+.cancel-compare__tag {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.cancel-compare__item--safe .cancel-compare__tag {
+  color: var(--color-accent-deep);
+}
+
+.cancel-compare__item--danger .cancel-compare__tag {
+  color: #c62828;
+}
+
+.cancel-dialog__note {
+  margin: 0;
+  padding: 0.7rem 0.85rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  background: rgba(171, 71, 188, 0.06);
+  border-left: 3px solid var(--color-accent);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+}
+
+.cancel-dialog__alert {
+  padding: 0.9rem 1rem;
+  background: rgba(198, 40, 40, 0.08);
+  border: 1px solid rgba(198, 40, 40, 0.28);
+  border-radius: var(--radius-md);
+}
+
+.cancel-dialog__alert-title {
+  margin: 0 0 0.4rem;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: #c62828;
+}
+
+.cancel-dialog__alert-text {
+  margin: 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #6d1f1f;
+}
+
+.cancel-dialog__confirm {
+  margin: 0;
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-primary);
+  text-align: center;
 }
 </style>
