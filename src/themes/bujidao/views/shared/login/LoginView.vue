@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ElMessage } from 'element-plus'
 import { checkLoginKey, loginWithTelegram, loginWithEmailPasswd } from '@/utils/user'
+import { finishLogin } from '@/utils/finishLogin'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import { ref } from 'vue'
@@ -21,16 +22,8 @@ const login_key = ref()
 const email_login_show = ref(false)
 const password_login_show = ref(false)
 
-// 跳转
-function go_to_user() {
-  ElMessage.success('登录成功，跳转到用户中心')
-  router.push({
-    path: '/user',
-    query: {},
-  })
-}
 if (userInfoStore.getToken()) {
-  go_to_user()
+  finishLogin()
 }
 
 // TG验证
@@ -40,8 +33,7 @@ function onTelegramAuth(user: any) {
   loginWithTelegram(user, inviter.value)
     .then((res_data: any) => {
       if (res_data.result) {
-        userInfoStore.setToken(res_data.result.login_token)
-        go_to_user()
+        finishLogin(res_data.result.login_token)
       } else {
         ElMessage.error(res_data.error?.message)
       }
@@ -80,8 +72,7 @@ const init = () => {
     checkLoginKey(login_key.value)
       .then((res: any) => {
         if (res.result) {
-          userInfoStore.setToken(res.result)
-          go_to_user()
+          finishLogin(res.result)
         } else {
           ElMessage.error(res.error)
         }

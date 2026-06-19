@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { ref, type Ref, watch } from 'vue'
+import { ref, type Ref } from 'vue'
 import { getUserInfo as fetchUserInfo } from '@/utils/user'
 import { useThemeStore } from '@/stores/themeStore'
 export interface UserInfo {
@@ -24,7 +24,9 @@ interface UserInfoStore {
   setToken: (token: string | null) => void
   getToken: () => string | null
   clearUserInfo: () => void
-  updateUserInfo: () => Promise<void>
+  updateUserInfo: () => Promise<boolean>
+  syncUserTheme: () => Promise<boolean>
+  completeLogin: (loginToken?: string | null) => Promise<boolean>
 }
 export const useUserInfoStore = defineStore(
   'userInfo',
@@ -37,14 +39,20 @@ export const useUserInfoStore = defineStore(
     const getUserInfo = () => {
       return userInfo.value
     }
-    watch(userInfo, (newUserInfo) => {
-      // 判断是否和当前主题一致
-      // 不一致就切换主题
+    async function syncUserTheme(): Promise<boolean> {
+      const userTheme = userInfo.value?.theme
+      if (!userTheme) return false
+
       const themeStore = useThemeStore()
-      if (newUserInfo?.theme && newUserInfo.theme !== themeStore.currentTheme) {
-        themeStore.switchTheme(newUserInfo.theme)
+      if (themeStore.availableThemes.length === 0) {
+        themeStore.scanAvailableThemes()
       }
-    })
+      if (!themeStore.availableThemes.includes(userTheme)) return false
+      if (userTheme === themeStore.currentTheme) return false
+
+      await themeStore.switchTheme(userTheme)
+      return true
+    }
     const setToken = (newToken: string | null) => {
       token.value = newToken
     }
@@ -55,29 +63,34 @@ export const useUserInfoStore = defineStore(
       userInfo.value = null
       token.value = null
     }
-    let updateUserInfoPromise: Promise<void> | null = null
+    let updateUserInfoPromise: Promise<boolean> | null = null
     const updateUserInfo = async () => {
-      // 如果已经有更新在进行，返回现有的Promise
       if (updateUserInfoPromise) {
         return updateUserInfoPromise
       }
-      // 创建新的更新Promise
       updateUserInfoPromise = (async () => {
         try {
           const res = await fetchUserInfo()
           if (res.result) {
             userInfo.value = res.result
+            return await syncUserTheme()
           }
           if (res.error) {
             clearUserInfo()
             window.location.href = '/'
           }
+          return false
         } finally {
-          // 更新完成后清除Promise引用
           updateUserInfoPromise = null
         }
       })()
       return updateUserInfoPromise
+    }
+    async function completeLogin(loginToken?: string | null): Promise<boolean> {
+      if (loginToken) {
+        token.value = loginToken
+      }
+      return updateUserInfo()
     }
     return {
       userInfo,
@@ -88,6 +101,8 @@ export const useUserInfoStore = defineStore(
       getToken,
       clearUserInfo,
       updateUserInfo,
+      syncUserTheme,
+      completeLogin,
     }
   },
   {

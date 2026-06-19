@@ -3,8 +3,7 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { Lock, User } from '@element-plus/icons-vue'
 import { loginWithEmailPasswd } from '@/utils/user'
-import { useUserInfoStore } from '@/stores/userInfoStore'
-import { useRouter } from 'vue-router'
+import { finishLogin } from '@/utils/finishLogin'
 
 const props = defineProps<{
   modelValue: boolean
@@ -12,21 +11,10 @@ const props = defineProps<{
 
 const emit = defineEmits(['update:modelValue', 'success'])
 
-const router = useRouter()
-const userInfoStore = useUserInfoStore()
-
 const email = ref('')
 const passwd = ref('')
 const loading = ref(false)
 const email_ref = ref()
-
-function go_to_user() {
-  ElMessage.success('登录成功，跳转到用户中心')
-  router.push({
-    path: '/user',
-    query: {},
-  })
-}
 
 const handleLogin = () => {
   if (!email.value || !passwd.value) {
@@ -38,11 +26,9 @@ const handleLogin = () => {
   loginWithEmailPasswd(email.value, passwd.value)
     .then((res: any) => {
       if (res.result) {
-        ElMessage.success('登陆成功')
-        userInfoStore.setToken(res.result.login_token)
         emit('success')
         emit('update:modelValue', false)
-        go_to_user()
+        finishLogin(res.result.login_token)
       } else {
         ElMessage.error(res.error?.message || '登录失败')
       }

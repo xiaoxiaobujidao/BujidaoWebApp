@@ -9,7 +9,9 @@
       "@/*": ["./src/*"],
       "@bujidao/*": ["./src/themes/bujidao/*"],
       "@test/*": ["./src/themes/test/*"],
-      "@kohara-fuwari/*": ["./src/themes/kohara-fuwari/*"]
+      "@kohara-fuwari/*": ["./src/themes/kohara-fuwari/*"],
+      "@blush-cherry-blossoms/*": ["./src/themes/blush-cherry-blossoms/*"],
+      "@violet-rose/*": ["./src/themes/violet-rose/*"]
     }
   }
 }

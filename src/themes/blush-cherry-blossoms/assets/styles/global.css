@@ -1,0 +1,54 @@
+@import './variables.css';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  font-family:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--color-text-primary);
+  background: var(--color-sky-top);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+#app {
+  min-height: 100dvh;
+}
+
+a {
+  color: var(--color-sakura-deep);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}

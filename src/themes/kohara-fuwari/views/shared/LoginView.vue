@@ -6,6 +6,7 @@ import {
   loginWithEmail,
   loginWithEmailPasswd,
 } from '@/utils/user'
+import { finishLogin } from '@/utils/finishLogin'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import { markRaw } from 'vue'
@@ -40,16 +41,8 @@ const userInfoStore = useUserInfoStore()
 const inviter = ref()
 const login_key = ref()
 
-// 跳转
-function go_to_user() {
-  ElMessage.success('登录成功，跳转到用户中心')
-  router.push({
-    path: '/user',
-    query: {},
-  })
-}
 if (userInfoStore.getToken()) {
-  go_to_user()
+  finishLogin()
 }
 
 // TG验证
@@ -59,8 +52,7 @@ function onTelegramAuth(user: any) {
   loginWithTelegram(user, inviter.value)
     .then((res_data: any) => {
       if (res_data.result) {
-        userInfoStore.setToken(res_data.result.login_token)
-        go_to_user()
+        finishLogin(res_data.result.login_token)
       } else {
         ElMessage.error(res_data.error?.message)
       }
@@ -108,9 +100,7 @@ const login_with_email_passwd = () => {
           loginWithEmailPasswd(email, passwd)
             .then((res: any) => {
               if (res.result) {
-                ElMessage.success('登陆成功')
-                userInfoStore.setToken(res.result.login_token)
-                go_to_user()
+                finishLogin(res.result.login_token)
               } else {
                 ElMessage.error(res.error?.message)
               }
@@ -156,9 +146,7 @@ const login = () => {
   loginWithEmailPasswd(email.value, passwd.value)
     .then((res: any) => {
       if (res.result) {
-        ElMessage.success('登陆成功')
-        userInfoStore.setToken(res.result.login_token)
-        go_to_user()
+        finishLogin(res.result.login_token)
       } else {
         ElMessage.error(res.error?.message || '登录失败，请检查邮箱和密码')
       }
@@ -227,8 +215,7 @@ const init = () => {
     checkLoginKey(login_key.value)
       .then((res: any) => {
         if (res.result) {
-          userInfoStore.setToken(res.result)
-          go_to_user()
+          finishLogin(res.result)
         } else {
           ElMessage.error(res.error)
         }

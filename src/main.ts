@@ -12,6 +12,7 @@ import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/dark/css-vars.css'
 
 import { useThemeStore } from './stores/themeStore'
+import { useUserInfoStore } from './stores/userInfoStore'
 import { checkVersion } from './utils/version'
 // 初始化应用
 async function initApp() {
@@ -24,9 +25,16 @@ async function initApp() {
 
   // 初始化主题 store
   const themeStore = useThemeStore()
+  const userInfoStore = useUserInfoStore()
 
   // 加载主题路由
   const routes = await themeStore.initTheme()
+
+  // 已登录用户若本地缓存了主题偏好，启动时先同步一次
+  if (userInfoStore.getToken() && userInfoStore.getUserInfo()?.theme) {
+    const themeSwitched = await userInfoStore.syncUserTheme()
+    if (themeSwitched) return
+  }
 
   // 动态添加路由
   routes.forEach((route) => {

@@ -29,6 +29,8 @@ export default defineConfig(({ mode }) => {
         '@bujidao': fileURLToPath(new URL('./src/themes/bujidao', import.meta.url)),
         '@test': fileURLToPath(new URL('./src/themes/test', import.meta.url)),
         '@kohara-fuwari': fileURLToPath(new URL('./src/themes/kohara-fuwari', import.meta.url)),
+        '@blush-cherry-blossoms': fileURLToPath(new URL('./src/themes/blush-cherry-blossoms', import.meta.url)),
+        '@violet-rose': fileURLToPath(new URL('./src/themes/violet-rose', import.meta.url)),
       },
     },
     // 代理 /json_rpc/

@@ -3,19 +3,11 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 const router = useRouter()
 import { loginWithGoogle } from '@/utils/user'
+import { finishLogin } from '@/utils/finishLogin'
 import { ElMessage } from 'element-plus'
-import { useUserInfoStore } from '@/stores/userInfoStore'
-const userInfoStore = useUserInfoStore()
-const inviter = ref()
-// 跳转
-function go_to_user() {
-  ElMessage.success('登录成功，跳转到用户中心')
-  router.push({
-    path: '/user',
-    query: {},
-  })
-}
-const g_token = ref()
+
+const inviter = ref<string | null>(null)
+const g_token = ref<string | undefined>()
 
 /** 从 OAuth 回调 URL 的 hash 中解析出 access_token */
 function getAccessTokenFromHash(): string | undefined {
@@ -32,8 +24,7 @@ const init = () => {
   loginWithGoogle(g_token.value, inviter.value)
     .then((res_data) => {
       if (res_data.result) {
-        userInfoStore.setToken(res_data.result.login_token)
-        go_to_user()
+        finishLogin(res_data.result.login_token)
       } else {
         ElMessage.error(res_data.error?.message)
       }

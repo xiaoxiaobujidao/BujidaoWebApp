@@ -1,0 +1,9 @@
+:root {
+  --radius-lg: 16px;
+  --radius-md: 12px;
+  --header-height: 56px;
+  --footer-height: 48px;
+  --content-max-width: 960px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
