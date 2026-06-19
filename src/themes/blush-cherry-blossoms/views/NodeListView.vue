@@ -122,10 +122,10 @@ function formatMinBalance(level: number) {
           </div>
           <div class="node-item__meta">
             <span v-if="node.price != null" class="node-item__price">
-              {{ (node.price / 100).toFixed(2) }}元/G
+              {{ (node.price / 100).toFixed(2) }} 元/G
             </span>
             <span v-if="node.level != null" class="node-item__balance">
-              最低 ¥{{ formatMinBalance(node.level) }}
+              最低 ¥ {{ formatMinBalance(node.level) }}
             </span>
           </div>
           <SakuraBtn size="sm" variant="ghost" @click="viewNode(node)">查看连接</SakuraBtn>

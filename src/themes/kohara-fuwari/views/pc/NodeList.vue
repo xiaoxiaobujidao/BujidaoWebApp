@@ -191,11 +191,11 @@ function show_connect_info(node: any) {
         <el-table-column prop="name" label="节点名称" sortable show-overflow-tooltip />
         <el-table-column prop="node_type" label="节点类型" sortable />
         <el-table-column prop="price" label="价格" sortable>
-          <template #default="scope"> {{ (scope.row.price / 100).toFixed(2) }}元/G </template>
+          <template #default="scope"> {{ (scope.row.price / 100).toFixed(2) }} 元/G </template>
         </el-table-column>
         <el-table-column prop="level" label="最低余额" sortable>
           <template #default="scope">
-            ¥{{ (scope.row.level / 100).toFixed(2) }}
+            ¥ {{ (scope.row.level / 100).toFixed(2) }}
           </template>
         </el-table-column>
         <el-table-column label="操作">

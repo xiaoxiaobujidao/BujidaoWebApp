@@ -114,10 +114,10 @@ function formatMinBalance(level: number) {
                 <span class="type-badge">{{ typeLabels[node.node_type] ?? node.node_type }}</span>
               </td>
               <td class="node-table__price">
-                {{ node.price != null ? `${(node.price / 100).toFixed(2)}元/G` : '—' }}
+                {{ node.price != null ? `${(node.price / 100).toFixed(2)} 元/G` : '—' }}
               </td>
               <td>
-                {{ node.level != null ? `¥${formatMinBalance(node.level)}` : '—' }}
+                {{ node.level != null ? `¥ ${formatMinBalance(node.level)}` : '—' }}
               </td>
               <td class="node-table__action">
                 <VrButton size="sm" @click="viewNode(node)">查看</VrButton>
