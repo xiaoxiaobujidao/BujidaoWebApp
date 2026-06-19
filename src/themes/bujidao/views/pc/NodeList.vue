@@ -177,7 +177,9 @@ function show_connect_info(node: any) {
 <template>
   <UserMainView>
     <div class="node-list">
-      <!-- <h2>用户可使用节点等级小于自身余额的节点</h2> -->
+      <p class="hint">
+        每个节点设有最低可用余额门槛。若您的账户余额低于该金额，将无法连接并使用该节点。
+      </p>
       <el-table
         :data="node_list"
         row-key="node_id"
@@ -188,12 +190,12 @@ function show_connect_info(node: any) {
       >
         <el-table-column prop="name" label="节点名称" sortable show-overflow-tooltip />
         <el-table-column prop="node_type" label="节点类型" sortable />
-        <el-table-column prop="level" label="节点价格" sortable>
+        <el-table-column prop="price" label="价格" sortable>
           <template #default="scope"> {{ (scope.row.price / 100).toFixed(2) }}元/G </template>
         </el-table-column>
-        <el-table-column prop="level" label="节点等级" sortable>
+        <el-table-column prop="level" label="最低余额" sortable>
           <template #default="scope">
-            {{ scope.row.level / 100 }}
+            ¥{{ (scope.row.level / 100).toFixed(2) }}
           </template>
         </el-table-column>
         <el-table-column label="操作">
@@ -256,6 +258,17 @@ function show_connect_info(node: any) {
   :deep(.el-table--fit) {
     border-radius: 15px;
   }
+}
+
+.hint {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--el-text-color-secondary);
+  background: var(--el-fill-color-light);
+  border: 1px solid var(--el-border-color-lighter);
+  border-radius: 8px;
 }
 
 .footer {

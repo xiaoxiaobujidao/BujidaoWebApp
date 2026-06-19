@@ -12,7 +12,7 @@ import SakuraModal from '@blush-cherry-blossoms/components/ui/SakuraModal.vue'
 
 const nodes = ref<NodeItem[]>([])
 const search = ref('')
-const sortKey = ref<'name' | 'node_type' | 'level'>('level')
+const sortKey = ref<'name' | 'node_type' | 'price' | 'level'>('level')
 const sortAsc = ref(false)
 
 const modalVisible = ref(false)
@@ -71,13 +71,43 @@ const typeLabels: Record<string, string> = {
   trojan: 'Trojan',
   hy2: 'Hysteria2',
 }
+
+const sortLabels: Record<typeof sortKey.value, string> = {
+  name: '名称',
+  node_type: '类型',
+  price: '价格',
+  level: '最低余额',
+}
+
+function formatMinBalance(level: number) {
+  return (level / 100).toFixed(2)
+}
 </script>
 
 <template>
   <DashboardLayout>
-    <SakuraCard title="节点列表" subtitle="余额决定可用节点等级" accent>
+    <SakuraCard title="节点列表" subtitle="账户余额须达到节点的最低可用余额方可使用" accent>
+      <p class="hint">
+        每个节点设有最低可用余额门槛。若您的账户余额低于该金额，将无法连接并使用该节点。
+      </p>
+
       <div class="toolbar">
         <input v-model="search" class="search" type="search" placeholder="搜索节点名称或类型…" />
+      </div>
+
+      <div class="sort-bar">
+        <span class="sort-bar__label">排序：</span>
+        <button
+          v-for="key in (['name', 'node_type', 'price', 'level'] as const)"
+          :key="key"
+          type="button"
+          class="sort-btn"
+          :class="{ 'sort-btn--active': sortKey === key }"
+          @click="toggleSort(key)"
+        >
+          {{ sortLabels[key] }}
+          {{ sortKey === key ? (sortAsc ? '↑' : '↓') : '' }}
+        </button>
       </div>
 
       <div class="node-list">
@@ -91,26 +121,16 @@ const typeLabels: Record<string, string> = {
             <span class="node-item__type">{{ typeLabels[node.node_type] ?? node.node_type }}</span>
           </div>
           <div class="node-item__meta">
-            <span v-if="node.level != null" class="node-item__level">Lv.{{ node.level }}</span>
+            <span v-if="node.price != null" class="node-item__price">
+              {{ (node.price / 100).toFixed(2) }}元/G
+            </span>
+            <span v-if="node.level != null" class="node-item__balance">
+              最低 ¥{{ formatMinBalance(node.level) }}
+            </span>
           </div>
           <SakuraBtn size="sm" variant="ghost" @click="viewNode(node)">查看连接</SakuraBtn>
         </article>
         <p v-if="!filteredNodes.length" class="empty">暂无节点</p>
-      </div>
-
-      <div class="sort-bar">
-        <span class="sort-bar__label">排序：</span>
-        <button
-          v-for="key in (['name', 'node_type', 'level'] as const)"
-          :key="key"
-          type="button"
-          class="sort-btn"
-          :class="{ 'sort-btn--active': sortKey === key }"
-          @click="toggleSort(key)"
-        >
-          {{ key === 'name' ? '名称' : key === 'node_type' ? '类型' : '等级' }}
-          {{ sortKey === key ? (sortAsc ? '↑' : '↓') : '' }}
-        </button>
       </div>
     </SakuraCard>
 
@@ -129,6 +149,17 @@ const typeLabels: Record<string, string> = {
 </template>
 
 <style scoped>
+.hint {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  background: rgba(255, 183, 197, 0.12);
+  border: 1px solid rgba(255, 183, 197, 0.35);
+  border-radius: var(--radius-md);
+}
+
 .toolbar {
   margin-bottom: 1rem;
 }
@@ -186,7 +217,20 @@ const typeLabels: Record<string, string> = {
   border-radius: 999px;
 }
 
-.node-item__level {
+.node-item__meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.node-item__price {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-sakura-deep);
+}
+
+.node-item__balance {
   font-size: 0.8rem;
   color: var(--color-text-secondary);
 }
@@ -202,9 +246,9 @@ const typeLabels: Record<string, string> = {
   flex-wrap: wrap;
   align-items: center;
   gap: 0.4rem;
-  margin-top: 1rem;
-  padding-top: 0.85rem;
-  border-top: 1px solid var(--color-surface-border);
+  margin-bottom: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid var(--color-surface-border);
 }
 
 .sort-bar__label {

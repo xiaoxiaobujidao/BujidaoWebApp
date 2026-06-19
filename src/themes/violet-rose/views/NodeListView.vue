@@ -12,7 +12,7 @@ import VrModal from '@violet-rose/components/ui/VrModal.vue'
 
 const nodes = ref<NodeItem[]>([])
 const search = ref('')
-const sortKey = ref<'name' | 'node_type' | 'level'>('level')
+const sortKey = ref<'name' | 'node_type' | 'price' | 'level'>('level')
 const sortAsc = ref(false)
 
 const modalVisible = ref(false)
@@ -71,11 +71,19 @@ const typeLabels: Record<string, string> = {
   trojan: 'Trojan',
   hy2: 'Hysteria2',
 }
+
+function formatMinBalance(level: number) {
+  return (level / 100).toFixed(2)
+}
 </script>
 
 <template>
   <DashboardLayout>
-    <PanelCard title="节点列表" subtitle="余额决定可用节点等级">
+    <PanelCard title="节点列表" subtitle="账户余额须达到节点的最低可用余额方可使用">
+      <p class="hint">
+        每个节点设有最低可用余额门槛。若您的账户余额低于该金额，将无法连接并使用该节点。
+      </p>
+
       <div class="toolbar">
         <input v-model="search" class="search" type="search" placeholder="搜索节点名称或类型…" />
       </div>
@@ -90,8 +98,11 @@ const typeLabels: Record<string, string> = {
               <th @click="toggleSort('node_type')">
                 类型 {{ sortKey === 'node_type' ? (sortAsc ? '↑' : '↓') : '' }}
               </th>
+              <th @click="toggleSort('price')">
+                价格 {{ sortKey === 'price' ? (sortAsc ? '↑' : '↓') : '' }}
+              </th>
               <th @click="toggleSort('level')">
-                等级 {{ sortKey === 'level' ? (sortAsc ? '↑' : '↓') : '' }}
+                最低余额 {{ sortKey === 'level' ? (sortAsc ? '↑' : '↓') : '' }}
               </th>
               <th />
             </tr>
@@ -102,13 +113,18 @@ const typeLabels: Record<string, string> = {
               <td>
                 <span class="type-badge">{{ typeLabels[node.node_type] ?? node.node_type }}</span>
               </td>
-              <td>{{ node.level ?? '—' }}</td>
+              <td class="node-table__price">
+                {{ node.price != null ? `${(node.price / 100).toFixed(2)}元/G` : '—' }}
+              </td>
+              <td>
+                {{ node.level != null ? `¥${formatMinBalance(node.level)}` : '—' }}
+              </td>
               <td class="node-table__action">
                 <VrButton size="sm" @click="viewNode(node)">查看</VrButton>
               </td>
             </tr>
             <tr v-if="!filteredNodes.length">
-              <td colspan="4" class="node-table__empty">暂无节点</td>
+              <td colspan="5" class="node-table__empty">暂无节点</td>
             </tr>
           </tbody>
         </table>
@@ -140,6 +156,17 @@ const typeLabels: Record<string, string> = {
 </template>
 
 <style scoped>
+.hint {
+  margin: 0 0 1rem;
+  padding: 0.75rem 0.95rem;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--color-text-secondary);
+  background: rgba(171, 71, 188, 0.08);
+  border: 1px solid rgba(171, 71, 188, 0.2);
+  border-radius: var(--radius-md);
+}
+
 .toolbar {
   margin-bottom: 1rem;
 }
@@ -185,6 +212,11 @@ const typeLabels: Record<string, string> = {
 .node-table__name {
   font-weight: 500;
   color: var(--color-text-primary);
+}
+
+.node-table__price {
+  font-weight: 500;
+  color: var(--color-accent-deep);
 }
 
 .node-table__action {

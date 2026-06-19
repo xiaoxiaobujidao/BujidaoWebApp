@@ -24,6 +24,7 @@ export interface NodeItem {
   reality_pub_key?: string
   server_names?: string[]
   level?: number
+  price?: number
 }
 
 export function buildNodeConnect(node: NodeItem): { text: string; qr: string } | null {
