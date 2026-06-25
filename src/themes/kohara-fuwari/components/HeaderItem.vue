@@ -14,9 +14,8 @@ const showAccountDropdown = ref(false)
 const supportsViewTransition = typeof document !== 'undefined' && 'startViewTransition' in document
 
 function applyTheme(mode: ThemeMode) {
-  const isDarkResolved = mode === 'system'
-    ? window.matchMedia('(prefers-color-scheme: dark)').matches
-    : mode === 'dark'
+  const isDarkResolved =
+    mode === 'system' ? window.matchMedia('(prefers-color-scheme: dark)').matches : mode === 'dark'
   isDark.value = isDarkResolved
   document.documentElement.classList.toggle('dark', isDarkResolved)
   localStorage.setItem('app-theme-mode', mode)
@@ -156,7 +155,11 @@ const activePath = computed(() => route.path)
           {{ item.name }}
         </router-link>
 
-        <div class="nav-item dropdown" id="account-dropdown-btn" @click.stop="toggleAccountDropdown">
+        <div
+          class="nav-item dropdown"
+          id="account-dropdown-btn"
+          @click.stop="toggleAccountDropdown"
+        >
           账号
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -230,7 +233,10 @@ const activePath = computed(() => route.path)
             height="18"
             viewBox="0 0 24 24"
           >
-            <path fill="currentColor" d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z" />
+            <path
+              fill="currentColor"
+              d="M4 18q-.425 0-.712-.288T3 17t.288-.712T4 16h16q.425 0 .713.288T21 17t-.288.713T20 18zm0-5q-.425 0-.712-.288T3 12t.288-.712T4 11h16q.425 0 .713.288T21 12t-.288.713T20 13zm0-5q-.425 0-.712-.288T3 7t.288-.712T4 6h16q.425 0 .713.288T21 7t-.288.713T20 8z"
+            />
           </svg>
           <svg
             v-show="showMobileMenu"
@@ -239,17 +245,16 @@ const activePath = computed(() => route.path)
             height="18"
             viewBox="0 0 24 24"
           >
-            <path fill="currentColor" d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z" />
+            <path
+              fill="currentColor"
+              d="M6.4 19L5 17.6l5.6-5.6L5 6.4L6.4 5l5.6 5.6L17.6 5L19 6.4L13.4 12l5.6 5.6l-1.4 1.4l-5.6-5.6z"
+            />
           </svg>
         </button>
       </div>
     </nav>
 
-    <div
-      id="nav-menu-panel"
-      class="mobile-panel"
-      :class="{ closed: !showMobileMenu }"
-    >
+    <div id="nav-menu-panel" class="mobile-panel" :class="{ closed: !showMobileMenu }">
       <router-link
         v-for="item in menu"
         :key="item.path"
@@ -295,9 +300,10 @@ const activePath = computed(() => route.path)
   justify-content: space-between;
   padding: 0 36px;
 
-  transition: background-color var(--duration-medium, 300ms) var(--ease-standard, ease),
-              border-color var(--duration-medium, 300ms) var(--ease-standard, ease),
-              box-shadow var(--duration-medium, 300ms) var(--ease-standard, ease);
+  transition:
+    background-color var(--duration-medium, 300ms) var(--ease-standard, ease),
+    border-color var(--duration-medium, 300ms) var(--ease-standard, ease),
+    box-shadow var(--duration-medium, 300ms) var(--ease-standard, ease);
 }
 
 .logo {
@@ -381,7 +387,9 @@ const activePath = computed(() => route.path)
   color: #222;
   font-size: 15px;
   font-weight: 500;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
     background: var(--btn-plain-bg-hover, oklch(0.95 0.025 220));
@@ -435,7 +443,9 @@ const activePath = computed(() => route.path)
   padding: 6px;
   min-width: 160px;
   z-index: 100;
-  transition: opacity 0.2s ease, transform 0.2s ease;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
 
   &.closed {
     opacity: 0;
@@ -453,7 +463,9 @@ const activePath = computed(() => route.path)
   color: #222;
   font-size: 15px;
   font-weight: 600;
-  transition: background-color 0.15s ease, color 0.15s ease;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
 
   &:hover {
     background: var(--btn-plain-bg-hover, oklch(0.95 0.025 220));

@@ -19,7 +19,9 @@ const features = [
       <h1 class="hero__title">欢迎来到布吉岛</h1>
       <p class="hero__subtitle">紫玫瑰花瓣轻舞，在这座小岛上，连通从此从容</p>
       <div class="hero__actions">
-        <router-link v-if="isLoggedIn" to="/user" class="hero__btn hero__btn--primary">进入控制台</router-link>
+        <router-link v-if="isLoggedIn" to="/user" class="hero__btn hero__btn--primary"
+          >进入控制台</router-link
+        >
         <template v-else>
           <router-link to="/login" class="hero__btn hero__btn--primary">登录</router-link>
           <router-link to="/register" class="hero__btn hero__btn--ghost">注册</router-link>

@@ -73,7 +73,13 @@ function renderChart() {
     ],
     series: [
       { name: '余额', type: 'line', data: chartData.value.map((d) => d.balance) },
-      { name: '使用量', type: 'line', smooth: true, yAxisIndex: 1, data: chartData.value.map((d) => d.usage) },
+      {
+        name: '使用量',
+        type: 'line',
+        smooth: true,
+        yAxisIndex: 1,
+        data: chartData.value.map((d) => d.usage),
+      },
     ],
   })
   chart.resize()
@@ -98,7 +104,7 @@ onUnmounted(() => {
   <div class="traffic">
     <div class="traffic__tabs">
       <button
-        v-for="mode in (['detail', 'hourly', 'daily'] as const)"
+        v-for="mode in ['detail', 'hourly', 'daily'] as const"
         :key="mode"
         type="button"
         class="traffic__tab"

@@ -7,7 +7,14 @@
   --color-surface: rgba(255, 255, 255, 0.68);
   --color-surface-border: rgba(171, 71, 188, 0.4);
   --shadow-soft: 0 8px 32px rgba(123, 31, 162, 0.22);
-  --bg-sky: linear-gradient(180deg, #ede7f6 0%, #d1c4e9 30%, #b39ddb 55%, #9575cd 80%, #7e57c2 100%);
+  --bg-sky: linear-gradient(
+    180deg,
+    #ede7f6 0%,
+    #d1c4e9 30%,
+    #b39ddb 55%,
+    #9575cd 80%,
+    #7e57c2 100%
+  );
   --bg-ground: linear-gradient(
     180deg,
     transparent 0%,

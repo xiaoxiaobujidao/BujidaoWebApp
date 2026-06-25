@@ -260,7 +260,9 @@ onUnmounted(() => {
   border-radius: 999px;
   cursor: grab;
   box-shadow: var(--shadow-soft);
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
 }
 
 .theme-button:active {

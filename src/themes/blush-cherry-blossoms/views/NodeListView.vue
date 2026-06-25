@@ -29,9 +29,7 @@ const filteredNodes = computed(() => {
   const q = search.value.trim().toLowerCase()
   if (q) {
     list = list.filter(
-      (n) =>
-        n.name.toLowerCase().includes(q) ||
-        n.node_type.toLowerCase().includes(q),
+      (n) => n.name.toLowerCase().includes(q) || n.node_type.toLowerCase().includes(q),
     )
   }
   list.sort((a, b) => {
@@ -98,7 +96,7 @@ function formatMinBalance(level: number) {
       <div class="sort-bar">
         <span class="sort-bar__label">排序：</span>
         <button
-          v-for="key in (['name', 'node_type', 'price', 'level'] as const)"
+          v-for="key in ['name', 'node_type', 'price', 'level'] as const"
           :key="key"
           type="button"
           class="sort-btn"
@@ -111,11 +109,7 @@ function formatMinBalance(level: number) {
       </div>
 
       <div class="node-list">
-        <article
-          v-for="node in filteredNodes"
-          :key="node.node_id"
-          class="node-item"
-        >
+        <article v-for="node in filteredNodes" :key="node.node_id" class="node-item">
           <div class="node-item__head">
             <h3 class="node-item__name">{{ node.name }}</h3>
             <span class="node-item__type">{{ typeLabels[node.node_type] ?? node.node_type }}</span>

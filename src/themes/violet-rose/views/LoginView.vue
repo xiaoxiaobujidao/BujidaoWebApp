@@ -9,7 +9,8 @@ import { useAuth } from '@violet-rose/composables/useAuth'
 
 const email = ref('')
 const password = ref('')
-const { loading, initAuth, isValidEmail, googleAuth, telegramAuth, setupTelegramCallback } = useAuth()
+const { loading, initAuth, isValidEmail, googleAuth, telegramAuth, setupTelegramCallback } =
+  useAuth()
 
 onMounted(() => {
   initAuth()

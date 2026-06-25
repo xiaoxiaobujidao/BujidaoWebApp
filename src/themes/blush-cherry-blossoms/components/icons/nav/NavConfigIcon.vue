@@ -1,13 +1,15 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <path
       class="nav-icon__file"
       d="M288 192h288l160 160v480c0 44.2-35.8 80-80 80H288c-44.2 0-80-35.8-80-80V272c0-44.2 35.8-80 80-80z"
     />
-    <path
-      class="nav-icon__fold"
-      d="M576 192v160c0 44.2 35.8 80 80 80h160"
-    />
+    <path class="nav-icon__fold" d="M576 192v160c0 44.2 35.8 80 80 80h160" />
     <path
       stroke="currentColor"
       stroke-width="32"
@@ -21,10 +23,7 @@
       stroke-linecap="round"
       d="M352 352h96"
     />
-    <path
-      class="nav-icon__bookmark"
-      d="M736 160v224l-48-32-48 32V160z"
-    />
+    <path class="nav-icon__bookmark" d="M736 160v224l-48-32-48 32V160z" />
     <circle cx="688" cy="224" r="20" class="nav-icon__petal" />
   </svg>
 </template>

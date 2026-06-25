@@ -1,5 +1,10 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <rect x="192" y="160" width="640" height="704" rx="32" class="nav-icon__board" />
     <rect x="256" y="256" width="512" height="544" rx="24" class="nav-icon__paper" />
     <path class="nav-icon__pin" d="M512 128 560 224 512 208 464 224Z" />

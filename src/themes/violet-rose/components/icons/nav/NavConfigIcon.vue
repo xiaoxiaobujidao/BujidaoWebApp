@@ -1,13 +1,15 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <path
       class="nav-icon__file"
       d="M256 160h320l192 192v512c0 35.3-28.7 64-64 64H256c-35.3 0-64-28.7-64-64V224c0-35.3 28.7-64 64-64z"
     />
-    <path
-      class="nav-icon__fold"
-      d="M576 160v192c0 35.3 28.7 64 64 64h192"
-    />
+    <path class="nav-icon__fold" d="M576 160v192c0 35.3 28.7 64 64 64h192" />
     <path
       stroke="currentColor"
       stroke-width="36"

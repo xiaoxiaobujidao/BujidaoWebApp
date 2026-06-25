@@ -29,12 +29,7 @@ function randomBetween(min: number, max: number) {
   return min + Math.random() * (max - min)
 }
 
-function createPetal(
-  width: number,
-  height: number,
-  _theme: ThemeId,
-  spawnAbove = true,
-): Petal {
+function createPetal(width: number, height: number, _theme: ThemeId, spawnAbove = true): Petal {
   const isMobile = width < 768
   const [minSize, maxSize] = isMobile ? ([8, 18] as const) : ([10, 22] as const)
   const size = randomBetween(minSize, maxSize)

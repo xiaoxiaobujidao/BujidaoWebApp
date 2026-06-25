@@ -1,5 +1,10 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <path
       class="nav-icon__scroll"
       d="M224 192h448c70.7 0 128 57.3 128 128v384c0 70.7-57.3 128-128 128H224c-70.7 0-128-57.3-128-128V320c0-70.7 57.3-128 128-128z"

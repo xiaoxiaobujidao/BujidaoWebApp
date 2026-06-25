@@ -1,13 +1,7 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue'
 import { ElMessage } from 'element-plus'
-import {
-  cancel,
-  updateEmailOptIn,
-  changeEmail,
-  changePasswd,
-  bindTelegram,
-} from '@/utils/user'
+import { cancel, updateEmailOptIn, changeEmail, changePasswd, bindTelegram } from '@/utils/user'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
@@ -282,7 +276,9 @@ async function executeCancel() {
         <p class="cancel-dialog__confirm">确定要注销账号吗？</p>
       </div>
       <template #footer>
-        <VrButton variant="ghost" :disabled="cancelLoading" @click="closeCancelDialogs">取消</VrButton>
+        <VrButton variant="ghost" :disabled="cancelLoading" @click="closeCancelDialogs"
+          >取消</VrButton
+        >
         <VrButton variant="danger" :disabled="cancelLoading" @click="executeCancel">
           {{ cancelLoading ? '注销中…' : '确认注销' }}
         </VrButton>

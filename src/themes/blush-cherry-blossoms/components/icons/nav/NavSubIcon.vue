@@ -1,13 +1,12 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
-    <path
-      class="nav-icon__plane"
-      d="M160 512 864 256 704 768 480 608 320 832Z"
-    />
-    <path
-      class="nav-icon__fold"
-      d="M480 608 704 768 576 448Z"
-    />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
+    <path class="nav-icon__plane" d="M160 512 864 256 704 768 480 608 320 832Z" />
+    <path class="nav-icon__fold" d="M480 608 704 768 576 448Z" />
     <path
       fill="none"
       stroke="var(--color-sakura-deep, #f48fb1)"

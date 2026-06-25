@@ -42,7 +42,9 @@ function closeMenu() {
           <router-link to="/node_list" class="header__link" @click="closeMenu">节点</router-link>
           <router-link to="/balance" class="header__link" @click="closeMenu">资产</router-link>
           <router-link to="/announcement" class="header__link" @click="closeMenu">公告</router-link>
-          <router-link to="/signout" class="header__link header__link--muted" @click="closeMenu">退出</router-link>
+          <router-link to="/signout" class="header__link header__link--muted" @click="closeMenu"
+            >退出</router-link
+          >
         </template>
         <template v-else>
           <router-link to="/login" class="header__link" @click="closeMenu">登录</router-link>
@@ -159,7 +161,9 @@ function closeMenu() {
     transform: translateY(-110%);
     opacity: 0;
     pointer-events: none;
-    transition: transform 0.3s ease, opacity 0.3s ease;
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
   }
 
   .header__nav--open {

@@ -35,7 +35,10 @@ withDefaults(
   border-radius: 999px;
   font-weight: 500;
   white-space: nowrap;
-  transition: transform 0.2s, opacity 0.2s, box-shadow 0.2s;
+  transition:
+    transform 0.2s,
+    opacity 0.2s,
+    box-shadow 0.2s;
 }
 
 .s-btn:not(:disabled):hover {

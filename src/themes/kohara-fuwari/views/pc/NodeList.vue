@@ -194,9 +194,7 @@ function show_connect_info(node: any) {
           <template #default="scope"> {{ (scope.row.price / 100).toFixed(2) }} 元/G </template>
         </el-table-column>
         <el-table-column prop="level" label="最低余额" sortable>
-          <template #default="scope">
-            ¥ {{ (scope.row.level / 100).toFixed(2) }}
-          </template>
+          <template #default="scope"> ¥ {{ (scope.row.level / 100).toFixed(2) }} </template>
         </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">

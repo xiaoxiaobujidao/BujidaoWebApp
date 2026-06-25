@@ -72,8 +72,20 @@ function renderChart() {
       { name: '使用量', type: 'value', axisLabel: { formatter: '{value} 元' } },
     ],
     series: [
-      { name: '余额', type: 'line', data: chartData.value.map((d) => d.balance), itemStyle: { color: '#f48fb1' } },
-      { name: '使用量', type: 'line', smooth: true, yAxisIndex: 1, data: chartData.value.map((d) => d.usage), itemStyle: { color: '#ce93d8' } },
+      {
+        name: '余额',
+        type: 'line',
+        data: chartData.value.map((d) => d.balance),
+        itemStyle: { color: '#f48fb1' },
+      },
+      {
+        name: '使用量',
+        type: 'line',
+        smooth: true,
+        yAxisIndex: 1,
+        data: chartData.value.map((d) => d.usage),
+        itemStyle: { color: '#ce93d8' },
+      },
     ],
   })
   chart.resize()
@@ -98,7 +110,7 @@ onUnmounted(() => {
   <div class="traffic">
     <div class="traffic__tabs">
       <button
-        v-for="mode in (['detail', 'hourly', 'daily'] as const)"
+        v-for="mode in ['detail', 'hourly', 'daily'] as const"
         :key="mode"
         type="button"
         class="traffic__tab"

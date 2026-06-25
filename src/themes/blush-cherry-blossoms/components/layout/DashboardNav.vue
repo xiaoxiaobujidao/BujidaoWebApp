@@ -64,7 +64,10 @@ function isActive(path: string) {
   color: var(--color-text-secondary);
   text-decoration: none;
   border-radius: 999px;
-  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  transition:
+    background 0.2s,
+    color 0.2s,
+    box-shadow 0.2s;
 }
 
 .nav--bottom .nav__item {

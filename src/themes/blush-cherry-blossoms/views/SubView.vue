@@ -26,7 +26,9 @@ function confirmAction(message: string, action: () => Promise<unknown>) {
   if (!confirm(message)) return
   action().then((res: any) => {
     if (res?.error) {
-      ElMessage.error(typeof res.error === 'string' ? res.error : res.error?.message ?? '操作失败')
+      ElMessage.error(
+        typeof res.error === 'string' ? res.error : (res.error?.message ?? '操作失败'),
+      )
     } else {
       ElMessage.success('操作成功')
       userInfoStore.updateUserInfo()
@@ -123,7 +125,9 @@ function resetWgKey() {
   background: rgba(255, 255, 255, 0.35);
   border: 1px solid var(--color-surface-border);
   border-radius: var(--radius-md);
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
 }
 
 .import-card:hover {

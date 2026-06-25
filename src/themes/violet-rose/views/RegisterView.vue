@@ -9,8 +9,16 @@ import { useAuth } from '@violet-rose/composables/useAuth'
 const email = ref('')
 const inviteCode = ref('')
 const emailSent = ref(false)
-const { inviter, inviterLocked, loading, initAuth, isValidEmail, googleAuth, telegramAuth, setupTelegramCallback } =
-  useAuth()
+const {
+  inviter,
+  inviterLocked,
+  loading,
+  initAuth,
+  isValidEmail,
+  googleAuth,
+  telegramAuth,
+  setupTelegramCallback,
+} = useAuth()
 
 onMounted(() => {
   initAuth()
@@ -54,7 +62,9 @@ function handleRegister() {
   <AppLayout theme="rose">
     <AuthCard title="注册" subtitle="登岛注册，开启你的连通之旅">
       <div v-if="emailSent" class="auth-success">
-        <p>注册邮件已发送至 <strong>{{ email }}</strong></p>
+        <p>
+          注册邮件已发送至 <strong>{{ email }}</strong>
+        </p>
         <p>请打开邮箱，点击邮件中的链接完成注册。</p>
       </div>
 

@@ -61,18 +61,15 @@ onMounted(() => {
       >
         <div class="announce-body" v-html="item.announcement" />
       </div>
-      <router-link v-if="isLoggedIn" to="/announcement" class="section__more">查看全部公告 →</router-link>
+      <router-link v-if="isLoggedIn" to="/announcement" class="section__more"
+        >查看全部公告 →</router-link
+      >
     </section>
 
     <section v-if="isLoggedIn" class="section">
       <h2 class="section__title">快捷入口</h2>
       <div class="quick-grid">
-        <router-link
-          v-for="link in quickLinks"
-          :key="link.to"
-          :to="link.to"
-          class="quick-card"
-        >
+        <router-link v-for="link in quickLinks" :key="link.to" :to="link.to" class="quick-card">
           <span class="quick-card__icon" aria-hidden="true">{{ link.icon }}</span>
           <h3 class="quick-card__title">{{ link.title }}</h3>
           <p class="quick-card__desc">{{ link.desc }}</p>
@@ -141,7 +138,10 @@ onMounted(() => {
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s,
+    background 0.2s;
 }
 
 .hero__btn:hover {
@@ -227,7 +227,9 @@ onMounted(() => {
   border: 1px solid var(--color-surface-border);
   border-radius: var(--radius-lg);
   backdrop-filter: blur(10px);
-  transition: transform 0.2s, border-color 0.2s;
+  transition:
+    transform 0.2s,
+    border-color 0.2s;
 }
 
 .quick-card:hover {

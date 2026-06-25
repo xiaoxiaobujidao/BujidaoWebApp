@@ -26,7 +26,9 @@ defineProps<{
   background: rgba(255, 255, 255, 0.35);
   border: 1px solid var(--color-surface-border);
   border-radius: var(--radius-md);
-  transition: border-color 0.2s, background 0.2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
 }
 
 .copy-field:hover {

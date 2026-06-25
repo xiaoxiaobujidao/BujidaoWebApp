@@ -16,7 +16,7 @@
 :root {
   --hue: 220;
 
-  --primary: oklch(0.70 0.14 var(--hue));
+  --primary: oklch(0.7 0.14 var(--hue));
   --page-bg: oklch(0.95 0.01 var(--hue));
   --card-bg: white;
   --card-bg-transparent: rgba(255, 255, 255, 0.8);
@@ -43,7 +43,7 @@
 
   --inline-code-bg: var(--btn-regular-bg);
   --inline-code-color: var(--btn-content);
-  --selection-bg: oklch(0.90 0.05 var(--hue));
+  --selection-bg: oklch(0.9 0.05 var(--hue));
   --codeblock-bg: oklch(0.17 0.015 var(--hue));
   --codeblock-topbar-bg: oklch(0.3 0.02 var(--hue));
 
@@ -51,7 +51,7 @@
 
   --link-underline: oklch(0.93 0.04 var(--hue));
   --link-hover: oklch(0.95 0.025 var(--hue));
-  --link-active: oklch(0.90 0.05 var(--hue));
+  --link-active: oklch(0.9 0.05 var(--hue));
 
   --float-panel-bg: white;
 
@@ -105,7 +105,7 @@
   --btn-regular-bg-hover: oklch(0.38 0.04 var(--hue));
   --btn-regular-bg-active: oklch(0.43 0.045 var(--hue));
 
-  --btn-plain-bg-hover: oklch(0.30 0.035 var(--hue));
+  --btn-plain-bg-hover: oklch(0.3 0.035 var(--hue));
   --btn-plain-bg-active: oklch(0.27 0.025 var(--hue));
 
   --btn-card-bg-hover: oklch(0.3 0.03 var(--hue));
@@ -119,14 +119,14 @@
   --meta-divider: rgba(255, 255, 255, 0.2);
   --content-meta: rgba(255, 255, 255, 0.6);
 
-  --selection-bg: oklch(0.40 0.08 var(--hue));
+  --selection-bg: oklch(0.4 0.08 var(--hue));
   --codeblock-bg: oklch(0.17 0.015 var(--hue));
   --codeblock-topbar-bg: oklch(0.12 0.015 var(--hue));
 
   --license-block-bg: var(--codeblock-bg);
 
-  --link-underline: oklch(0.40 0.08 var(--hue));
-  --link-hover: oklch(0.40 0.08 var(--hue));
+  --link-underline: oklch(0.4 0.08 var(--hue));
+  --link-hover: oklch(0.4 0.08 var(--hue));
   --link-active: oklch(0.35 0.07 var(--hue));
 
   --float-panel-bg: oklch(0.19 0.015 var(--hue));
@@ -148,9 +148,10 @@
     border-radius: var(--radius-large);
     overflow: hidden;
     background: var(--card-bg);
-    transition: color var(--duration-fast) var(--ease-standard),
-                background-color var(--duration-fast) var(--ease-standard),
-                border-color var(--duration-fast) var(--ease-standard);
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
   }
 
   .card-base-transparent {
@@ -158,9 +159,10 @@
     overflow: hidden;
     background: var(--card-bg-transparent);
     backdrop-filter: blur(4px);
-    transition: color var(--duration-fast) var(--ease-standard),
-                background-color var(--duration-fast) var(--ease-standard),
-                border-color var(--duration-fast) var(--ease-standard);
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
   }
 
   /* 浮动面板 — 不含 top，由使用方按需指定 */
@@ -199,8 +201,9 @@
     align-items: center;
     justify-content: center;
     background: none;
-    transition: color var(--duration-fast) var(--ease-standard),
-                background-color var(--duration-fast) var(--ease-standard);
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard);
     color: rgba(0, 0, 0, 0.75);
   }
 
@@ -314,8 +317,9 @@
   /* 页面背景 */
   body {
     color: var(--deep-text);
-    transition: background-color var(--duration-fast) var(--ease-standard),
-                color var(--duration-fast) var(--ease-standard);
+    transition:
+      background-color var(--duration-fast) var(--ease-standard),
+      color var(--duration-fast) var(--ease-standard);
   }
 
   :root.dark body {
@@ -328,9 +332,10 @@
 
   /* 过渡动画 */
   .transition-colors-duration {
-    transition: color var(--duration-fast) var(--ease-standard),
-                background-color var(--duration-fast) var(--ease-standard),
-                border-color var(--duration-fast) var(--ease-standard);
+    transition:
+      color var(--duration-fast) var(--ease-standard),
+      background-color var(--duration-fast) var(--ease-standard),
+      border-color var(--duration-fast) var(--ease-standard);
   }
 }
 
@@ -371,14 +376,30 @@
   animation-fill-mode: forwards;
 }
 
-.onload-animation:nth-child(1) { animation-delay: 0ms; }
-.onload-animation:nth-child(2) { animation-delay: 60ms; }
-.onload-animation:nth-child(3) { animation-delay: 120ms; }
-.onload-animation:nth-child(4) { animation-delay: 180ms; }
-.onload-animation:nth-child(5) { animation-delay: 240ms; }
-.onload-animation:nth-child(6) { animation-delay: 300ms; }
-.onload-animation:nth-child(7) { animation-delay: 350ms; }
-.onload-animation:nth-child(8) { animation-delay: 400ms; }
+.onload-animation:nth-child(1) {
+  animation-delay: 0ms;
+}
+.onload-animation:nth-child(2) {
+  animation-delay: 60ms;
+}
+.onload-animation:nth-child(3) {
+  animation-delay: 120ms;
+}
+.onload-animation:nth-child(4) {
+  animation-delay: 180ms;
+}
+.onload-animation:nth-child(5) {
+  animation-delay: 240ms;
+}
+.onload-animation:nth-child(6) {
+  animation-delay: 300ms;
+}
+.onload-animation:nth-child(7) {
+  animation-delay: 350ms;
+}
+.onload-animation:nth-child(8) {
+  animation-delay: 400ms;
+}
 
 /* View Transitions API 主题切换动画 */
 .use-view-transition::view-transition-old(root) {

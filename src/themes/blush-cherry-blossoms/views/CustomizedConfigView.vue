@@ -48,10 +48,7 @@ const filtered = computed(() => {
     : list.value
   const q = search.value.trim().toLowerCase()
   if (!q) return items
-  return items.filter(
-    (v) =>
-      v.name.toLowerCase().includes(q) || v.type.toLowerCase().includes(q),
-  )
+  return items.filter((v) => v.name.toLowerCase().includes(q) || v.type.toLowerCase().includes(q))
 })
 
 function openNew() {

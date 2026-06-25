@@ -87,9 +87,7 @@ function applyInvite() {
         <template v-if="inviteLinks?.length">
           <div v-for="(item, i) in inviteLinks" :key="i" class="invite-block">
             <CopyField label="邀请链接" :value="item.invite_link" />
-            <p class="rebate-ratio">
-              返利比例：{{ (Number(item.rebate_ratio) / 10).toFixed(1) }}%
-            </p>
+            <p class="rebate-ratio">返利比例：{{ (Number(item.rebate_ratio) / 10).toFixed(1) }}%</p>
           </div>
           <p v-if="invitedCount > 0" class="invite-count">已邀请 {{ invitedCount }} 人</p>
         </template>

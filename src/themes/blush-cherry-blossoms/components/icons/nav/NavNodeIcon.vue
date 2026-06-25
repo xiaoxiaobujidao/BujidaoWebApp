@@ -1,5 +1,10 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <ellipse cx="512" cy="560" rx="320" ry="120" class="nav-icon__cloud" />
     <rect x="352" y="288" width="128" height="320" rx="64" class="nav-icon__tower" />
     <rect x="512" y="224" width="128" height="384" rx="64" class="nav-icon__tower" />

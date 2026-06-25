@@ -41,7 +41,9 @@ function closeMenu() {
       </button>
 
       <nav class="header__nav" :class="{ 'header__nav--open': menuOpen }">
-        <router-link v-if="isLoggedIn" to="/user" class="header__link" @click="closeMenu">控制台</router-link>
+        <router-link v-if="isLoggedIn" to="/user" class="header__link" @click="closeMenu"
+          >控制台</router-link
+        >
         <template v-else>
           <router-link to="/login" class="header__link" @click="closeMenu">登录</router-link>
           <router-link to="/register" class="header__link" @click="closeMenu">注册</router-link>

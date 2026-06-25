@@ -9,7 +9,8 @@ import { useAuth } from '@blush-cherry-blossoms/composables/useAuth'
 
 const email = ref('')
 const password = ref('')
-const { loading, initAuth, isValidEmail, googleAuth, telegramAuth, setupTelegramCallback } = useAuth()
+const { loading, initAuth, isValidEmail, googleAuth, telegramAuth, setupTelegramCallback } =
+  useAuth()
 
 onMounted(() => {
   initAuth()

@@ -13,16 +13,16 @@
 
 ## 技术栈
 
-| 技术 | 说明 |
-|------|------|
-| Vue 3 + Composition API | 前端框架 |
-| Vue Router 4 | 路由管理，支持设备类型动态路由 |
-| Pinia | 状态管理 |
-| Element Plus | UI 组件库 |
-| ECharts | 数据可视化 |
-| Sass / SCSS | 样式预处理 |
-| VueUse | 工具组合 (useDark 等) |
-| Vite | 构建工具 |
+| 技术                    | 说明                           |
+| ----------------------- | ------------------------------ |
+| Vue 3 + Composition API | 前端框架                       |
+| Vue Router 4            | 路由管理，支持设备类型动态路由 |
+| Pinia                   | 状态管理                       |
+| Element Plus            | UI 组件库                      |
+| ECharts                 | 数据可视化                     |
+| Sass / SCSS             | 样式预处理                     |
+| VueUse                  | 工具组合 (useDark 等)          |
+| Vite                    | 构建工具                       |
 
 ## 项目结构
 
@@ -65,15 +65,15 @@ kohara-fuwari/
 
 ### CSS 变量速查
 
-| 变量 | 用途 |
-|------|------|
-| `--primary` | 主题色 |
-| `--page-bg` | 页面背景 |
-| `--card-bg` | 卡片背景 |
-| `--card-border` | 卡片边框 |
-| `--deep-text` | 正文文字色 |
-| `--title-active` | 激活标题色 |
-| `--btn-content` | 按钮文字色 |
+| 变量               | 用途         |
+| ------------------ | ------------ |
+| `--primary`        | 主题色       |
+| `--page-bg`        | 页面背景     |
+| `--card-bg`        | 卡片背景     |
+| `--card-border`    | 卡片边框     |
+| `--deep-text`      | 正文文字色   |
+| `--title-active`   | 激活标题色   |
+| `--btn-content`    | 按钮文字色   |
 | `--btn-regular-bg` | 普通按钮背景 |
 
 ## 页面功能
@@ -88,11 +88,11 @@ kohara-fuwari/
 
 ## 响应式断点
 
-| 设备 | 宽度 | 路由文件 |
-|------|------|----------|
-| 手机 | < 768px | `phone_router.ts` |
-| 平板 | 768px ~ 1024px | `tablet_router.ts` |
-| 桌面 | > 1024px | `desktop_router.ts` |
+| 设备 | 宽度           | 路由文件            |
+| ---- | -------------- | ------------------- |
+| 手机 | < 768px        | `phone_router.ts`   |
+| 平板 | 768px ~ 1024px | `tablet_router.ts`  |
+| 桌面 | > 1024px       | `desktop_router.ts` |
 
 ## 开发
 

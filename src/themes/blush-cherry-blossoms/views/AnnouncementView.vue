@@ -32,12 +32,7 @@ function formatTime(ts: number) {
     <div class="announce-page">
       <section v-if="pinned.length" class="announce-section">
         <h2 class="section-label">🌸 置顶公告</h2>
-        <SakuraCard
-          v-for="item in pinned"
-          :key="'pin-' + item.id"
-          accent
-          class="announce-card"
-        >
+        <SakuraCard v-for="item in pinned" :key="'pin-' + item.id" accent class="announce-card">
           <div class="announce-body" v-html="item.announcement" />
           <footer class="announce-meta">
             <span>创建 {{ formatTime(item.create_time) }}</span>

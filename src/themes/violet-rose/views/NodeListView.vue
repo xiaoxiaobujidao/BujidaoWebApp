@@ -29,9 +29,7 @@ const filteredNodes = computed(() => {
   const q = search.value.trim().toLowerCase()
   if (q) {
     list = list.filter(
-      (n) =>
-        n.name.toLowerCase().includes(q) ||
-        n.node_type.toLowerCase().includes(q),
+      (n) => n.name.toLowerCase().includes(q) || n.node_type.toLowerCase().includes(q),
     )
   }
   list.sort((a, b) => {

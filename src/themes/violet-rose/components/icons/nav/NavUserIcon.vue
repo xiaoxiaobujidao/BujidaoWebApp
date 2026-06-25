@@ -1,11 +1,13 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <rect x="176" y="224" width="672" height="576" rx="40" class="nav-icon__card" />
     <circle cx="352" cy="448" r="96" fill="currentColor" />
-    <path
-      fill="currentColor"
-      d="M224 608c0-70.7 57.3-128 128-128s128 57.3 128 128v64H224v-64z"
-    />
+    <path fill="currentColor" d="M224 608c0-70.7 57.3-128 128-128s128 57.3 128 128v64H224v-64z" />
     <path
       stroke="currentColor"
       stroke-width="40"

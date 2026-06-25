@@ -1,5 +1,10 @@
 <template>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" class="nav-icon" aria-hidden="true">
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 1024 1024"
+    class="nav-icon"
+    aria-hidden="true"
+  >
     <rect x="288" y="192" width="448" height="144" rx="24" class="nav-icon__server" />
     <rect x="224" y="400" width="576" height="144" rx="24" class="nav-icon__server" />
     <rect x="160" y="608" width="704" height="144" rx="24" class="nav-icon__server" />

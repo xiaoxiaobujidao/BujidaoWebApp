@@ -265,9 +265,7 @@ const go_chat = () => {
           </div>
 
           <h1 class="welcome-title">欢迎回来</h1>
-          <p class="welcome-text">
-            布吉岛什么都布吉岛
-          </p>
+          <p class="welcome-text">布吉岛什么都布吉岛</p>
         </div>
         <div class="copyright">
           <p>© 2026 布吉岛. 保留所有权利。</p>
@@ -443,7 +441,7 @@ const go_chat = () => {
 .help {
   position: fixed;
   bottom: 24px;
-   left: 24px;
+  left: 24px;
   z-index: 1000;
   width: 44px;
   height: 44px;

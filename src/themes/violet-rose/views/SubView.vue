@@ -26,7 +26,9 @@ function confirmAction(message: string, action: () => Promise<unknown>) {
   if (!confirm(message)) return
   action().then((res: any) => {
     if (res?.error) {
-      ElMessage.error(typeof res.error === 'string' ? res.error : res.error?.message ?? '操作失败')
+      ElMessage.error(
+        typeof res.error === 'string' ? res.error : (res.error?.message ?? '操作失败'),
+      )
     } else {
       ElMessage.success('操作成功')
       userInfoStore.updateUserInfo()
@@ -35,24 +37,15 @@ function confirmAction(message: string, action: () => Promise<unknown>) {
 }
 
 function resetUuid() {
-  confirmAction(
-    '订阅地址不会更换，重置后所有客户端需更新订阅。确定继续？',
-    changeUuid,
-  )
+  confirmAction('订阅地址不会更换，重置后所有客户端需更新订阅。确定继续？', changeUuid)
 }
 
 function resetSubKey() {
-  confirmAction(
-    '订阅地址会被更换，所有使用处需替换。确定继续？',
-    changeSubKey,
-  )
+  confirmAction('订阅地址会被更换，所有使用处需替换。确定继续？', changeSubKey)
 }
 
 function resetWgKey() {
-  confirmAction(
-    'Wireguard 密钥将被重置，需更新客户端配置。确定继续？',
-    changeWireguardPriKey,
-  )
+  confirmAction('Wireguard 密钥将被重置，需更新客户端配置。确定继续？', changeWireguardPriKey)
 }
 </script>
 

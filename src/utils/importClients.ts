@@ -27,10 +27,7 @@ export const importClients: ImportClient[] = [
     icon: singboxIcon,
     buildHref: (sub) =>
       encodeURI(
-        'sing-box://import-remote-profile?url=' +
-          encodeURI(sub + '&type=singbox') +
-          '#' +
-          REMARK,
+        'sing-box://import-remote-profile?url=' + encodeURI(sub + '&type=singbox') + '#' + REMARK,
       ),
   },
   {
