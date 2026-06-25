@@ -260,7 +260,7 @@ const go_chat = () => {
       <div class="info-section">
         <div class="info-content">
           <div class="logo-section">
-            <img src="/favicon.ico" alt="logo" class="logo" />
+            <img src="/favicon.webp" alt="logo" class="logo" />
             <span class="logo-text">布吉岛</span>
           </div>
 

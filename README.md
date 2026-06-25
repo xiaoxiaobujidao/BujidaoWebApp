@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://bujidao.org/favicon.ico" alt="BujidaoLogo" />
+  <img src="https://bujidao.org/favicon.webp" alt="BujidaoLogo" />
   <br />
   <strong>Bujidao Web App</strong>
 </p>

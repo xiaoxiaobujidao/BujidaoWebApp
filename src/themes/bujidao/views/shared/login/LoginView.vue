@@ -96,7 +96,7 @@ const go_chat = () => {
 <template>
   <div class="login-main">
     <div class="login-card">
-      <img src="/favicon.ico" alt="logo" class="logo" />
+      <img src="/favicon.webp" alt="logo" class="logo" />
       <h1>登陆到布吉岛</h1>
       <div class="login-button">
         <div>
