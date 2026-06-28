@@ -9,7 +9,7 @@ const paymentMethod = ref<
   { name: string; path: string; method: { kind: string; img: string }[] }[] | undefined
 >()
 const step = ref(0)
-const num = ref(10)
+const num = ref(20)
 const gift = ref<number[][]>()
 
 getPaymentMethod().then((res) => {
@@ -54,10 +54,10 @@ function pay(path: string, method: string) {
           每满 <strong>{{ item[0] }}</strong> 赠 <strong>{{ item[1] }}</strong> 元
         </p>
       </div>
-      <p class="credit__hint">最低充值 10 元，仅支持整数</p>
+      <p class="credit__hint">最低充值 20 元，仅支持整数</p>
       <label class="credit__field">
         <span>金额（元）</span>
-        <input v-model.number="num" type="number" min="10" max="1000" step="1" />
+        <input v-model.number="num" type="number" min="20" max="1000" step="1" />
       </label>
       <VrButton @click="step = 1">下一步</VrButton>
     </div>

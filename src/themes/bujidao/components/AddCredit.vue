@@ -15,7 +15,7 @@ getPaymentMethod().then((res: any) => {
 const step = ref(0)
 // const pay_link = ref()
 // const qr_code = ref()
-const num = ref(10)
+const num = ref(20)
 function add_credit(path: string, method: string) {
   addCredit(path, method, num.value * 100).then((res: any) => {
     if (res.error) {
@@ -65,8 +65,8 @@ getGift().then((res: any) => {
       <p>取不重复赠送计算之最高，如冲2送1，冲3送2，则冲5会送3</p>
     </div>
     <div>
-      <p>请输入充值金额，最低充值金额10元，仅支持整数</p>
-      <el-input-number v-model="num" :min="10" :max="1000" controls-position="right" size="large" />
+      <p>请输入充值金额，最低充值金额20元，仅支持整数</p>
+      <el-input-number v-model="num" :min="20" :max="1000" controls-position="right" size="large" />
       <el-button type="primary" @click="step = 1" round>下一步</el-button>
     </div>
   </div>
