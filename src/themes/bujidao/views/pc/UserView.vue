@@ -204,66 +204,80 @@ init()
 
 <template>
   <UserMainView>
-    <div class="box" v-if="user_info">
-      <div class="user-main">
-        <div>
-          <h2>账户</h2>
-          <div>
-            <p>
-              <b> 余额： </b> {{ user_info.balance / 100 }}
-              <el-button type="primary" @click="showCredit()" round>充值</el-button>
-            </p>
-            <p v-if="user_info.balance < 1000" style="color: burlywood">充钱可以变强哟～</p>
-            <p>
-              <b> 邮件地址： </b>{{ user_info.email ? user_info.email : '未设置' }}
-              <el-button v-if="user_info.email" type="primary" @click="change_email()" round
-                >更换</el-button
-              >
-              <el-button v-else type="primary" @click="change_email()" round>绑定</el-button>
-            </p>
-            <p v-if="user_info.email">
-              <b>订阅营销邮件</b
-              ><el-switch
+    <div v-if="user_info" class="panel-grid panel-grid--2">
+      <section class="panel">
+        <div class="panel__title">账户</div>
+        <div class="panel__body">
+          <div class="info-row">
+            <span class="info-row__label">余额</span>
+            <span class="info-row__value stat-value">¥{{ (user_info.balance / 100).toFixed(2) }}</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="showCredit()">充值</el-button>
+            </div>
+            <p v-if="user_info.balance < 1000" class="info-row__hint">充钱可以变强哟～</p>
+          </div>
+          <div class="info-row">
+            <span class="info-row__label">邮件地址</span>
+            <span class="info-row__value">{{ user_info.email ? user_info.email : '未设置' }}</span>
+            <div class="info-row__actions">
+              <el-button v-if="user_info.email" type="primary" size="small" round @click="change_email()">
+                更换
+              </el-button>
+              <el-button v-else type="primary" size="small" round @click="change_email()">绑定</el-button>
+            </div>
+          </div>
+          <div v-if="user_info.email" class="info-row">
+            <span class="info-row__label">营销邮件</span>
+            <span class="info-row__value">订阅状态</span>
+            <div class="info-row__actions">
+              <el-switch
                 v-model="email_opt_in"
-                active-color="#13ce66"
-                inactive-color="#ff4949"
+                active-color="#3da5e8"
+                inactive-color="#c9954a"
                 @change="change_email_opt_in"
-              ></el-switch>
-            </p>
-            <p>
-              <b> Telegram： </b>{{ user_info.telegram_id ? user_info.telegram_id : '未设置' }}
-              <el-button v-if="user_info.telegram_id" type="primary" @click="bind_telegram()" round
-                >更换</el-button
-              >
-              <el-button v-else type="primary" @click="bind_telegram()" round>绑定</el-button>
-            </p>
-            <span class="no-wrap">
-              <el-button type="primary" @click="change_pass()" round>更改密码</el-button>
-              <el-button type="primary" round @click="confirmCancelAccount">消灭我🔥</el-button>
-            </span>
+              />
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__label">Telegram</span>
+            <span class="info-row__value">{{ user_info.telegram_id ? user_info.telegram_id : '未设置' }}</span>
+            <div class="info-row__actions">
+              <el-button v-if="user_info.telegram_id" type="primary" size="small" round @click="bind_telegram()">
+                更换
+              </el-button>
+              <el-button v-else type="primary" size="small" round @click="bind_telegram()">绑定</el-button>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__label">安全</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="change_pass()">更改密码</el-button>
+              <el-button size="small" round @click="confirmCancelAccount">消灭我 🔥</el-button>
+            </div>
           </div>
         </div>
-        <div>
-          <h2>订阅</h2>
-          <div>
-            <p
-              v-for="(item, index) in user_info.sub_address"
-              :key="index"
-              @click="touchCopy(item)"
-              class="hand"
-            >
+      </section>
+
+      <section class="panel">
+        <div class="panel__title">订阅</div>
+        <div class="panel__body">
+          <div
+            v-for="(item, index) in user_info.sub_address"
+            :key="index"
+            class="info-row hand"
+            @click="touchCopy(item)"
+          >
+            <span class="info-row__label">
               <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
-                <b> {{ index == 0 ? '通用' : '备用' }}订阅： </b>
+                {{ index == 0 ? '通用' : '备用' }}
               </el-tooltip>
-              <el-tooltip content="点击复制" placement="top">
-                <span class="no-wrap">
-                  {{ item }}
-                </span>
-              </el-tooltip>
-            </p>
+            </span>
+            <el-tooltip content="点击复制" placement="top">
+              <span class="info-row__value info-row__value--mono">{{ item }}</span>
+            </el-tooltip>
           </div>
         </div>
-      </div>
+      </section>
     </div>
     <el-dialog v-model="show_add_credit" center :width="width < 800 ? '80%' : '50%'">
       <AddCredit v-if="show_add_credit" />
@@ -296,47 +310,3 @@ init()
     </el-dialog>
   </UserMainView>
 </template>
-
-<style scoped>
-.box {
-  min-height: calc(100vh - 100px);
-  border-radius: 15px;
-}
-
-.user-main {
-  display: flex;
-  flex-direction: row;
-  padding: 32px;
-  flex-wrap: wrap;
-  border-radius: 15px;
-  gap: 32px;
-}
-
-.user-main > div {
-  flex: 1 1 auto;
-  align-items: stretch;
-  display: flex;
-  flex-direction: column;
-  overflow: auto;
-  min-width: 400px;
-}
-
-.user-main > div > div {
-  border-radius: 15px;
-  padding: 32px;
-  border: 1px solid var(--el-border-color);
-  flex: 1 0 auto;
-  overflow-x: auto;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-h2 {
-  margin-bottom: 10px;
-}
-
-.no-wrap {
-  white-space: nowrap;
-}
-</style>

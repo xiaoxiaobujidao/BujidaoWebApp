@@ -1,0 +1,42 @@
+:root {
+  --color-ocean-deep: #1e6fad;
+  --color-ocean: #3da5e8;
+  --color-ocean-light: #7ec8f7;
+  --color-ocean-glow: rgba(61, 165, 232, 0.35);
+  --color-sand: #f9e8c8;
+  --color-sand-deep: #c9954a;
+  --color-coral: #ff9a76;
+  --color-sky-top: #d4ecfa;
+  --color-sky-mid: #b8dff5;
+  --color-sky-bottom: #8ecbf0;
+  --color-text-primary: #134264;
+  --color-text-secondary: #4a7391;
+  --color-surface: rgba(255, 255, 255, 0.72);
+  --color-surface-solid: rgba(255, 255, 255, 0.92);
+  --color-surface-border: rgba(61, 165, 232, 0.22);
+  --shadow-soft: 0 12px 40px rgba(30, 111, 173, 0.14);
+  --shadow-card: 0 4px 24px rgba(30, 111, 173, 0.1);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+  --radius-lg: 20px;
+  --radius-md: 14px;
+  --radius-sm: 10px;
+  --header-height: 64px;
+  --sidebar-width: 160px;
+  --content-max-width: 920px;
+  --safe-area-top: env(safe-area-inset-top, 0px);
+  --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.dark {
+  --color-sky-top: #071422;
+  --color-sky-mid: #0c2035;
+  --color-sky-bottom: #12304d;
+  --color-text-primary: rgba(240, 248, 255, 0.94);
+  --color-text-secondary: rgba(180, 210, 235, 0.72);
+  --color-surface: rgba(14, 28, 44, 0.78);
+  --color-surface-solid: rgba(18, 34, 52, 0.94);
+  --color-surface-border: rgba(126, 200, 247, 0.16);
+  --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.35);
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.28);
+  --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+}

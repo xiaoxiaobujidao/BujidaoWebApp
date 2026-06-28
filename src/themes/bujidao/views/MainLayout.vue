@@ -7,15 +7,5 @@
 import { RouterView } from 'vue-router'
 import ScreenSize from '@bujidao/components/ScreenSize.vue'
 import ThemeSwitcher from '@bujidao/components/ThemeSwitcher.vue'
+import '@bujidao/assets/styles/global.css'
 </script>
-<style lang="scss">
-.dark {
-  .box {
-    background-color: #2e303d !important;
-  }
-
-  .box.phone {
-    padding: 8px;
-  }
-}
-</style>

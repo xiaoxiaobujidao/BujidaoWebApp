@@ -49,16 +49,50 @@ const handleSelect = (key: string, keyPath: string[]) => {}
 
 <style scoped lang="scss">
 .menu {
-  width: 150px;
+  width: var(--sidebar-width);
   position: relative;
+  border-right: 1px solid var(--color-surface-border);
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+:global(.dark) .menu {
+  background: rgba(15, 25, 35, 0.45);
 }
 
 .top-menu :deep(> .el-menu) {
-  height: 100vh;
+  height: calc(100vh - var(--header-height));
   background-color: transparent;
+  border-right: none;
+  padding: 12px 8px;
+
+  .el-menu-item {
+    margin-bottom: 4px;
+    border-radius: var(--radius-md);
+    height: 44px;
+    line-height: 44px;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease;
+
+    &:hover {
+      background: rgba(84, 169, 235, 0.1);
+    }
+
+    &.is-active {
+      background: rgba(84, 169, 235, 0.16);
+      color: var(--color-ocean-deep);
+      font-weight: 600;
+    }
+  }
 
   span {
-    font-size: 16px;
+    font-size: 15px;
   }
+}
+
+:global(.dark) .top-menu :deep(> .el-menu .el-menu-item.is-active) {
+  color: var(--color-ocean-light);
 }
 </style>
