@@ -22,6 +22,12 @@ body {
   min-height: 100dvh;
 }
 
+.help {
+  background: var(--color-fab-bg);
+  backdrop-filter: var(--color-fab-backdrop);
+  -webkit-backdrop-filter: var(--color-fab-backdrop);
+}
+
 .hand {
   cursor: pointer;
 }

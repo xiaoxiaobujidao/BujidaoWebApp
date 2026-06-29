@@ -25,6 +25,8 @@
   --content-max-width: 920px;
   --safe-area-top: env(safe-area-inset-top, 0px);
   --safe-area-bottom: env(safe-area-inset-bottom, 0px);
+  --color-fab-bg: rgba(255, 255, 255, 0.55);
+  --color-fab-backdrop: blur(12px);
 }
 
 .dark {
@@ -39,4 +41,6 @@
   --shadow-soft: 0 12px 40px rgba(0, 0, 0, 0.35);
   --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.28);
   --shadow-glow: 0 0 0 1px rgba(255, 255, 255, 0.06) inset;
+  --color-fab-bg: rgba(14, 28, 44, 0.92);
+  --color-fab-backdrop: none;
 }

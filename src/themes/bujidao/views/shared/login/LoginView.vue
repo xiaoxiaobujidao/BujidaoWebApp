@@ -156,9 +156,10 @@ const go_chat = () => {
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.55);
+  background: var(--color-fab-bg);
   border: 1px solid var(--color-surface-border);
-  backdrop-filter: blur(12px);
+  backdrop-filter: var(--color-fab-backdrop);
+  -webkit-backdrop-filter: var(--color-fab-backdrop);
 
   svg {
     width: 28px;
