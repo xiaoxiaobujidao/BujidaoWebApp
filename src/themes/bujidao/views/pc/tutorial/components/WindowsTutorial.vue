@@ -5,7 +5,7 @@ import ClashVerge from './ClashVerge.vue'
 const activeName = ref('clash_verge')
 </script>
 <template>
-  <el-tabs type="card" v-model="activeName">
+  <el-tabs type="card" v-model="activeName" class="tutorial-subtabs">
     <el-tab-pane label="ClashVerge" name="clash_verge" />
     <el-tab-pane label="V2rayN" name="v2rayn" />
   </el-tabs>
