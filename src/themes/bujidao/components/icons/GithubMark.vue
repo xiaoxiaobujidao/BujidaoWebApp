@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { useDark } from '@vueuse/core'
-// 可以在组件中的任意位置访问 `store` 变量 ✨
+
 const isDark = useDark()
 </script>
 <template>
