@@ -1,0 +1,204 @@
+@import './variables.css';
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    'PingFang SC',
+    'Hiragino Sans GB',
+    'Microsoft YaHei',
+    system-ui,
+    -apple-system,
+    sans-serif;
+  color: var(--color-text-primary);
+  background: var(--color-sky-top);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+#app {
+  min-height: 100dvh;
+}
+
+.help {
+  background: var(--color-fab-bg);
+  backdrop-filter: var(--color-fab-backdrop);
+  -webkit-backdrop-filter: var(--color-fab-backdrop);
+}
+
+.hand {
+  cursor: pointer;
+}
+
+.hand:hover {
+  color: var(--color-ocean);
+}
+
+.box {
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+}
+
+.dark .box {
+  background-color: var(--color-surface) !important;
+}
+
+.dark .box.phone {
+  padding: 8px;
+}
+
+.panel {
+  background: var(--color-surface);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+  overflow: hidden;
+}
+
+.panel__title {
+  padding: 1rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--color-ocean-deep);
+  border-bottom: 1px solid var(--color-surface-border);
+  background: linear-gradient(180deg, rgba(61, 165, 232, 0.1) 0%, transparent 100%);
+}
+
+.panel__body {
+  padding: 0.2rem 0;
+}
+
+.info-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 0.85rem;
+  padding: 0.9rem 1.25rem;
+  border-bottom: 1px solid rgba(61, 165, 232, 0.08);
+}
+
+.info-row:last-child {
+  border-bottom: none;
+}
+
+.info-row__label {
+  flex: 0 0 5.5rem;
+  font-size: 0.84rem;
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+.info-row__value {
+  flex: 1;
+  min-width: 0;
+  font-size: 0.94rem;
+  color: var(--color-text-primary);
+}
+
+.info-row__value--mono {
+  font-family: ui-monospace, 'SF Mono', Menlo, monospace;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  word-break: break-all;
+}
+
+.info-row__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-left: auto;
+}
+
+.info-row__hint {
+  flex: 1 1 100%;
+  padding-left: 6.35rem;
+  font-size: 0.78rem;
+  color: var(--color-sand-deep);
+}
+
+.stat-value {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  color: var(--color-ocean-deep);
+}
+
+.dark .stat-value {
+  color: var(--color-ocean-light);
+}
+
+.panel-grid {
+  display: grid;
+  gap: 1rem;
+}
+
+@media (min-width: 768px) {
+  .panel-grid--2 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.el-button {
+  --el-border-radius-round: 999px;
+}
+
+.el-button--primary {
+  --el-button-bg-color: var(--color-ocean);
+  --el-button-border-color: var(--color-ocean);
+  --el-button-hover-bg-color: var(--color-ocean-deep);
+  --el-button-hover-border-color: var(--color-ocean-deep);
+  --el-button-active-bg-color: var(--color-ocean-deep);
+  --el-button-active-border-color: var(--color-ocean-deep);
+  box-shadow: 0 4px 14px var(--color-ocean-glow);
+}
+
+.el-button.is-round:not(.el-button--primary) {
+  background: rgba(255, 255, 255, 0.55);
+  border-color: var(--color-surface-border);
+  color: var(--color-text-primary);
+}
+
+.dark .el-button.is-round:not(.el-button--primary) {
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.dark .el-dialog {
+  --el-dialog-bg-color: var(--color-surface-solid);
+  border-radius: var(--radius-lg);
+}
+
+.dark .el-dialog__body {
+  color: var(--color-text-primary);
+}
+
+.el-dialog {
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+}
+
+.dark .el-menu {
+  --el-menu-bg-color: transparent;
+  --el-menu-text-color: var(--color-text-secondary);
+  --el-menu-hover-bg-color: rgba(61, 165, 232, 0.12);
+  --el-menu-active-color: var(--color-ocean-light);
+}
+
+@media (max-width: 767px) {
+  .info-row__hint {
+    padding-left: 0;
+  }
+
+  .info-row__label {
+    flex: 1 1 100%;
+  }
+}

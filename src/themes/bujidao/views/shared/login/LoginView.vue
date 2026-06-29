@@ -13,6 +13,8 @@ import { useUserInfoStore } from '@/stores/userInfoStore'
 import DarkTheme from '@bujidao/components/DarkTheme.vue'
 import EmailLogin from './components/EmailLogin.vue'
 import PasswordLogin from './components/PasswordLogin.vue'
+import IslandBackground from '@bujidao/components/island/IslandBackground.vue'
+import '@bujidao/assets/styles/global.css'
 const userInfoStore = useUserInfoStore()
 
 // 获取邀请码
@@ -94,57 +96,43 @@ const go_chat = () => {
 </script>
 
 <template>
-  <div class="login-main">
-    <div class="login-card">
-      <img src="/favicon.webp" alt="logo" class="logo" />
-      <h1>登陆到布吉岛</h1>
-      <div class="login-button">
-        <div>
-          <el-button type="primary" size="large" @click="login_with_email" round
-            >邮件登陆或注册</el-button
-          >
+  <div class="login-page">
+    <IslandBackground />
+    <div class="login-page__content">
+      <div class="login-card">
+        <div class="login-card__hero">
+          <img src="/favicon.webp" alt="logo" class="login-card__logo" />
+          <h1>登陆到布吉岛</h1>
+          <p class="login-card__subtitle">百慕大里的小小岛屿，等你靠岸</p>
         </div>
-        <div>
-          <el-button type="primary" size="large" @click="show_login" round>账号密码登陆</el-button>
+
+        <div class="login-card__actions">
+          <el-button type="primary" size="large" round @click="login_with_email">邮件登陆或注册</el-button>
+          <el-button size="large" round @click="show_login">账号密码登陆</el-button>
         </div>
-      </div>
-      <div v-if="false">
-        <el-button type="primary" size="large" @click="login_with_email" round
-          >恢复密钥登陆</el-button
-        >
-      </div>
-      <div class="c_h">
-        <div class="c_g"></div>
-        <span>或</span>
-        <div class="c_g"></div>
-      </div>
-      <div>
-        <el-button type="primary" size="large" @click="google_login" round class="login-button">
-          <GoogleOauth />使用谷歌账号登录或注册
-        </el-button>
-      </div>
-      <!-- 只隐藏，需要保留以便于自动调用方法 -->
-      <div style="display: none">
-        <component
-          :is="'script'"
-          async
-          src="https://telegram.org/js/telegram-widget.js?22"
-          :data-telegram-login="bot_name"
-          data-size="large"
-          data-onauth="window.onTelegramAuth(user)"
-        >
-        </component>
-      </div>
-      <div>
-        <el-button
-          type="primary"
-          size="large"
-          @click="telegramDirectAuth"
-          round
-          class="login-button"
-        >
-          <TelegramWhite />使用 Telegram 登录或注册
-        </el-button>
+
+        <div class="login-card__divider">
+          <span>或</span>
+        </div>
+
+        <div class="login-card__social">
+          <el-button type="primary" size="large" round class="login-card__social-btn" @click="google_login">
+            <GoogleOauth />使用谷歌账号登录或注册
+          </el-button>
+          <div style="display: none">
+            <component
+              :is="'script'"
+              async
+              src="https://telegram.org/js/telegram-widget.js?22"
+              :data-telegram-login="bot_name"
+              data-size="large"
+              data-onauth="window.onTelegramAuth(user)"
+            />
+          </div>
+          <el-button type="primary" size="large" round class="login-card__social-btn" @click="telegramDirectAuth">
+            <TelegramWhite />使用 Telegram 登录或注册
+          </el-button>
+        </div>
       </div>
     </div>
   </div>
@@ -159,123 +147,115 @@ const go_chat = () => {
 <style lang="scss" scoped>
 .help {
   position: fixed;
-  top: 10px;
-  right: 10px;
+  top: calc(12px + var(--safe-area-top));
+  right: 12px;
+  z-index: 10;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: var(--color-fab-bg);
+  border: 1px solid var(--color-surface-border);
+  backdrop-filter: var(--color-fab-backdrop);
+  -webkit-backdrop-filter: var(--color-fab-backdrop);
 
   svg {
-    width: 50px;
-    height: 50px;
+    width: 28px;
+    height: 28px;
   }
 }
 
-h1 {
-  margin: 25px 0;
+.login-page {
+  position: relative;
+  min-height: 100dvh;
 }
 
-.login-main {
+.login-page__content {
+  position: relative;
+  z-index: 1;
+  min-height: 100dvh;
   display: flex;
-  height: 100vh;
-  width: 100vw;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
 }
 
 .login-card {
+  width: min(420px, 100%);
+  padding: 2rem 1.75rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-surface-border);
+  background: var(--color-surface);
+  box-shadow: var(--shadow-soft), var(--shadow-glow);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.login-card__hero {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.login-card__logo {
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 1rem;
+  border-radius: 50%;
+  box-shadow: 0 8px 28px rgba(61, 165, 232, 0.25);
+}
+
+h1 {
+  margin: 0 0 0.45rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+}
+
+.login-card__subtitle {
+  font-size: 0.85rem;
+  color: var(--color-text-secondary);
+}
+
+.login-card__actions,
+.login-card__social {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  min-width: 280px;
+  gap: 0.75rem;
 }
 
-.login-card > div {
-  margin-bottom: 10px;
-}
-
-.login-button {
+.login-card__actions :deep(.el-button),
+.login-card__social :deep(.el-button) {
   width: 100%;
+  margin: 0;
+}
+
+.login-card__divider {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-
-  :deep(> span) {
-    gap: 0.2em;
-
-    svg {
-      width: 1.5em;
-      height: 1.5em;
-    }
-  }
-}
-
-.logo {
-  border-radius: 50%;
-  width: 80px;
-}
-
-.login-card :deep(.el-button--primary) {
-  --el-button-bg-color: #54a9eb;
-}
-
-.c_g {
-  border-top-style: solid;
-  width: 100%;
-  flex: 1 0 50px;
-  border-top-width: 1px;
-  border-color: rgb(182, 182, 182);
-}
-
-.c_h {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  width: 100%;
-  justify-content: space-between;
-  /* overflow: hidden; */
   align-items: center;
-  color: rgb(182, 182, 182);
-  font-family:
-    -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu,
-    'Helvetica Neue', Arial, sans-serif;
+  gap: 0.85rem;
+  margin: 1.25rem 0;
+  color: var(--color-text-secondary);
+  font-size: 0.82rem;
   font-style: italic;
+
+  &::before,
+  &::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-surface-border);
+  }
 }
 
-.dark {
-  .left {
-    position: fixed;
-    top: 40vh;
-    left: -82vw;
-    width: 100vw;
-    height: 100vw;
-    border-radius: 50vw;
-    background: linear-gradient(45deg, #c179df, #ffffff);
-    -webkit-filter: blur(100px);
-    filter: blur(100px);
-    opacity: 0.25;
-    z-index: -1;
-  }
+.login-card__social-btn :deep(> span) {
+  gap: 0.35em;
 
-  .right {
-    position: fixed;
-    top: -60vw;
-    right: -60vw;
-    width: 80vw;
-    height: 80vw;
-    border-radius: 50vw;
-    background: linear-gradient(225deg, #c179df, #ffffff);
-    -webkit-filter: blur(100px);
-    filter: blur(100px);
-    opacity: 0.25;
-    z-index: -1;
-  }
-
-  .left {
-    background: linear-gradient(45deg, #38afff, #222);
-  }
-
-  .right {
-    background: linear-gradient(225deg, #208dec, #222);
+  svg {
+    width: 1.35em;
+    height: 1.35em;
   }
 }
 </style>

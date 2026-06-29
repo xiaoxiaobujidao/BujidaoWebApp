@@ -34,28 +34,35 @@ const unpin_announcement_list = computed(() => {
 <template>
   <UserMainView>
     <div class="announcement-main">
-      <div>
+      <section v-if="pin_announcement_list.length" class="announcement-section">
         <h3>置顶公告</h3>
-        <div class="announcement box" v-for="item in pin_announcement_list" :key="item.create_time">
-          <div v-html="item.announcement"></div>
-          <hr />
-          <p class="timeline">创建时间:{{ new Date(item.create_time / 1000).toLocaleString() }}</p>
-          <p class="timeline">修改时间:{{ new Date(item.edit_time / 1000).toLocaleString() }}</p>
-        </div>
-      </div>
-      <div>
+        <article
+          v-for="item in pin_announcement_list"
+          :key="item.create_time"
+          class="panel announcement"
+        >
+          <div class="announcement__body" v-html="item.announcement"></div>
+          <footer class="announcement__meta">
+            <span>创建 {{ new Date(item.create_time / 1000).toLocaleString() }}</span>
+            <span>更新 {{ new Date(item.edit_time / 1000).toLocaleString() }}</span>
+          </footer>
+        </article>
+      </section>
+
+      <section class="announcement-section">
         <h3>公告</h3>
-        <div
-          class="announcement box"
+        <article
           v-for="item in unpin_announcement_list"
           :key="item.create_time"
+          class="panel announcement"
         >
-          <div v-html="item.announcement"></div>
-          <hr />
-          <p class="timeline">创建时间:{{ new Date(item.create_time / 1000).toLocaleString() }}</p>
-          <p class="timeline">修改时间:{{ new Date(item.edit_time / 1000).toLocaleString() }}</p>
-        </div>
-      </div>
+          <div class="announcement__body" v-html="item.announcement"></div>
+          <footer class="announcement__meta">
+            <span>创建 {{ new Date(item.create_time / 1000).toLocaleString() }}</span>
+            <span>更新 {{ new Date(item.edit_time / 1000).toLocaleString() }}</span>
+          </footer>
+        </article>
+      </section>
     </div>
   </UserMainView>
 </template>
@@ -63,32 +70,39 @@ const unpin_announcement_list = computed(() => {
 <style scoped lang="scss">
 .announcement-main {
   display: flex;
-  flex-wrap: wrap;
-  padding: 1vh 2vh 1vh 2vh;
   flex-direction: column;
+  gap: 1.5rem;
+}
 
-  /* height: calc(100vh - 120px); */
-  /* overflow: scroll; */
-  :deep(*) {
-    line-height: 2.5;
-  }
+.announcement-section {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
 }
 
 .announcement {
-  flex: 1 1 auto;
-  margin: 2vh;
-  // padding: 2vh;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  padding: 38px;
+  padding: 1.35rem 1.4rem;
 }
 
-.timeline {
-  font-size: 12px;
+.announcement__body :deep(*) {
+  line-height: 1.85;
+}
+
+.announcement__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1.25rem;
+  margin-top: 1rem;
+  padding-top: 0.85rem;
+  border-top: 1px solid rgba(61, 165, 232, 0.1);
+  font-size: 0.75rem;
+  color: var(--color-text-secondary);
 }
 
 h3 {
-  text-align: center;
-  margin: 10px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-ocean-deep);
+  letter-spacing: 0.04em;
 }
 </style>

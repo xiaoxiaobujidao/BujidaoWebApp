@@ -75,23 +75,3 @@ const subCopy = () => {
   </ol>
   <p>由于精力有限，只提供每个平台最基本的软件的配置过程，更多软件及进阶配置需要大家自行摸索啦</p>
 </template>
-<style scoped>
-span {
-  color: var(--el-color-primary);
-  cursor: pointer;
-}
-
-img {
-  max-height: 50vh;
-}
-
-.flex-row-wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.flex-row-wrap div {
-  padding: 2vh;
-}
-</style>

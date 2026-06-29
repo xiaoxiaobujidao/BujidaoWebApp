@@ -1,0 +1,303 @@
+/* bujidao 教程页共享样式 */
+
+.tutorial-page {
+  overflow: hidden;
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs__header) {
+  margin-bottom: 0;
+  border-bottom: 1px solid var(--color-surface-border);
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs__nav-wrap::after) {
+  display: none;
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs__item) {
+  height: 42px;
+  line-height: 42px;
+  padding: 0 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border: none !important;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease;
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs__item.is-active) {
+  color: var(--color-ocean-deep);
+  background: rgba(61, 165, 232, 0.12);
+  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+}
+
+.dark .tutorial-page > .tutorial-tabs :deep(.el-tabs__item.is-active) {
+  color: var(--color-ocean-light);
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs__item:hover) {
+  color: var(--color-ocean);
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs--card > .el-tabs__header) {
+  border-bottom: 1px solid var(--color-surface-border);
+  background: linear-gradient(180deg, rgba(61, 165, 232, 0.06) 0%, transparent 100%);
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs--card > .el-tabs__header .el-tabs__nav) {
+  border: none;
+}
+
+.tutorial-page > .tutorial-tabs :deep(.el-tabs--card > .el-tabs__header .el-tabs__item) {
+  border: none !important;
+}
+
+.tutorial-page__body {
+  padding: 1.25rem 1.1rem 1.5rem;
+}
+
+.tutorial-page .tutorial-subtabs {
+  margin-bottom: 1rem;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs__header) {
+  margin-bottom: 0.75rem;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs__item) {
+  height: 36px;
+  line-height: 36px;
+  padding: 0 0.95rem;
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  border-radius: 999px;
+  border: 1px solid transparent !important;
+  transition:
+    color 0.2s ease,
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs__item.is-active) {
+  color: var(--color-ocean-deep);
+  background: rgba(61, 165, 232, 0.14);
+  border-color: var(--color-surface-border) !important;
+}
+
+.dark .tutorial-page .tutorial-subtabs :deep(.el-tabs__item.is-active) {
+  color: var(--color-ocean-light);
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs__nav-wrap::after) {
+  display: none;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs--card > .el-tabs__header) {
+  border: none;
+  background: transparent;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs--card > .el-tabs__header .el-tabs__nav) {
+  border: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.tutorial-page .tutorial-subtabs :deep(.el-tabs--card > .el-tabs__header .el-tabs__item) {
+  border: 1px solid var(--color-surface-border) !important;
+  background: rgba(255, 255, 255, 0.35);
+}
+
+.dark .tutorial-page .tutorial-subtabs :deep(.el-tabs--card > .el-tabs__header .el-tabs__item) {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tutorial-page ol {
+  list-style: none;
+  counter-reset: tutorial-step;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  padding: 0;
+  margin: 0;
+}
+
+.tutorial-page ol > li {
+  counter-increment: tutorial-step;
+  position: relative;
+  padding: 1rem 1.1rem 1rem 3.25rem;
+  background: rgba(255, 255, 255, 0.42);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.dark .tutorial-page ol > li {
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tutorial-page ol > li::before {
+  content: counter(tutorial-step);
+  position: absolute;
+  left: 1rem;
+  top: 1rem;
+  width: 1.65rem;
+  height: 1.65rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #fff;
+  background: linear-gradient(135deg, var(--color-ocean) 0%, var(--color-ocean-deep) 100%);
+  border-radius: 50%;
+  box-shadow: 0 3px 10px var(--color-ocean-glow);
+}
+
+.tutorial-page ol > li > p:first-child {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.tutorial-page ol > li > p {
+  line-height: 1.75;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.35rem;
+}
+
+.tutorial-page ol > li > p:last-child {
+  margin-bottom: 0;
+}
+
+.tutorial-page ol > li > img {
+  margin-top: 0.65rem;
+}
+
+.tutorial-page .flex-row-wrap {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.85rem;
+  margin-top: 0.65rem;
+}
+
+.tutorial-page .flex-row-wrap > div {
+  padding: 0.75rem;
+  background: rgba(255, 255, 255, 0.5);
+  border: 1px solid rgba(61, 165, 232, 0.12);
+  border-radius: var(--radius-sm);
+}
+
+.dark .tutorial-page .flex-row-wrap > div {
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.tutorial-page .flex-row-wrap p {
+  font-size: 0.84rem;
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin-bottom: 0.55rem;
+}
+
+.tutorial-page img {
+  display: block;
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  max-height: 48vh;
+  object-fit: contain;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-surface-border);
+  box-shadow: 0 4px 16px rgba(30, 111, 173, 0.1);
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.dark .tutorial-page img {
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.tutorial-page span {
+  color: var(--color-ocean-deep);
+  cursor: pointer;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: rgba(61, 165, 232, 0.35);
+  text-underline-offset: 2px;
+  transition: color 0.2s ease;
+}
+
+.tutorial-page span:hover {
+  color: var(--color-ocean);
+}
+
+.dark .tutorial-page span {
+  color: var(--color-ocean-light);
+}
+
+.tutorial-page > .tutorial-page__body > p,
+.tutorial-page .tutorial > p {
+  margin-top: 1rem;
+  padding: 0.85rem 1rem;
+  font-size: 0.84rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  background: rgba(249, 232, 200, 0.35);
+  border: 1px solid rgba(201, 149, 74, 0.2);
+  border-radius: var(--radius-sm);
+}
+
+.dark .tutorial-page > .tutorial-page__body > p,
+.dark .tutorial-page .tutorial > p {
+  background: rgba(201, 149, 74, 0.1);
+}
+
+.tutorial-page a {
+  text-decoration: none;
+}
+
+.tutorial-page a .hand,
+.tutorial-page .tutorial-link {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  font-weight: 600;
+  color: var(--color-ocean-deep);
+  background: rgba(61, 165, 232, 0.1);
+  border: 1px solid var(--color-surface-border);
+  border-radius: var(--radius-md);
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.tutorial-page a .hand:hover,
+.tutorial-page .tutorial-link:hover {
+  background: rgba(61, 165, 232, 0.16);
+  border-color: rgba(61, 165, 232, 0.35);
+}
+
+@media (max-width: 767px) {
+  .tutorial-page__body {
+    padding: 1rem 0.75rem 1.25rem;
+  }
+
+  .tutorial-page ol > li {
+    padding-left: 1rem;
+    padding-top: 2.75rem;
+  }
+
+  .tutorial-page ol > li::before {
+    top: 0.85rem;
+    left: 0.85rem;
+  }
+
+  .tutorial-page .flex-row-wrap {
+    grid-template-columns: 1fr;
+  }
+}

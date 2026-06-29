@@ -106,72 +106,84 @@ onMounted(() => {
 
 <template>
   <UserMainView>
-    <div class="box">
-      <div class="user-main" v-if="user_info">
-        <p>
-          余额：{{ user_info.balance / 100 }}
-          <el-button type="primary" @click="showCredit()" round>充值</el-button>
-          <el-button type="primary" @click="showTrafficHistory()" round> 流量记录 </el-button>
-        </p>
-
-        <p>
-          积分：{{ user_info.points / 100 }}
-          <el-button type="primary" size="small" @click="points_to_balance()" round>
-            <el-tooltip content="将100:1兑换为余额" placement="right"> 兑换为余额 </el-tooltip>
-          </el-button>
-        </p>
-        <p>
-          返利：{{ user_info.rebate / 100 }}
-          <el-button type="primary" size="small" @click="rebate_to_balance()" round>
-            <el-tooltip content="将1:1兑换为余额" placement="right"> 兑换为余额 </el-tooltip>
-          </el-button>
-          <el-button type="primary" size="small" @click="todo()" round> 提现 </el-button>
-        </p>
-        <div>
-          <div style="display: contents" v-for="item in invite_links" :key="item">
-            <p class="hand" @click="touchCopy(item.invite_link)">
-              邀请链接：
-              {{ item.invite_link }}
-              <br />
-            </p>
-            <p>返利比例：{{ (item.rebate_ratio / 10).toFixed(1) + '%' }}</p>
+    <div v-if="user_info" class="panel-grid">
+      <section class="panel">
+        <div class="panel__title">资产</div>
+        <div class="panel__body">
+          <div class="info-row">
+            <span class="info-row__label">余额</span>
+            <span class="info-row__value stat-value">¥{{ (user_info.balance / 100).toFixed(2) }}</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="showCredit()">充值</el-button>
+              <el-button size="small" round @click="showTrafficHistory()">流量记录</el-button>
+            </div>
           </div>
-          <p v-if="invited_count > 0">总邀请人数：{{ invited_count }}</p>
-          <p v-if="invite_links && invite_links.length == 0">您还没有推广权限</p>
-          <p v-if="invite_links && invite_links.length == 0">
-            <el-button @click="create_invite_link">点击申请</el-button>
-          </p>
+          <div class="info-row">
+            <span class="info-row__label">积分</span>
+            <span class="info-row__value">{{ (user_info.points / 100).toFixed(2) }}</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="points_to_balance()">
+                <el-tooltip content="将100:1兑换为余额" placement="right">兑换为余额</el-tooltip>
+              </el-button>
+            </div>
+          </div>
+          <div class="info-row">
+            <span class="info-row__label">返利</span>
+            <span class="info-row__value">¥{{ (user_info.rebate / 100).toFixed(2) }}</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="rebate_to_balance()">
+                <el-tooltip content="将1:1兑换为余额" placement="right">兑换为余额</el-tooltip>
+              </el-button>
+              <el-button size="small" round @click="todo()">提现</el-button>
+            </div>
+          </div>
         </div>
-        <el-dialog v-model="show_add_credit" center :width="width < 800 ? '80%' : '50%'">
-          <AddCredit v-if="show_add_credit" />
-        </el-dialog>
+      </section>
 
-        <el-dialog
-          v-model="show_traffic_history"
-          center
-          :width="width < 800 ? '200%' : '90%'"
-          style="height: 80vh"
-          destroy-on-close
-          align-center
-          class="th"
-        >
-          <TrafficHistory />
-        </el-dialog>
-      </div>
+      <section class="panel">
+        <div class="panel__title">推广</div>
+        <div class="panel__body">
+          <template v-if="invite_links && invite_links.length > 0">
+            <div v-for="item in invite_links" :key="item.invite_link">
+              <div class="info-row hand" @click="touchCopy(item.invite_link)">
+                <span class="info-row__label">邀请链接</span>
+                <span class="info-row__value info-row__value--mono">{{ item.invite_link }}</span>
+              </div>
+              <div class="info-row">
+                <span class="info-row__label">返利比例</span>
+                <span class="info-row__value">{{ (item.rebate_ratio / 10).toFixed(1) + '%' }}</span>
+              </div>
+            </div>
+            <div v-if="invited_count > 0" class="info-row">
+              <span class="info-row__label">总邀请</span>
+              <span class="info-row__value">{{ invited_count }} 人</span>
+            </div>
+          </template>
+          <div v-else class="info-row">
+            <span class="info-row__label">权限</span>
+            <span class="info-row__value">您还没有推广权限</span>
+            <div class="info-row__actions">
+              <el-button type="primary" size="small" round @click="create_invite_link">点击申请</el-button>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
+
+    <el-dialog v-model="show_add_credit" center :width="width < 800 ? '90%' : '480px'">
+      <AddCredit v-if="show_add_credit" />
+    </el-dialog>
+
+    <el-dialog
+      v-model="show_traffic_history"
+      center
+      :width="width < 800 ? '95%' : '90%'"
+      style="height: 80vh"
+      destroy-on-close
+      align-center
+      class="th"
+    >
+      <TrafficHistory />
+    </el-dialog>
   </UserMainView>
 </template>
-
-<style lang="scss" scoped>
-.box {
-  min-height: calc(100vh - 100px);
-  border-radius: 15px;
-}
-
-.user-main {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  padding: 32px;
-}
-</style>

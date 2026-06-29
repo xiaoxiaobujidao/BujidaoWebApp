@@ -4,7 +4,7 @@ import ShadowRocket from './ios/ShadowRocket.vue'
 const activeName = ref('shadowrocket')
 </script>
 <template>
-  <el-tabs type="card" v-model="activeName">
+  <el-tabs type="card" v-model="activeName" class="tutorial-subtabs">
     <el-tab-pane label="Shadowrocket" name="shadowrocket" />
   </el-tabs>
   <div class="tutorial">

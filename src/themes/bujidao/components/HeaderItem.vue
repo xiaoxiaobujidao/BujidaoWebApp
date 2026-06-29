@@ -22,43 +22,65 @@ import GithubMark from './icons/GithubMark.vue'
   </div>
 </template>
 <style lang="scss" scoped>
-.dark {
-  .header {
-    border: 1px solid #333;
-  }
-}
-
 .header {
-  height: 60px !important;
+  height: var(--header-height) !important;
   width: 100%;
   position: fixed;
+  top: 0;
+  left: 0;
   z-index: 999;
-  border: 1px solid #eee;
-  background-color: rgba(250, 250, 250, 0.9);
   display: grid;
   grid-template-columns: 1fr 3fr 1fr;
+  align-items: center;
+  border-bottom: 1px solid var(--color-surface-border);
+  background: var(--color-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-soft);
 
-  // box-shadow: 0px 1px 10px -6px var(--el-text-color-primary);
   .icons {
     margin-right: 20px;
     display: flex;
     justify-content: flex-end;
     align-items: center;
+    gap: 8px;
 
     > div {
-      margin-right: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
       cursor: pointer;
+      transition: background-color 0.2s ease;
+
+      &:hover {
+        background: rgba(84, 169, 235, 0.12);
+      }
     }
 
     :deep(svg) {
-      width: 38px;
-      height: 38px;
+      width: 28px;
+      height: 28px;
     }
   }
 
   h1 {
     text-align: center;
-    line-height: 60px;
+    line-height: 1.2;
+    font-size: clamp(0.95rem, 2.5vw, 1.15rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-text-primary);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 0 8px;
   }
+}
+
+:global(.dark) .header {
+  border-bottom-color: var(--color-surface-border);
 }
 </style>

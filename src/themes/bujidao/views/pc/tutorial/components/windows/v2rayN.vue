@@ -74,23 +74,3 @@ const subCopy = () => {
     </li>
   </ol>
 </template>
-<style scoped>
-span {
-  color: var(--el-color-primary);
-  cursor: pointer;
-}
-
-img {
-  max-height: 50vh;
-}
-
-.flex-row-wrap {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-}
-
-.flex-row-wrap div {
-  padding: 2vh;
-}
-</style>
