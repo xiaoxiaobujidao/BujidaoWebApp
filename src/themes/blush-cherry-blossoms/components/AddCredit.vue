@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { addCredit, getPaymentMethod, getGift } from '@/utils/user'
 import { is_ios } from '@/utils/utils'
@@ -11,6 +11,15 @@ const paymentMethod = ref<
 const step = ref(0)
 const num = ref(20)
 const gift = ref<number[][]>()
+
+const amountError = computed(() => {
+  const n = num.value
+  if (typeof n !== 'number' || Number.isNaN(n)) return '请输入充值金额'
+  if (!Number.isInteger(n)) return '仅支持整数金额'
+  if (n < 20) return '最低充值 20 元'
+  return ''
+})
+const canProceed = computed(() => !amountError.value)
 
 getPaymentMethod().then((res) => {
   paymentMethod.value = res.result
@@ -57,9 +66,12 @@ function pay(path: string, method: string) {
       <p class="credit__hint">最低充值 20 元，仅支持整数</p>
       <label class="credit__field">
         <span>金额（元）</span>
-        <input v-model.number="num" type="number" min="20" max="1000" step="1" />
+        <div class="credit__input-row">
+          <input v-model.number="num" type="number" min="20" max="1000" step="1" />
+          <p v-if="amountError" class="credit__error">{{ amountError }}</p>
+        </div>
       </label>
-      <SakuraBtn @click="step = 1">下一步</SakuraBtn>
+      <SakuraBtn :disabled="!canProceed" @click="step = 1">下一步</SakuraBtn>
     </div>
 
     <div v-else-if="step === 1" class="credit__step">
@@ -125,13 +137,30 @@ function pay(path: string, method: string) {
   color: var(--color-text-secondary);
 }
 
+.credit__input-row {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  flex-wrap: wrap;
+}
+
 .credit__field input {
+  flex: 1 1 140px;
+  min-width: 0;
   padding: 0.65rem 0.85rem;
   font-size: 1rem;
   border: 1px solid var(--color-surface-border);
   border-radius: var(--radius-md);
   background: rgba(255, 255, 255, 0.5);
   outline: none;
+}
+
+.credit__error {
+  margin: 0;
+  font-size: 0.82rem;
+  font-weight: 500;
+  color: var(--color-sakura-deep);
+  white-space: nowrap;
 }
 
 .credit__field input:focus {

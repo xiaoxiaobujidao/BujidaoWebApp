@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { addCredit, getPaymentMethod, getGift } from '@/utils/user'
 import { ElMessage } from 'element-plus'
 import { is_ios } from '@/utils/utils'
@@ -16,6 +16,16 @@ const step = ref(0)
 // const pay_link = ref()
 // const qr_code = ref()
 const num = ref(20)
+
+const amountError = computed(() => {
+  const n = num.value
+  if (typeof n !== 'number' || Number.isNaN(n)) return '请输入充值金额'
+  if (!Number.isInteger(n)) return '仅支持整数金额'
+  if (n < 20) return '最低充值 20 元'
+  return ''
+})
+const canProceed = computed(() => !amountError.value)
+
 function add_credit(path: string, method: string) {
   addCredit(path, method, num.value * 100).then((res: any) => {
     if (res.error) {
@@ -64,10 +74,13 @@ getGift().then((res: any) => {
       </p>
       <p>取不重复赠送计算之最高，如冲2送1，冲3送2，则冲5会送3</p>
     </div>
-    <div>
+    <div class="amount-block">
       <p>请输入充值金额，最低充值金额20元，仅支持整数</p>
-      <el-input-number v-model="num" :min="20" :max="1000" controls-position="right" size="large" />
-      <el-button type="primary" @click="step = 1" round>下一步</el-button>
+      <div class="amount-row">
+        <el-input-number v-model="num" :min="20" :max="1000" controls-position="right" size="large" />
+        <p v-if="amountError" class="amount-error">{{ amountError }}</p>
+      </div>
+      <el-button type="primary" :disabled="!canProceed" @click="step = 1" round>下一步</el-button>
     </div>
   </div>
   <div v-if="step == 1" class="payment">
@@ -107,6 +120,29 @@ getGift().then((res: any) => {
     flex-direction: column;
     gap: 12px;
   }
+}
+
+.amount-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.amount-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.amount-error {
+  margin: 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--el-color-primary);
+  white-space: nowrap;
 }
 
 .payment-svg {
