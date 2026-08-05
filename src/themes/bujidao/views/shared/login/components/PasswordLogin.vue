@@ -64,7 +64,7 @@ const focus_email = () => {
           @keyup.enter="handleLogin"
           placeholder="您的邮箱地址"
           type="email"
-          autocomplete
+          autocomplete="username"
           autofocus
           ref="email_ref"
           :prefix-icon="User"
@@ -75,7 +75,7 @@ const focus_email = () => {
           type="password"
           placeholder="您的密码"
           show-password
-          autocomplete
+          autocomplete="current-password"
           :prefix-icon="Lock"
         />
       </div>

@@ -309,7 +309,7 @@ const go_chat = () => {
                 @keyup.enter="login_with_email"
                 placeholder="请输入您的邮箱地址"
                 type="email"
-                autocomplete
+                autocomplete="email"
                 autofocus
                 ref="email_ref"
                 :prefix-icon="User"
@@ -341,7 +341,7 @@ const go_chat = () => {
                 @keyup.enter="login"
                 placeholder="您的邮箱地址"
                 type="email"
-                autocomplete
+                autocomplete="username"
                 autofocus
                 ref="email_ref"
                 :prefix-icon="User"
@@ -357,7 +357,7 @@ const go_chat = () => {
                 type="password"
                 placeholder="您的密码"
                 show-password
-                autocomplete
+                autocomplete="current-password"
                 :prefix-icon="Lock"
                 class="form-input"
               />

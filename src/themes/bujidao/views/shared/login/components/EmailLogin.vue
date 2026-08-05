@@ -69,7 +69,7 @@ const focus_email = () => {
           @keyup.enter="handleLogin"
           placeholder="您的邮箱地址"
           type="email"
-          autocomplete
+          autocomplete="email"
           autofocus
           ref="email_ref"
           :prefix-icon="User"
