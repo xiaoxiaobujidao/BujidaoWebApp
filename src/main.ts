@@ -6,10 +6,10 @@ import App from './App.vue'
 import router from './router'
 import '@/assets/style/main.scss'
 
-// element-plus 依赖，后续去除
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+// Element Plus 按需引入：暗色变量 + 函数式 API 样式（手动 import 不会被 resolver 注入）
 import 'element-plus/theme-chalk/dark/css-vars.css'
+import 'element-plus/es/components/message/style/css'
+import 'element-plus/es/components/message-box/style/css'
 
 import { useThemeStore } from './stores/themeStore'
 import { useUserInfoStore } from './stores/userInfoStore'
@@ -21,7 +21,6 @@ async function initApp() {
   const pinia = createPinia()
   pinia.use(piniaPluginPersistedstate)
   app.use(pinia)
-  app.use(ElementPlus)
 
   // 初始化主题 store
   const themeStore = useThemeStore()
