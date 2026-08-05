@@ -235,7 +235,8 @@ onUnmounted(() => {
 <style scoped>
 .theme-switcher {
   position: fixed;
-  z-index: 99;
+  /* 高于手机端底部栏（z-index: 100），低于弹窗（1000） */
+  z-index: 110;
   user-select: none;
   touch-action: none;
 }
