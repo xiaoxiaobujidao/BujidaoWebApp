@@ -1,7 +1,6 @@
 import shadowrocketIcon from '@/assets/icons/clients/shadowrocket.png'
 import singboxIcon from '@/assets/icons/clients/sing-box.svg'
 import clashIcon from '@/assets/icons/clients/clash.png'
-import v2raynIcon from '@/assets/icons/clients/v2rayn.png'
 import v2rayngIcon from '@/assets/icons/clients/v2rayng.png'
 
 const REMARK = '布吉岛'
@@ -14,19 +13,6 @@ export type ImportClient = {
 }
 
 export const importClients: ImportClient[] = [
-  {
-    id: 'v2rayn',
-    name: 'v2rayN',
-    icon: v2raynIcon,
-    // 社区常用 scheme；订阅内容走 type=v2rayN
-    buildHref: (sub) =>
-      encodeURI(
-        'v2rayn://install-config?url=' +
-          encodeURIComponent(sub + '&type=v2rayN') +
-          '&name=' +
-          encodeURIComponent(REMARK),
-      ),
-  },
   {
     id: 'v2rayng',
     name: 'v2rayNG',

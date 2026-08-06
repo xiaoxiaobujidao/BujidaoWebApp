@@ -137,21 +137,6 @@ function change_wireguard_pri_key() {
             <a
               :href="
                 encodeURI(
-                  'v2rayn://install-config?url=' +
-                    encodeURIComponent(user_info.sub_address[0] + '&type=v2rayN') +
-                    '&name=' +
-                    encodeURIComponent('布吉岛'),
-                )
-              "
-              target="_blank"
-            >
-              <el-button type="primary" round> 导入v2rayN </el-button>
-            </a>
-          </p>
-          <p>
-            <a
-              :href="
-                encodeURI(
                   'v2rayng://install-sub/?url=' +
                     encodeURIComponent(user_info.sub_address[0] + '&type=v2rayN') +
                     '#布吉岛',
