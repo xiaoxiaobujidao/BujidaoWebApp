@@ -1,18 +1,18 @@
 import type { RouteRecordRaw, Router } from 'vue-router'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useScreenStore } from '@bujidao/stores/screenStore'
-import phoneRouter from './phone_router'
-import tabletRouter from './tablet_router'
-import desktopRouter from './desktop_router'
-export default function getRoutes(): RouteRecordRaw[] {
+
+// 按设备动态加载对应路由表；页面组件在各 router 内静态合并，避免按页拆 chunk
+export default async function getRoutes(): Promise<RouteRecordRaw[]> {
   const screenStore = useScreenStore()
-  if (screenStore.getDeviceType() === 'phone') {
-    return phoneRouter
+  const deviceType = screenStore.getDeviceType()
+  if (deviceType === 'phone') {
+    return (await import('./phone_router')).default
   }
-  if (screenStore.getDeviceType() === 'tablet') {
-    return tabletRouter
+  if (deviceType === 'tablet') {
+    return (await import('./tablet_router')).default
   }
-  return desktopRouter
+  return (await import('./desktop_router')).default
 }
 
 // 白名单

@@ -1,15 +1,25 @@
 import type { RouteRecordRaw, Router } from 'vue-router'
 import { useUserInfoStore } from '@/stores/userInfoStore'
+import MainLayout from '@violet-rose/views/MainLayout.vue'
 import RoseView from '@violet-rose/views/RoseView.vue'
 import LoginView from '@violet-rose/views/LoginView.vue'
 import RegisterView from '@violet-rose/views/RegisterView.vue'
+import GoogleOauth from '@violet-rose/views/GoogleOauth.vue'
+import UnsubscribeView from '@violet-rose/views/UnsubscribeView.vue'
+import SignOutView from '@violet-rose/views/SignOutView.vue'
+import UserView from '@violet-rose/views/UserView.vue'
+import SubView from '@violet-rose/views/SubView.vue'
+import NodeListView from '@violet-rose/views/NodeListView.vue'
+import BalanceView from '@violet-rose/views/BalanceView.vue'
+import AnnouncementView from '@violet-rose/views/AnnouncementView.vue'
+import CustomizedConfigView from '@violet-rose/views/CustomizedConfigView.vue'
 
 import '@violet-rose/assets/styles/global.css'
 
 export default [
   {
     path: '/',
-    component: () => import('@violet-rose/views/MainLayout.vue'),
+    component: MainLayout,
     children: [
       {
         path: '',
@@ -32,55 +42,55 @@ export default [
       {
         path: '/google-oauth',
         name: 'google_oauth',
-        component: () => import('@violet-rose/views/GoogleOauth.vue'),
+        component: GoogleOauth,
         meta: { title: '登录中', public: true },
       },
       {
         path: '/gateway/unsubscribe',
         name: 'unsubscribe',
-        component: () => import('@violet-rose/views/UnsubscribeView.vue'),
+        component: UnsubscribeView,
         meta: { title: '退订邮件', public: true },
       },
       {
         path: '/signout',
         name: 'signout',
-        component: () => import('@violet-rose/views/SignOutView.vue'),
+        component: SignOutView,
         meta: { title: '退出登录' },
       },
       {
         path: '/user',
         name: 'user',
-        component: () => import('@violet-rose/views/UserView.vue'),
+        component: UserView,
         meta: { title: '账户' },
       },
       {
         path: '/sub',
         name: 'sub',
-        component: () => import('@violet-rose/views/SubView.vue'),
+        component: SubView,
         meta: { title: '订阅' },
       },
       {
         path: '/node_list',
         name: 'node_list',
-        component: () => import('@violet-rose/views/NodeListView.vue'),
+        component: NodeListView,
         meta: { title: '节点' },
       },
       {
         path: '/balance',
         name: 'balance',
-        component: () => import('@violet-rose/views/BalanceView.vue'),
+        component: BalanceView,
         meta: { title: '资产' },
       },
       {
         path: '/announcement',
         name: 'announcement',
-        component: () => import('@violet-rose/views/AnnouncementView.vue'),
+        component: AnnouncementView,
         meta: { title: '公告' },
       },
       {
         path: '/cc',
         name: 'cc',
-        component: () => import('@violet-rose/views/CustomizedConfigView.vue'),
+        component: CustomizedConfigView,
         meta: { title: '自定义配置' },
       },
     ],

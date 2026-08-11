@@ -79,9 +79,9 @@ export const useThemeStore = defineStore(
       try {
         // 动态导入主题路由文件
         const routerModule = await import(`../themes/${themeName}/router/router.ts`)
-        // 如果导出的是函数，调用它；如果是数组，直接返回
+        // 如果导出的是函数，调用它（可能返回 Promise）；如果是数组，直接返回
         if (typeof routerModule.default === 'function') {
-          return routerModule.default()
+          return await routerModule.default()
         }
         return routerModule.default || []
       } catch (error) {
@@ -91,7 +91,7 @@ export const useThemeStore = defineStore(
           console.warn(`Falling back to default theme routes`)
           const defaultModule = await import(`../themes/${defaultTheme}/router/router.ts`)
           if (typeof defaultModule.default === 'function') {
-            return defaultModule.default()
+            return await defaultModule.default()
           }
           return defaultModule.default || []
         }

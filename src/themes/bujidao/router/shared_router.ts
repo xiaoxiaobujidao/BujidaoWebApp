@@ -1,27 +1,33 @@
+import type { RouteRecordRaw } from 'vue-router'
+import SignOut from '@bujidao/views/shared/SignOut.vue'
+import GoogleOauth from '@bujidao/views/shared/GoogleOauth.vue'
+import LoginView from '@bujidao/views/shared/login/LoginView.vue'
+import Unsubscribe from '@bujidao/views/shared/Unsubscribe.vue'
+
 export default [
   {
     path: '/signout',
     name: 'signout',
-    component: () => import('@bujidao/views/shared/SignOut.vue'),
+    component: SignOut,
   },
   {
     path: '/google-oauth',
     name: 'google_oauth',
-    component: () => import('@bujidao/views/shared/GoogleOauth.vue'),
+    component: GoogleOauth,
   },
   {
     path: '/login',
     name: 'login',
-    component: () => import('@bujidao/views/shared/login/LoginView.vue'),
+    component: LoginView,
   },
   {
     path: '/register',
     name: 'register',
-    component: () => import('@bujidao/views/shared/login/LoginView.vue'),
+    component: LoginView,
   },
   {
     path: '/gateway/unsubscribe',
     name: 'unsubscribe',
-    component: () => import('@bujidao/views/shared/Unsubscribe.vue'),
+    component: Unsubscribe,
   },
-]
+] as RouteRecordRaw[]

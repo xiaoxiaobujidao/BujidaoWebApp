@@ -1,15 +1,25 @@
 import type { RouteRecordRaw, Router } from 'vue-router'
 import { useUserInfoStore } from '@/stores/userInfoStore'
+import MainLayout from '@blush-cherry-blossoms/views/MainLayout.vue'
 import HomeView from '@blush-cherry-blossoms/views/HomeView.vue'
 import LoginView from '@blush-cherry-blossoms/views/LoginView.vue'
 import RegisterView from '@blush-cherry-blossoms/views/RegisterView.vue'
+import GoogleOauth from '@blush-cherry-blossoms/views/GoogleOauth.vue'
+import UnsubscribeView from '@blush-cherry-blossoms/views/UnsubscribeView.vue'
+import SignOutView from '@blush-cherry-blossoms/views/SignOutView.vue'
+import UserView from '@blush-cherry-blossoms/views/UserView.vue'
+import SubView from '@blush-cherry-blossoms/views/SubView.vue'
+import NodeListView from '@blush-cherry-blossoms/views/NodeListView.vue'
+import BalanceView from '@blush-cherry-blossoms/views/BalanceView.vue'
+import AnnouncementView from '@blush-cherry-blossoms/views/AnnouncementView.vue'
+import CustomizedConfigView from '@blush-cherry-blossoms/views/CustomizedConfigView.vue'
 
 import '@blush-cherry-blossoms/assets/styles/global.css'
 
 export default [
   {
     path: '/',
-    component: () => import('@blush-cherry-blossoms/views/MainLayout.vue'),
+    component: MainLayout,
     children: [
       {
         path: '',
@@ -32,55 +42,55 @@ export default [
       {
         path: '/google-oauth',
         name: 'google_oauth',
-        component: () => import('@blush-cherry-blossoms/views/GoogleOauth.vue'),
+        component: GoogleOauth,
         meta: { title: '登录中' },
       },
       {
         path: '/gateway/unsubscribe',
         name: 'unsubscribe',
-        component: () => import('@blush-cherry-blossoms/views/UnsubscribeView.vue'),
+        component: UnsubscribeView,
         meta: { title: '退订邮件' },
       },
       {
         path: '/signout',
         name: 'signout',
-        component: () => import('@blush-cherry-blossoms/views/SignOutView.vue'),
+        component: SignOutView,
         meta: { title: '退出登录' },
       },
       {
         path: '/user',
         name: 'user',
-        component: () => import('@blush-cherry-blossoms/views/UserView.vue'),
+        component: UserView,
         meta: { title: '账户' },
       },
       {
         path: '/sub',
         name: 'sub',
-        component: () => import('@blush-cherry-blossoms/views/SubView.vue'),
+        component: SubView,
         meta: { title: '订阅' },
       },
       {
         path: '/node_list',
         name: 'node_list',
-        component: () => import('@blush-cherry-blossoms/views/NodeListView.vue'),
+        component: NodeListView,
         meta: { title: '节点' },
       },
       {
         path: '/balance',
         name: 'balance',
-        component: () => import('@blush-cherry-blossoms/views/BalanceView.vue'),
+        component: BalanceView,
         meta: { title: '资产' },
       },
       {
         path: '/announcement',
         name: 'announcement',
-        component: () => import('@blush-cherry-blossoms/views/AnnouncementView.vue'),
+        component: AnnouncementView,
         meta: { title: '公告' },
       },
       {
         path: '/cc',
         name: 'cc',
-        component: () => import('@blush-cherry-blossoms/views/CustomizedConfigView.vue'),
+        component: CustomizedConfigView,
         meta: { title: '自定义配置' },
       },
     ],

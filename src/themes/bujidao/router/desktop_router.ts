@@ -1,51 +1,60 @@
 import type { RouteRecordRaw } from 'vue-router'
+import MainLayout from '@bujidao/views/MainLayout.vue'
+import UserView from '@bujidao/views/pc/UserView.vue'
+import SubView from '@bujidao/views/pc/SubView.vue'
+import TutorialView from '@bujidao/views/pc/tutorial/TutorialView.vue'
+import CustomizedConfiguration from '@bujidao/views/pc/CustomizedConfiguration.vue'
+import NodeList from '@bujidao/views/pc/NodeList.vue'
+import BalanceView from '@bujidao/views/pc/BalanceView.vue'
+import AnnouncementView from '@bujidao/views/pc/AnnouncementView.vue'
 import sharedRouter from './shared_router'
+
 export default [
   {
     path: '/',
     redirect: '/user',
     // 用于全局挂载一些奇奇怪怪的东西
-    component: () => import('@bujidao/views/MainLayout.vue'),
+    component: MainLayout,
     children: [
       {
         path: '/user',
         name: 'user',
-        component: () => import('@bujidao/views/pc/UserView.vue'),
+        component: UserView,
       },
       {
         path: '/sub',
         name: 'sub',
-        component: () => import('@bujidao/views/pc/SubView.vue'),
+        component: SubView,
       },
       {
         path: '/tutorial',
         name: 'tutorial',
-        component: () => import('@bujidao/views/pc/tutorial/TutorialView.vue'),
+        component: TutorialView,
       },
       {
         path: '/t',
         name: 't',
-        component: () => import('@bujidao/views/pc/tutorial/TutorialView.vue'),
+        component: TutorialView,
       },
       {
         path: '/cc',
         name: 'CustomizedConfiguration',
-        component: () => import('@bujidao/views/pc/CustomizedConfiguration.vue'),
+        component: CustomizedConfiguration,
       },
       {
         path: '/node_list',
         name: 'node_list',
-        component: () => import('@bujidao/views/pc/NodeList.vue'),
+        component: NodeList,
       },
       {
         path: '/balance',
         name: 'balance',
-        component: () => import('@bujidao/views/pc/BalanceView.vue'),
+        component: BalanceView,
       },
       {
         path: '/announcement',
         name: 'Announcement',
-        component: () => import('@bujidao/views/pc/AnnouncementView.vue'),
+        component: AnnouncementView,
       },
       ...sharedRouter,
     ],
