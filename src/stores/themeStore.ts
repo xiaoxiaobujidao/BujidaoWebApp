@@ -1,12 +1,12 @@
 import { defineStore } from 'pinia'
-import { ref, type Ref } from 'vue'
+import { ref, shallowRef, type Ref, type ShallowRef } from 'vue'
 import type { RouteRecordRaw } from 'vue-router'
 import { defaultTheme } from '@/config/config'
 import { changeTheme } from '@/utils/user'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 interface ThemeStore {
   currentTheme: Ref<string>
-  themeRoutes: Ref<RouteRecordRaw[]>
+  themeRoutes: ShallowRef<RouteRecordRaw[]>
   availableThemes: Ref<string[]>
   scanAvailableThemes: () => void
   setTheme: (themeName: string) => void
@@ -22,8 +22,8 @@ export const useThemeStore = defineStore(
     // 当前主题名称，默认为 defaultTheme，在 config.ts 中定义
     const currentTheme = ref<string>(defaultTheme)
 
-    // 当前主题的路由
-    const themeRoutes = ref<RouteRecordRaw[]>([])
+    // 路由含组件引用，使用 shallowRef 避免组件被做成深层响应式
+    const themeRoutes = shallowRef<RouteRecordRaw[]>([])
 
     // 可用的主题列表
     const availableThemes = ref<string[]>([])
