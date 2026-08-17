@@ -4,6 +4,7 @@ import { ElMessage } from 'element-plus'
 import { Lock, User } from '@element-plus/icons-vue'
 import { loginWithEmailPasswd } from '@/utils/user'
 import { finishLogin } from '@/utils/finishLogin'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const props = defineProps<{
   modelValue: boolean
@@ -80,7 +81,7 @@ const focus_email = () => {
         />
       </div>
       <div class="login-button">
-        <el-button type="primary" :loading="loading" @click="handleLogin">登录</el-button>
+        <BjButton block :loading="loading" @click="handleLogin">登录</BjButton>
       </div>
     </div>
   </el-dialog>
@@ -102,9 +103,5 @@ const focus_email = () => {
   width: 100%;
   display: flex;
   justify-content: center;
-
-  .el-button {
-    width: 100%;
-  }
 }
 </style>

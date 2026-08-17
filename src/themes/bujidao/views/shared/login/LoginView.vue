@@ -14,6 +14,7 @@ import DarkTheme from '@bujidao/components/DarkTheme.vue'
 import EmailLogin from './components/EmailLogin.vue'
 import PasswordLogin from './components/PasswordLogin.vue'
 import IslandBackground from '@bujidao/components/island/IslandBackground.vue'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 import '@bujidao/assets/styles/global.css'
 const userInfoStore = useUserInfoStore()
 
@@ -107,8 +108,8 @@ const go_chat = () => {
         </div>
 
         <div class="login-card__actions">
-          <el-button type="primary" size="large" round @click="login_with_email">邮件登陆或注册</el-button>
-          <el-button size="large" round @click="show_login">账号密码登陆</el-button>
+          <BjButton size="lg" block @click="login_with_email">邮件登陆或注册</BjButton>
+          <BjButton variant="ghost" size="lg" block @click="show_login">账号密码登陆</BjButton>
         </div>
 
         <div class="login-card__divider">
@@ -116,9 +117,9 @@ const go_chat = () => {
         </div>
 
         <div class="login-card__social">
-          <el-button type="primary" size="large" round class="login-card__social-btn" @click="google_login">
+          <BjButton size="lg" block class="login-card__social-btn" @click="google_login">
             <GoogleOauth />使用谷歌账号登录或注册
-          </el-button>
+          </BjButton>
           <div style="display: none">
             <component
               :is="'script'"
@@ -129,9 +130,9 @@ const go_chat = () => {
               data-onauth="window.onTelegramAuth(user)"
             />
           </div>
-          <el-button type="primary" size="large" round class="login-card__social-btn" @click="telegramDirectAuth">
+          <BjButton size="lg" block class="login-card__social-btn" @click="telegramDirectAuth">
             <TelegramWhite />使用 Telegram 登录或注册
-          </el-button>
+          </BjButton>
         </div>
       </div>
     </div>
@@ -226,12 +227,6 @@ h1 {
   gap: 0.75rem;
 }
 
-.login-card__actions :deep(.el-button),
-.login-card__social :deep(.el-button) {
-  width: 100%;
-  margin: 0;
-}
-
 .login-card__divider {
   display: flex;
   align-items: center;
@@ -250,12 +245,8 @@ h1 {
   }
 }
 
-.login-card__social-btn :deep(> span) {
-  gap: 0.35em;
-
-  svg {
-    width: 1.35em;
-    height: 1.35em;
-  }
+.login-card__social-btn :deep(svg) {
+  width: 1.35em;
+  height: 1.35em;
 }
 </style>

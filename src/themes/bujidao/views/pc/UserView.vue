@@ -10,6 +10,7 @@ import UserMainView from './UserMainView.vue'
 import { useScreenStore } from '@bujidao/stores/screenStore'
 import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const userInfoStore = useUserInfoStore()
 const user_info = computed(() => userInfoStore.getUserInfo())
@@ -212,7 +213,7 @@ init()
             <span class="info-row__label">余额</span>
             <span class="info-row__value stat-value">¥{{ (user_info.balance / 100).toFixed(2) }}</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="showCredit()">充值</el-button>
+              <BjButton size="sm" @click="showCredit()">充值</BjButton>
             </div>
             <p v-if="user_info.balance < 1000" class="info-row__hint">充钱可以变强哟～</p>
           </div>
@@ -220,10 +221,10 @@ init()
             <span class="info-row__label">邮件地址</span>
             <span class="info-row__value">{{ user_info.email ? user_info.email : '未设置' }}</span>
             <div class="info-row__actions">
-              <el-button v-if="user_info.email" type="primary" size="small" round @click="change_email()">
+              <BjButton v-if="user_info.email" size="sm" @click="change_email()">
                 更换
-              </el-button>
-              <el-button v-else type="primary" size="small" round @click="change_email()">绑定</el-button>
+              </BjButton>
+              <BjButton v-else size="sm" @click="change_email()">绑定</BjButton>
             </div>
           </div>
           <div v-if="user_info.email" class="info-row">
@@ -242,17 +243,17 @@ init()
             <span class="info-row__label">Telegram</span>
             <span class="info-row__value">{{ user_info.telegram_id ? user_info.telegram_id : '未设置' }}</span>
             <div class="info-row__actions">
-              <el-button v-if="user_info.telegram_id" type="primary" size="small" round @click="bind_telegram()">
+              <BjButton v-if="user_info.telegram_id" size="sm" @click="bind_telegram()">
                 更换
-              </el-button>
-              <el-button v-else type="primary" size="small" round @click="bind_telegram()">绑定</el-button>
+              </BjButton>
+              <BjButton v-else size="sm" @click="bind_telegram()">绑定</BjButton>
             </div>
           </div>
           <div class="info-row">
             <span class="info-row__label">安全</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="change_pass()">更改密码</el-button>
-              <el-button size="small" round @click="confirmCancelAccount">消灭我 🔥</el-button>
+              <BjButton size="sm" @click="change_pass()">更改密码</BjButton>
+              <BjButton variant="ghost" size="sm" @click="confirmCancelAccount">消灭我 🔥</BjButton>
             </div>
           </div>
         </div>

@@ -6,6 +6,7 @@ import vueQr from 'vue-qr/src/packages/vue-qr.vue'
 import { touchCopy } from '@/utils/copy'
 import { utf8_to_b64 } from '@/utils/utils'
 import UserMainView from './UserMainView.vue'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 let node_list = ref()
 const init = () => {
@@ -198,9 +199,9 @@ function show_connect_info(node: any) {
         </el-table-column>
         <el-table-column label="操作">
           <template #default="scope">
-            <el-button type="primary" size="small" @click="show_connect_info(scope.row)">
+            <BjButton size="sm" @click="show_connect_info(scope.row)">
               查看
-            </el-button>
+            </BjButton>
           </template>
         </el-table-column>
       </el-table>

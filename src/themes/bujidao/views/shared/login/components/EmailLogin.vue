@@ -3,6 +3,7 @@ import { ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { User } from '@element-plus/icons-vue'
 import { loginWithEmail } from '@/utils/user'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const props = defineProps<{
   modelValue: boolean
@@ -76,7 +77,7 @@ const focus_email = () => {
         />
       </div>
       <div class="login-button">
-        <el-button type="primary" :loading="loading" @click="handleLogin">发送登录邮件</el-button>
+        <BjButton block :loading="loading" @click="handleLogin">发送登录邮件</BjButton>
       </div>
     </div>
   </el-dialog>
@@ -97,9 +98,5 @@ const focus_email = () => {
   width: 100%;
   display: flex;
   justify-content: center;
-
-  .el-button {
-    width: 100%;
-  }
 }
 </style>

@@ -3,6 +3,7 @@ import { computed, ref } from 'vue'
 import { addCredit, getPaymentMethod, getGift } from '@/utils/user'
 import { ElMessage } from 'element-plus'
 import { is_ios } from '@/utils/utils'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const paymentMethod = ref<
   { name: string; path: string; method: { kind: string; img: string }[] }[] | undefined
@@ -71,7 +72,7 @@ function pay(path: string, method: string) {
           <p v-if="amountError" class="credit__error">{{ amountError }}</p>
         </div>
       </label>
-      <el-button type="primary" round :disabled="!canProceed" @click="step = 1">下一步</el-button>
+      <BjButton :disabled="!canProceed" @click="step = 1">下一步</BjButton>
     </div>
 
     <div v-else-if="step === 1" class="credit__step">
@@ -91,13 +92,13 @@ function pay(path: string, method: string) {
           </button>
         </div>
       </div>
-      <el-button round @click="step = 0">返回</el-button>
+      <BjButton variant="ghost" @click="step = 0">返回</BjButton>
     </div>
 
     <div v-else class="credit__step credit__step--done">
       <div class="credit__done-icon">✓</div>
       <p class="credit__done">请在支付页面完成付款</p>
-      <el-button round @click="step = 0">重新充值</el-button>
+      <BjButton variant="ghost" @click="step = 0">重新充值</BjButton>
     </div>
   </div>
 </template>

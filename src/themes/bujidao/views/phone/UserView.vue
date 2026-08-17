@@ -10,6 +10,7 @@ import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
 // 当前宽度
 import { useScreenStore } from '@bujidao/stores/screenStore'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 const screenStore = useScreenStore()
 const width = computed(() => screenStore.width)
 //
@@ -264,10 +265,10 @@ watch(
         <div>
           <p>
             <b> 邮件地址： </b>{{ user_info.email ? user_info.email : '未设置' }}
-            <el-button v-if="user_info.email" type="primary" @click="change_email()" round
-              >更换</el-button
+            <BjButton v-if="user_info.email" @click="change_email()"
+              >更换</BjButton
             >
-            <el-button v-else type="primary" @click="change_email()" round>绑定</el-button>
+            <BjButton v-else @click="change_email()">绑定</BjButton>
           </p>
           <p v-if="user_info.email">
             <b>订阅营销邮件</b
@@ -280,14 +281,14 @@ watch(
           </p>
           <p>
             <b> Telegram： </b>{{ user_info.telegram_id ? user_info.telegram_id : '未设置' }}
-            <el-button v-if="user_info.telegram_id" type="primary" @click="bind_telegram()" round
-              >更换</el-button
+            <BjButton v-if="user_info.telegram_id" @click="bind_telegram()"
+              >更换</BjButton
             >
-            <el-button v-else type="primary" @click="bind_telegram()" round>绑定</el-button>
+            <BjButton v-else @click="bind_telegram()">绑定</BjButton>
           </p>
           <span class="no-wrap">
-            <el-button type="primary" @click="change_pass()" round>更改密码</el-button>
-            <el-button type="primary" round @click="confirmCancelAccount">消灭我🔥</el-button>
+            <BjButton @click="change_pass()">更改密码</BjButton>
+            <BjButton variant="danger" @click="confirmCancelAccount">消灭我🔥</BjButton>
           </span>
         </div>
       </div>
@@ -296,23 +297,23 @@ watch(
         <div>
           <p>
             <b> 余额： </b> {{ user_info.balance / 100 }}
-            <el-button type="primary" @click="showCredit()" round>充值</el-button>
-            <el-button type="primary" @click="showTrafficHistory()" round> 流量记录 </el-button>
+            <BjButton @click="showCredit()">充值</BjButton>
+            <BjButton @click="showTrafficHistory()"> 流量记录 </BjButton>
           </p>
           <p v-if="user_info.balance < 1000" style="color: burlywood">充钱可以变强哟～</p>
           <p>
             积分：{{ user_info.points / 100 }}
-            <el-button type="primary" @click="points_to_balance()" round>
+            <BjButton @click="points_to_balance()">
               <el-tooltip content="将100:1兑换为余额" placement="right"> 兑换为余额 </el-tooltip>
-            </el-button>
+            </BjButton>
           </p>
           <div>
             <p style="line-height: 2.5">
               返利：{{ user_info.rebate / 100 }}
-              <el-button type="primary" @click="rebate_to_balance()" round>
+              <BjButton @click="rebate_to_balance()">
                 <el-tooltip content="将1:1兑换为余额" placement="right"> 兑换为余额 </el-tooltip>
-              </el-button>
-              <el-button type="primary" @click="todo()" round> 提现 </el-button>
+              </BjButton>
+              <BjButton @click="todo()"> 提现 </BjButton>
             </p>
             <div style="display: contents" v-for="item in invite_links" :key="item">
               <p class="hand" style="line-height: 2.5" @click="touchCopy(item.invite_link)">
@@ -328,7 +329,7 @@ watch(
             <p v-if="invited_count > 0">总邀请人数：{{ invited_count }}</p>
             <p v-if="invite_links && invite_links.length == 0">您还没有推广权限</p>
             <p v-if="invite_links && invite_links.length == 0">
-              <el-button @click="create_invite_link">点击申请</el-button>
+              <BjButton variant="ghost" @click="create_invite_link">点击申请</BjButton>
             </p>
           </div>
         </div>

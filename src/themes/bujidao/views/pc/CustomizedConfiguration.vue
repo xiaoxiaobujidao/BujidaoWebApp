@@ -9,6 +9,7 @@ import { touchCopy } from '@/utils/copy'
 import { ElMessage } from 'element-plus'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import UserMainView from './UserMainView.vue'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const configuration_list = ref()
 const search = ref('')
@@ -117,7 +118,7 @@ init()
   <UserMainView>
     <div class="box">
       <div class="add-cc">
-        <el-button type="primary" @click="new_cc()">新建配置</el-button>
+        <BjButton @click="new_cc()">新建配置</BjButton>
       </div>
       <div class="flex-row-wrap">
         <div>
@@ -147,37 +148,33 @@ init()
           />
           <el-table-column label="操作">
             <template #default="scope">
-              <el-button
-                type="primary"
-                size="small"
+              <BjButton
+                size="sm"
                 @click="touchCopy(user_info?.sub_address[0] + '&cc=' + scope.row.name)"
               >
                 复制订阅
-              </el-button>
-              <el-button
-                type="primary"
-                size="small"
+              </BjButton>
+              <BjButton
+                size="sm"
                 @click="edit_cc(scope.row.name, scope.row.type)"
                 v-if="scope.row.user_id == user_info?.user_id"
               >
                 编辑
-              </el-button>
-              <el-button
-                type="primary"
-                size="small"
+              </BjButton>
+              <BjButton
+                size="sm"
                 @click="show_cc(scope.row.name, scope.row.type)"
                 v-if="scope.row.user_id != user_info?.user_id"
               >
                 查看
-              </el-button>
-              <el-button
-                type="primary"
-                size="small"
+              </BjButton>
+              <BjButton
+                size="sm"
                 @click="del_cc(scope.row.name, scope.row.type)"
                 v-if="scope.row.user_id == user_info?.user_id"
               >
                 删除
-              </el-button>
+              </BjButton>
             </template>
           </el-table-column>
           <el-table-column prop="value" label="值" sortable />
@@ -215,7 +212,7 @@ init()
         <el-switch v-model="configuration.allow_share" active-text="允许" inactive-text="拒绝" />
       </p>
       <p>
-        <el-button type="primary" @click="upload_cc(configuration)">确认上传</el-button>
+        <BjButton @click="upload_cc(configuration)">确认上传</BjButton>
       </p>
       <p>节点信息已清除，请放心上传</p>
     </el-dialog>

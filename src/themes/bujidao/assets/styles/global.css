@@ -118,6 +118,10 @@ body {
   margin-left: auto;
 }
 
+.info-row__actions .bj-btn + .bj-btn {
+  margin-inline-start: 0;
+}
+
 .info-row__hint {
   flex: 1 1 100%;
   padding-left: 6.35rem;
@@ -145,30 +149,6 @@ body {
   .panel-grid--2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
-}
-
-.el-button {
-  --el-border-radius-round: 999px;
-}
-
-.el-button--primary {
-  --el-button-bg-color: var(--color-ocean);
-  --el-button-border-color: var(--color-ocean);
-  --el-button-hover-bg-color: var(--color-ocean-deep);
-  --el-button-hover-border-color: var(--color-ocean-deep);
-  --el-button-active-bg-color: var(--color-ocean-deep);
-  --el-button-active-border-color: var(--color-ocean-deep);
-  box-shadow: 0 4px 14px var(--color-ocean-glow);
-}
-
-.el-button.is-round:not(.el-button--primary) {
-  background: rgba(255, 255, 255, 0.55);
-  border-color: var(--color-surface-border);
-  color: var(--color-text-primary);
-}
-
-.dark .el-button.is-round:not(.el-button--primary) {
-  background: rgba(255, 255, 255, 0.06);
 }
 
 .dark .el-dialog {

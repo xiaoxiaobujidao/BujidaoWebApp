@@ -6,6 +6,7 @@ import { base64Encode } from '@/utils/utils'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import UserMainView from './UserMainView.vue'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 const userInfoStore = useUserInfoStore()
 userInfoStore.updateUserInfo()
@@ -94,7 +95,7 @@ function change_wireguard_pri_key() {
               content="订阅地址会被更换，重置后，所有使用订阅地址的地方都要进行替换"
               placement="right"
             >
-              <el-button type="primary" @click="change_sub_key()" round>更换订阅地址</el-button>
+              <BjButton @click="change_sub_key()">更换订阅地址</BjButton>
             </el-tooltip>
           </p>
           <p>
@@ -102,7 +103,7 @@ function change_wireguard_pri_key() {
               content="订阅地址不会更换，重置后，所有使用订阅地址的客户端都需要更新订阅才能使用"
               placement="right"
             >
-              <el-button type="primary" @click="change_uuid()" round>重置代理密码</el-button>
+              <BjButton @click="change_uuid()">重置代理密码</BjButton>
             </el-tooltip>
           </p>
           <p>
@@ -110,9 +111,7 @@ function change_wireguard_pri_key() {
               content="Wireguard专属密钥，重置后，需要更改配置文件的私钥，或者重新复制配置文件"
               placement="right"
             >
-              <el-button type="primary" @click="change_wireguard_pri_key()" round
-                >重置Wireguard密码</el-button
-              >
+              <BjButton @click="change_wireguard_pri_key()">重置Wireguard密码</BjButton>
             </el-tooltip>
           </p>
           <!-- <p v-for="(item, index ) in user_info.result?.sub_address" :key="item.index" @click="touchCopy(item)"
@@ -149,7 +148,7 @@ function change_wireguard_pri_key() {
                 {{ user_info.sub_address[0] + '&type=clash_verge' }}
               </span>
             </el-tooltip>
-            <!-- <el-button size="small" type="info">客户端下载</el-button> -->
+            <!-- <BjButton size="sm" variant="ghost">客户端下载</BjButton> -->
           </p>
         </div>
         <div class="right">
@@ -165,7 +164,7 @@ function change_wireguard_pri_key() {
               "
               target="_blank"
             >
-              <el-button type="primary" round> 一键导入v2rayNG </el-button>
+              <BjButton> 一键导入v2rayNG </BjButton>
             </a>
           </p>
           <p>
@@ -179,7 +178,7 @@ function change_wireguard_pri_key() {
               "
               target="_blank"
             >
-              <el-button type="primary" round> 一键导入Shadowrocket </el-button>
+              <BjButton> 一键导入Shadowrocket </BjButton>
             </a>
           </p>
           <p>
@@ -193,7 +192,7 @@ function change_wireguard_pri_key() {
               "
               target="_blank"
             >
-              <el-button type="primary" round> 一键导入sing-box </el-button>
+              <BjButton> 一键导入sing-box </BjButton>
             </a>
           </p>
           <p>
@@ -207,7 +206,7 @@ function change_wireguard_pri_key() {
               "
               target="_blank"
             >
-              <el-button type="primary" round> 一键导入hidiffy </el-button>
+              <BjButton> 一键导入hidiffy </BjButton>
             </a>
           </p>
           <p>
@@ -221,7 +220,7 @@ function change_wireguard_pri_key() {
               "
               target="_blank"
             >
-              <el-button type="primary" round> 一键导入Clash </el-button>
+              <BjButton> 一键导入Clash </BjButton>
             </a>
           </p>
         </div>

@@ -9,6 +9,7 @@ import { ElMessage } from 'element-plus'
 import UserMainView from './UserMainView.vue'
 import AddCredit from '@bujidao/components/AddCredit.vue'
 import TrafficHistory from '@bujidao/components/TrafficHistory.vue'
+import BjButton from '@bujidao/components/ui/BjButton.vue'
 
 // Stores
 import { useUserInfoStore } from '@/stores/userInfoStore'
@@ -114,27 +115,27 @@ onMounted(() => {
             <span class="info-row__label">余额</span>
             <span class="info-row__value stat-value">¥{{ (user_info.balance / 100).toFixed(2) }}</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="showCredit()">充值</el-button>
-              <el-button size="small" round @click="showTrafficHistory()">流量记录</el-button>
+              <BjButton size="sm" @click="showCredit()">充值</BjButton>
+              <BjButton variant="ghost" size="sm" @click="showTrafficHistory()">流量记录</BjButton>
             </div>
           </div>
           <div class="info-row">
             <span class="info-row__label">积分</span>
             <span class="info-row__value">{{ (user_info.points / 100).toFixed(2) }}</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="points_to_balance()">
+              <BjButton size="sm" @click="points_to_balance()">
                 <el-tooltip content="将100:1兑换为余额" placement="right">兑换为余额</el-tooltip>
-              </el-button>
+              </BjButton>
             </div>
           </div>
           <div class="info-row">
             <span class="info-row__label">返利</span>
             <span class="info-row__value">¥{{ (user_info.rebate / 100).toFixed(2) }}</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="rebate_to_balance()">
+              <BjButton size="sm" @click="rebate_to_balance()">
                 <el-tooltip content="将1:1兑换为余额" placement="right">兑换为余额</el-tooltip>
-              </el-button>
-              <el-button size="small" round @click="todo()">提现</el-button>
+              </BjButton>
+              <BjButton variant="ghost" size="sm" @click="todo()">提现</BjButton>
             </div>
           </div>
         </div>
@@ -163,7 +164,7 @@ onMounted(() => {
             <span class="info-row__label">权限</span>
             <span class="info-row__value">您还没有推广权限</span>
             <div class="info-row__actions">
-              <el-button type="primary" size="small" round @click="create_invite_link">点击申请</el-button>
+              <BjButton size="sm" @click="create_invite_link">点击申请</BjButton>
             </div>
           </div>
         </div>
