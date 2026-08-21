@@ -6,11 +6,11 @@ import { touchCopy } from '@/utils/copy'
 import AddCredit from '@bujidao/components/AddCredit.vue'
 import { ElMessageBox, ElMessage } from 'element-plus'
 import { changeEmail, changePasswd, bindTelegram, getInvitedCount } from '@/utils/user'
-import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
-// 当前宽度
+import { useUserInfoStore } from '@/stores/userInfoStore'
 import { useScreenStore } from '@bujidao/stores/screenStore'
 import BjButton from '@bujidao/components/ui/BjButton.vue'
+import AnnouncementModal from '@bujidao/components/AnnouncementModal.vue'
 const screenStore = useScreenStore()
 const width = computed(() => screenStore.width)
 //
@@ -38,20 +38,9 @@ const show_add_credit = ref(false)
 function showCredit() {
   show_add_credit.value = !show_add_credit.value
 }
-const show_announcement_pin = ref(false)
-import { useUserInfoStore } from '@/stores/userInfoStore'
 const userInfoStore = useUserInfoStore()
 userInfoStore.updateUserInfo()
 const user_info = computed(() => userInfoStore.getUserInfo())
-// 使用公告 store
-const announcementStore = useAnnouncementStore()
-const announcement_list = computed(() => announcementStore.getAnnouncement() || [])
-const announcement_pin = computed(() => {
-  const pinned = announcement_list.value
-    .filter((item: any) => item.pin)
-    .sort((a: any, b: any) => b.edit_time - a.edit_time)
-  return pinned.length > 0 && pinned[0] ? pinned[0].announcement : ''
-})
 function cancelAccount() {
   cancel().then((res: any) => {
     if (res.result == true) {
@@ -224,17 +213,6 @@ function showTrafficHistory() {
 }
 
 const init = async () => {
-  // 充值奖励
-  if (sessionStorage.getItem('gift_shown') == undefined) {
-    await announcementStore.updateAnnouncement()
-    const pinned = announcement_list.value
-      .filter((item: any) => item.pin)
-      .sort((a: any, b: any) => b.edit_time - a.edit_time)
-    if (pinned.length > 0) {
-      sessionStorage.setItem('gift_shown', 'true')
-      show_announcement_pin.value = true
-    }
-  }
   getInviteLink().then((res: any) => {
     invite_links.value = res.result
     if (invite_links.value.length > 0) {
@@ -336,11 +314,9 @@ watch(
       </div>
       <div class="footer"></div>
     </div>
+    <AnnouncementModal />
     <el-dialog v-model="show_add_credit" center :width="width < 800 ? '80%' : '50%'">
       <AddCredit v-if="show_add_credit" />
-    </el-dialog>
-    <el-dialog v-model="show_announcement_pin" center :width="width < 800 ? '80%' : '50%'">
-      <div v-html="announcement_pin"></div>
     </el-dialog>
     <el-dialog
       v-model="show_traffic_history"

@@ -8,9 +8,9 @@ import { changeEmail, changePasswd, bindTelegram } from '@/utils/user'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import UserMainView from './UserMainView.vue'
 import { useScreenStore } from '@bujidao/stores/screenStore'
-import { useAnnouncementStore } from '@/stores/announcementStore'
 import { closeTelegramWebApp } from '@/utils/telegram'
 import BjButton from '@bujidao/components/ui/BjButton.vue'
+import AnnouncementModal from '@bujidao/components/AnnouncementModal.vue'
 
 const userInfoStore = useUserInfoStore()
 const user_info = computed(() => userInfoStore.getUserInfo())
@@ -41,16 +41,6 @@ const show_add_credit = ref(false)
 function showCredit() {
   show_add_credit.value = !show_add_credit.value
 }
-const show_announcement_pin = ref(false)
-// 使用公告 store
-const announcementStore = useAnnouncementStore()
-const announcement_list = computed(() => announcementStore.getAnnouncement() || [])
-const announcement_pin = computed(() => {
-  const pinned = announcement_list.value
-    .filter((item: any) => item.pin)
-    .sort((a: any, b: any) => b.edit_time - a.edit_time)
-  return pinned[0] ? pinned[0].announcement : ''
-})
 function cancelAccount() {
   cancel().then((res: any) => {
     if (res.result == true) {
@@ -127,18 +117,6 @@ watch(
 )
 const init = async function () {
   if (!user_info.value) return
-  // 充值奖励
-  if (sessionStorage.getItem('gift_shown') == undefined) {
-    await announcementStore.updateAnnouncement()
-    const pinned = announcement_list.value
-      .filter((item: any) => item.pin)
-      .sort((a: any, b: any) => b.edit_time - a.edit_time)
-    if (pinned.length > 0) {
-      sessionStorage.setItem('gift_shown', 'true')
-      show_announcement_pin.value = true
-    }
-  }
-
   userInfoStore.updateUserInfo()
 }
 function change_email() {
@@ -280,11 +258,9 @@ init()
         </div>
       </section>
     </div>
+    <AnnouncementModal />
     <el-dialog v-model="show_add_credit" center :width="width < 800 ? '80%' : '50%'">
       <AddCredit v-if="show_add_credit" />
-    </el-dialog>
-    <el-dialog v-model="show_announcement_pin" center :width="width < 800 ? '80%' : '50%'">
-      <div v-html="announcement_pin"></div>
     </el-dialog>
     <el-dialog v-model="email_opt_in_not_set" center :width="width < 800 ? '80%' : '50%'">
       <div>
