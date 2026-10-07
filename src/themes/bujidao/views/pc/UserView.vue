@@ -240,21 +240,32 @@ init()
       <section class="panel">
         <div class="panel__title">订阅</div>
         <div class="panel__body">
-          <div
-            v-for="(item, index) in user_info.sub_address"
-            :key="index"
-            class="info-row hand"
-            @click="touchCopy(item)"
-          >
-            <span class="info-row__label">
-              <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
-                {{ index == 0 ? '通用' : '备用' }}
+          <template v-for="(item, index) in user_info.sub_address" :key="index">
+            <div class="info-row hand" @click="touchCopy(item)">
+              <span class="info-row__label">
+                <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
+                  {{ index == 0 ? '通用' : '备用' }}
+                </el-tooltip>
+              </span>
+              <el-tooltip content="点击复制" placement="top">
+                <span class="info-row__value info-row__value--mono">{{ item }}</span>
               </el-tooltip>
-            </span>
-            <el-tooltip content="点击复制" placement="top">
-              <span class="info-row__value info-row__value--mono">{{ item }}</span>
-            </el-tooltip>
-          </div>
+            </div>
+            <div
+              v-if="index === 0"
+              class="info-row hand"
+              @click="touchCopy(item + '&addr=ip')"
+            >
+              <span class="info-row__label">
+                <el-tooltip content="节点地址解析为 IP，可避免 DNS 劫持" placement="top">
+                  防劫持
+                </el-tooltip>
+              </span>
+              <el-tooltip content="点击复制" placement="top">
+                <span class="info-row__value info-row__value--mono">{{ item + '&addr=ip' }}</span>
+              </el-tooltip>
+            </div>
+          </template>
         </div>
       </section>
     </div>

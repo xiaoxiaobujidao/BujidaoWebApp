@@ -206,14 +206,16 @@ async function executeCancel() {
         </div>
       </PanelCard>
 
-      <PanelCard title="订阅地址" subtitle="点击复制，通用订阅链接">
+      <PanelCard title="订阅地址" subtitle="点击复制，通用链接">
         <div class="sub-list">
-          <CopyField
-            v-for="(addr, i) in userInfo.sub_address"
-            :key="i"
-            :label="i === 0 ? '通用订阅' : `备用订阅 ${i}`"
-            :value="addr"
-          />
+          <template v-for="(addr, i) in userInfo.sub_address" :key="i">
+            <CopyField :label="i === 0 ? '通用' : '备用'" :value="addr" />
+            <CopyField
+              v-if="i === 0"
+              label="防劫持"
+              :value="addr + '&addr=ip'"
+            />
+          </template>
         </div>
       </PanelCard>
     </div>

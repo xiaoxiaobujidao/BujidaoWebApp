@@ -119,7 +119,7 @@ function change_wireguard_pri_key() {
           <!-- <p v-for="(item, index ) in user_info.result?.sub_address" :key="item.index" @click="touchCopy(item)"
                     class="hand">
                     <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
-                        {{ index == 0 ? "通用" : "备用" }}订阅：
+                        {{ index == 0 ? "通用" : "备用" }}：
                     </el-tooltip>
                     <el-tooltip content="点击复制" placement="top">
                         <span class="no-wrap">
@@ -208,15 +208,27 @@ function change_wireguard_pri_key() {
         <h2>订阅(推荐)</h2>
         <div class="box">
           <p @click="touchCopy(user_info.sub_address[0] as string)" class="hand">
-            <BjButton> 通用订阅 </BjButton>
+            <BjButton> 通用 </BjButton>
+          </p>
+          <p
+            @click="touchCopy((user_info.sub_address[0] as string) + '&addr=ip')"
+            class="hand"
+          >
+            <el-tooltip content="节点地址解析为 IP，可避免 DNS 劫持" placement="top">
+              <BjButton> 防劫持 </BjButton>
+            </el-tooltip>
           </p>
           <p @click="touchCopy(user_info.sub_address[1] as string)" class="hand">
-            <BjButton> 备用订阅 </BjButton>
+            <BjButton> 备用 </BjButton>
           </p>
           <!-- 订阅链接纯文本 -->
           <p>订阅链接：</p>
           <p class="no-wrap">
             {{ user_info.sub_address[0] }}
+          </p>
+          <p>防劫持：</p>
+          <p class="no-wrap">
+            {{ (user_info.sub_address[0] as string) + '&addr=ip' }}
           </p>
         </div>
       </div>

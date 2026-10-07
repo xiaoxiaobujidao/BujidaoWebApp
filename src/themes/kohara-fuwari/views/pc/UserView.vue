@@ -267,21 +267,28 @@ init()
         <div>
           <h2>订阅</h2>
           <div>
-            <p
-              v-for="(item, index) in user_info.sub_address"
-              :key="index"
-              @click="touchCopy(item)"
-              class="hand"
-            >
-              <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
-                <b> {{ index == 0 ? '通用' : '备用' }}订阅： </b>
-              </el-tooltip>
-              <el-tooltip content="点击复制" placement="top">
-                <span class="no-wrap">
-                  {{ item }}
-                </span>
-              </el-tooltip>
-            </p>
+            <template v-for="(item, index) in user_info.sub_address" :key="index">
+              <p @click="touchCopy(item)" class="hand">
+                <el-tooltip content="所有客户端均可用，使用UA进行判断" placement="top">
+                  <b> {{ index == 0 ? '通用' : '备用' }}： </b>
+                </el-tooltip>
+                <el-tooltip content="点击复制" placement="top">
+                  <span class="no-wrap">
+                    {{ item }}
+                  </span>
+                </el-tooltip>
+              </p>
+              <p v-if="index === 0" @click="touchCopy(item + '&addr=ip')" class="hand">
+                <el-tooltip content="节点地址解析为 IP，可避免 DNS 劫持" placement="top">
+                  <b> 防劫持： </b>
+                </el-tooltip>
+                <el-tooltip content="点击复制" placement="top">
+                  <span class="no-wrap">
+                    {{ item + '&addr=ip' }}
+                  </span>
+                </el-tooltip>
+              </p>
+            </template>
           </div>
         </div>
       </div>
