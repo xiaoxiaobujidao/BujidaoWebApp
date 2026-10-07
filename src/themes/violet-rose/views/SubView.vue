@@ -54,7 +54,6 @@ function resetWgKey() {
     <div v-if="userInfo && primarySub" class="sub-page">
       <PanelCard title="订阅链接" subtitle="按客户端类型复制对应链接">
         <div class="sub-links">
-          <CopyField label="防劫持" :value="primarySub + '&addr=ip'" />
           <CopyField
             v-for="item in subTypes"
             :key="item.suffix"
