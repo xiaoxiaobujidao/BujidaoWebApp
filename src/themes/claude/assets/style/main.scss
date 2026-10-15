@@ -1,0 +1,323 @@
+/**
+ * claude 主题 · 全局样式入口
+ */
+@use './tokens';
+@use './element-plus';
+
+html {
+  font-family: var(--cl-font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100dvh;
+  background: var(--cl-bg);
+  color: var(--cl-text);
+  line-height: 1.6;
+  font-size: 0.95rem;
+  transition:
+    background-color var(--cl-medium) var(--cl-ease),
+    color var(--cl-medium) var(--cl-ease);
+}
+
+::selection {
+  background: var(--cl-selection);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+:focus-visible {
+  outline: 2px solid var(--cl-accent);
+  outline-offset: 2px;
+  border-radius: var(--cl-radius-sm);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cl-scrollbar) transparent;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cl-scrollbar);
+  border-radius: 999px;
+}
+
+/* 衬线标题 */
+.cl-serif {
+  font-family: var(--cl-font-serif);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.cl-mono {
+  font-family: var(--cl-font-mono);
+  font-size: 0.85em;
+}
+
+.cl-muted {
+  color: var(--cl-text-2);
+}
+
+.cl-faint {
+  color: var(--cl-text-3);
+}
+
+.cl-link {
+  color: var(--cl-accent-ink);
+  text-decoration: underline;
+  text-decoration-color: var(--cl-accent-soft-strong);
+  text-underline-offset: 0.18em;
+  transition: text-decoration-color var(--cl-fast) var(--cl-ease);
+}
+
+.cl-link:hover {
+  text-decoration-color: var(--cl-accent-ink);
+}
+
+/* 表单控件 */
+.cl-input {
+  width: 100%;
+  min-height: 2.75rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: var(--cl-radius-sm);
+  border: 1px solid var(--cl-border-strong);
+  background: var(--cl-surface);
+  color: var(--cl-text);
+  font: inherit;
+  outline: none;
+  transition:
+    border-color var(--cl-fast) var(--cl-ease),
+    box-shadow var(--cl-fast) var(--cl-ease),
+    background-color var(--cl-fast) var(--cl-ease);
+}
+
+.cl-input::placeholder {
+  color: var(--cl-text-3);
+}
+
+.cl-input:hover {
+  border-color: var(--cl-text-3);
+}
+
+.cl-input:focus {
+  border-color: var(--cl-accent);
+  box-shadow: 0 0 0 3px var(--cl-accent-soft);
+}
+
+textarea.cl-input {
+  min-height: 9rem;
+  resize: vertical;
+  line-height: 1.55;
+  font-family: var(--cl-font-mono);
+  font-size: 0.85rem;
+}
+
+select.cl-input {
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2387867f' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  padding-right: 2.25rem;
+}
+
+/* 公告富文本 */
+.rich {
+  color: var(--cl-text);
+  line-height: 1.85;
+  word-break: break-word;
+  font-size: 0.95rem;
+}
+
+.rich :where(p) {
+  margin: 0 0 0.85em;
+}
+
+.rich :where(p:last-child) {
+  margin-bottom: 0;
+}
+
+.rich :where(a) {
+  color: var(--cl-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-color: var(--cl-accent-soft-strong);
+}
+
+.rich :where(a:hover) {
+  text-decoration-color: var(--cl-accent-ink);
+}
+
+.rich :where(img) {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0.75rem 0;
+  border-radius: var(--cl-radius-md);
+  border: 1px solid var(--cl-border);
+}
+
+.rich :where(ul, ol) {
+  margin: 0.4em 0 0.9em;
+  padding-left: 1.4em;
+}
+
+.rich :where(h1, h2, h3, h4) {
+  margin: 0.4em 0 0.6em;
+  font-family: var(--cl-font-serif);
+  font-weight: 600;
+  line-height: 1.35;
+  letter-spacing: -0.01em;
+  color: var(--cl-text);
+}
+
+.rich :where(h1) {
+  font-size: 1.45rem;
+}
+
+.rich :where(h2) {
+  font-size: 1.25rem;
+}
+
+.rich :where(h3, h4) {
+  font-size: 1.08rem;
+}
+
+.rich :where(blockquote) {
+  margin: 0.75em 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid var(--cl-accent);
+  background: var(--cl-accent-soft);
+  border-radius: 0 var(--cl-radius-sm) var(--cl-radius-sm) 0;
+  color: var(--cl-text-2);
+}
+
+.rich :where(code) {
+  padding: 0.1em 0.4em;
+  border-radius: 0.35em;
+  background: var(--cl-surface-3);
+  color: var(--cl-accent-ink);
+  font-family: var(--cl-font-mono);
+  font-size: 0.85em;
+}
+
+.rich :where(pre) {
+  margin: 0.75em 0;
+  padding: 0.9rem 1rem;
+  border-radius: var(--cl-radius-md);
+  background: var(--cl-code-bg);
+  color: var(--cl-code-text);
+  overflow-x: auto;
+}
+
+.rich :where(pre code) {
+  padding: 0;
+  background: none;
+  color: inherit;
+}
+
+.rich :where(hr) {
+  border: 0;
+  border-top: 1px solid var(--cl-border);
+  margin: 1em 0;
+}
+
+.rich :where(table) {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9em;
+}
+
+.rich :where(th, td) {
+  padding: 0.4em 0.6em;
+  border: 1px solid var(--cl-border);
+}
+
+/* 动效 */
+@keyframes cl-rise {
+  from {
+    opacity: 0;
+    transform: translateY(0.6rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.cl-rise {
+  animation: cl-rise 0.4s var(--cl-ease) both;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin {
+  animation: spin 0.9s linear infinite;
+}
+
+/* View Transitions：从点击位置扩散的主题切换 */
+.use-view-transition::view-transition-old(root) {
+  animation: none;
+  z-index: 1;
+}
+
+.use-view-transition::view-transition-new(root) {
+  animation: cl-circle-expand 0.5s var(--cl-ease);
+  z-index: 2;
+}
+
+@keyframes cl-circle-expand {
+  from {
+    clip-path: circle(0 at var(--vt-x, 100%) var(--vt-y, 0));
+  }
+  to {
+    clip-path: circle(var(--vt-r, 150%) at var(--vt-x, 100%) var(--vt-y, 0));
+  }
+}
+
+.is-theme-transitioning *,
+.is-theme-transitioning *::before,
+.is-theme-transitioning *::after {
+  transition: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
