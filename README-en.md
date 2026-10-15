@@ -58,9 +58,21 @@ Open your browser at `http://localhost:5173` to preview the application.
 
 - `src/`: core application source
 - `src/themes/`: theme modules and device-specific routes
+- `src/composables/`: page logic shared across themes (account, subscription, balance, nodes, configs, announcements, auth, color mode)
+- `src/components/icons/`: shared line icons
 - `src/stores/`: global state management
 - `src/router/`: base router setup
-- `src/utils/`: JSON-RPC, user API, and utility functions
+- `src/utils/`: JSON-RPC, user API, utility functions, tutorial content
+
+## Built-in Themes
+
+| Theme                   | Style                                                                          |
+| ----------------------- | ------------------------------------------------------------------------------ |
+| `bujidao`               | Default island theme                                                           |
+| `kohara-fuwari`         | Fuwari-like: rounded cards, floating navbar, adjustable hue, circular dark-mode transition |
+| `claude`                | Paper-like whitespace with clay accents, serif headings, collapsible sidebar   |
+| `violet-rose`           | Violet rose                                                                    |
+| `blush-cherry-blossoms` | Cherry blossoms                                                                |
 
 ## Contribution Guidelines
 

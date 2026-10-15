@@ -60,9 +60,21 @@ npm run dev
 
 - `src/`：核心源码
 - `src/themes/`：主题模块与各设备路由
+- `src/composables/`：跨主题复用的页面逻辑（账户、订阅、财务、节点、配置、公告、登录、颜色模式）
+- `src/components/icons/`：共享线性图标
 - `src/stores/`：Pinia 状态管理
 - `src/router/`：基础路由配置
-- `src/utils/`：JSON-RPC、用户与工具函数
+- `src/utils/`：JSON-RPC、用户与工具函数、教程内容
+
+## 内置主题
+
+| 主题                    | 风格                                                                 |
+| ----------------------- | -------------------------------------------------------------------- |
+| `bujidao`               | 默认主题，海岛风格                                                   |
+| `kohara-fuwari`         | Fuwari 风格：圆角卡片、浮动导航栏、可调主题色、明暗模式圆形扩散切换 |
+| `claude`                | 纸感留白 + 陶土色，衬线标题，可折叠侧栏                              |
+| `violet-rose`           | 紫玫瑰                                                               |
+| `blush-cherry-blossoms` | 樱花                                                                 |
 
 ## 适用场景
 
