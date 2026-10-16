@@ -8,10 +8,10 @@
     "paths": {
       "@/*": ["./src/*"],
       "@bujidao/*": ["./src/themes/bujidao/*"],
-      "@test/*": ["./src/themes/test/*"],
       "@kohara-fuwari/*": ["./src/themes/kohara-fuwari/*"],
       "@blush-cherry-blossoms/*": ["./src/themes/blush-cherry-blossoms/*"],
-      "@violet-rose/*": ["./src/themes/violet-rose/*"]
+      "@violet-rose/*": ["./src/themes/violet-rose/*"],
+      "@claude/*": ["./src/themes/claude/*"]
     }
   }
 }

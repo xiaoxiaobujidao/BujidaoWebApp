@@ -1,22 +1,30 @@
-<template>
-  <RouterView />
-  <ScreenSize />
-  <ThemeSwitcher />
-</template>
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
-import ScreenSize from '@kohara-fuwari/components/ScreenSize.vue'
-import ThemeSwitcher from '@kohara-fuwari/components/ThemeSwitcher.vue'
+import { useColorMode } from '@/composables/useColorMode'
+import { useHue } from '@kohara-fuwari/composables/useHue'
 import '@kohara-fuwari/assets/style/main.scss'
-</script>
-<style lang="scss">
-.dark {
-  .box {
-    background-color: var(--card-bg) !important;
-  }
 
-  .box.phone {
-    padding: 8px;
-  }
+// 尽早应用明暗模式与色相，避免首屏闪烁
+useColorMode()
+useHue()
+</script>
+
+<template>
+  <RouterView v-slot="{ Component }">
+    <Transition name="page" mode="out-in">
+      <component :is="Component" />
+    </Transition>
+  </RouterView>
+</template>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.18s var(--ease-standard);
+}
+
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
 }
 </style>

@@ -1,0 +1,220 @@
+/**
+ * Element Plus 变量桥接：弹窗 / 输入框 / 提示条跟随 claude 主题的纸感与陶土色。
+ */
+
+:root {
+  --el-font-family: var(--cl-font-sans);
+  --el-color-primary: var(--cl-accent);
+  --el-color-primary-light-3: #e39a7f;
+  --el-color-primary-light-5: #ebb7a3;
+  --el-color-primary-light-7: #f3d4c8;
+  --el-color-primary-light-8: #f7e3da;
+  --el-color-primary-light-9: #fbf1ec;
+  --el-color-primary-dark-2: var(--cl-accent-hover);
+  --el-color-success: var(--cl-success);
+  --el-color-warning: var(--cl-warning);
+  --el-color-danger: var(--cl-danger);
+  --el-color-error: var(--cl-danger);
+  --el-color-info: var(--cl-info);
+
+  --el-bg-color: var(--cl-surface);
+  --el-bg-color-page: var(--cl-bg);
+  --el-bg-color-overlay: var(--cl-surface);
+  --el-fill-color-blank: var(--cl-surface);
+  --el-fill-color: var(--cl-surface-2);
+  --el-fill-color-light: var(--cl-surface-2);
+  --el-fill-color-lighter: #f6f4ee;
+  --el-fill-color-extra-light: #f8f7f2;
+  --el-fill-color-dark: var(--cl-surface-3);
+  --el-fill-color-darker: var(--cl-oat);
+
+  --el-text-color-primary: var(--cl-text);
+  --el-text-color-regular: var(--cl-slate-medium);
+  --el-text-color-secondary: var(--cl-text-2);
+  --el-text-color-placeholder: var(--cl-text-3);
+  --el-text-color-disabled: var(--cl-cloud-light);
+
+  --el-border-color: var(--cl-cloud-light);
+  --el-border-color-light: #dcdad1;
+  --el-border-color-lighter: var(--cl-ivory-dark);
+  --el-border-color-extra-light: #ecebe4;
+  --el-border-color-dark: #bfbdb3;
+  --el-border-color-darker: #aaa89f;
+
+  --el-border-radius-base: 0.6rem;
+  --el-border-radius-small: 0.4rem;
+  --el-border-radius-round: 999px;
+
+  --el-box-shadow: var(--cl-shadow-lg);
+  --el-box-shadow-light: var(--cl-shadow-md);
+  --el-box-shadow-lighter: var(--cl-shadow-sm);
+  --el-overlay-color-lighter: var(--cl-overlay);
+}
+
+:root.dark {
+  --el-color-primary-light-3: #c96a4b;
+  --el-color-primary-light-5: #9c5236;
+  --el-color-primary-light-7: #6a3c29;
+  --el-color-primary-light-8: #4f3023;
+  --el-color-primary-light-9: #3b281f;
+  --el-color-primary-dark-2: #e08b6f;
+
+  --el-bg-color: var(--cl-surface);
+  --el-bg-color-page: var(--cl-bg);
+  --el-bg-color-overlay: var(--cl-surface-2);
+  --el-fill-color-blank: transparent;
+  --el-fill-color: var(--cl-surface-2);
+  --el-fill-color-light: #35342f;
+  --el-fill-color-lighter: #33322e;
+  --el-fill-color-extra-light: #31302c;
+  --el-fill-color-dark: var(--cl-surface-3);
+  --el-fill-color-darker: #4d4b46;
+
+  --el-text-color-primary: var(--cl-text);
+  --el-text-color-regular: #d8d6cc;
+  --el-text-color-secondary: var(--cl-text-2);
+  --el-text-color-placeholder: var(--cl-text-3);
+  --el-text-color-disabled: #5e5d59;
+
+  --el-border-color: #4a4843;
+  --el-border-color-light: #44423e;
+  --el-border-color-lighter: #3e3d39;
+  --el-border-color-extra-light: #393835;
+  --el-border-color-dark: #5a5852;
+  --el-border-color-darker: #6a6861;
+
+  --el-overlay-color-lighter: var(--cl-overlay);
+}
+
+/* 弹窗 */
+.el-dialog {
+  --el-dialog-border-radius: var(--cl-radius-lg);
+  --el-dialog-padding-primary: 1.5rem;
+  --el-dialog-bg-color: var(--cl-surface);
+  border: 1px solid var(--cl-border);
+  box-shadow: var(--cl-shadow-lg);
+}
+
+.el-dialog__header {
+  padding-bottom: 0.75rem;
+}
+
+.el-dialog__title {
+  font-family: var(--cl-font-serif);
+  font-weight: 600;
+  font-size: 1.25rem;
+  letter-spacing: -0.01em;
+  color: var(--cl-text);
+}
+
+.el-dialog__headerbtn .el-dialog__close {
+  color: var(--cl-text-3);
+}
+
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: var(--cl-accent);
+}
+
+.el-dialog__body {
+  color: var(--cl-text);
+}
+
+.el-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* MessageBox */
+.el-message-box {
+  --el-messagebox-border-radius: var(--cl-radius-lg);
+  --el-messagebox-padding-primary: 1.25rem;
+  border: 1px solid var(--cl-border);
+  box-shadow: var(--cl-shadow-lg);
+  max-width: calc(100vw - 2rem);
+}
+
+.el-message-box__title {
+  font-family: var(--cl-font-serif);
+  font-weight: 600;
+}
+
+.el-message-box__btns .el-button {
+  border-radius: 999px;
+}
+
+.app-prompt-body p + p {
+  margin-top: 0.5rem;
+}
+
+.app-prompt-body strong {
+  color: var(--cl-danger-ink);
+}
+
+.app-prompt-tip {
+  font-size: 0.85rem;
+  color: var(--cl-text-2);
+}
+
+.app-prompt-tip a {
+  color: var(--cl-accent-ink);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Message */
+.el-message {
+  --el-message-bg-color: var(--cl-surface);
+  --el-message-border-color: var(--cl-border);
+  border-radius: 999px;
+  box-shadow: var(--cl-shadow-lg);
+}
+
+.el-message--success {
+  --el-message-text-color: var(--cl-success-ink);
+}
+
+.el-message--error {
+  --el-message-text-color: var(--cl-danger-ink);
+}
+
+/* 按钮（MessageBox 内） */
+.el-button {
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+.el-button--primary {
+  --el-button-text-color: var(--cl-on-accent);
+  --el-button-hover-text-color: var(--cl-on-accent);
+}
+
+/* 输入框 */
+.el-input__wrapper,
+.el-textarea__inner,
+.el-select__wrapper {
+  border-radius: var(--cl-radius-sm);
+  background-color: var(--cl-surface);
+}
+
+.el-input__wrapper.is-focus,
+.el-select__wrapper.is-focused {
+  box-shadow: 0 0 0 1px var(--cl-accent) inset;
+}
+
+/* Tooltip */
+.el-popper.is-dark {
+  --el-text-color-primary: var(--cl-ivory-light);
+  background: var(--cl-slate-dark);
+  border-radius: var(--cl-radius-sm);
+  border-color: transparent;
+}
+
+.el-popper.is-dark .el-popper__arrow::before {
+  background: var(--cl-slate-dark);
+  border-color: transparent;
+}
+
+/* 图片预览 */
+.el-image-viewer__wrapper {
+  backdrop-filter: blur(8px);
+}

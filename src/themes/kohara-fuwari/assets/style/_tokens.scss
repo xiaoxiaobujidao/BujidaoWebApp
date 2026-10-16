@@ -1,0 +1,124 @@
+/**
+ * kohara-fuwari 主题 · 设计令牌
+ * 参照 Fuwari 的 oklch 色相体系：所有颜色由 --hue 派生，用户可在“显示设置”中实时调整。
+ */
+
+:root {
+  --hue: 220;
+
+  /* 尺寸 */
+  --page-width: 75rem;
+  --radius-large: 1rem;
+  --radius-md: 0.75rem;
+  --radius-sm: 0.5rem;
+  --navbar-height: 4.5rem;
+
+  /* 动效 */
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-medium: 300ms;
+
+  /* 色彩 · 亮色 */
+  --primary: oklch(0.7 0.14 var(--hue));
+  --primary-soft: oklch(0.93 0.04 var(--hue));
+  --primary-strong: oklch(0.55 0.14 var(--hue));
+  --page-bg: oklch(0.95 0.01 var(--hue));
+  --card-bg: #fff;
+  --card-bg-transparent: rgba(255, 255, 255, 0.8);
+  --float-panel-bg: #fff;
+
+  --btn-content: oklch(0.55 0.12 var(--hue));
+  --btn-regular-bg: oklch(0.95 0.025 var(--hue));
+  --btn-regular-bg-hover: oklch(0.9 0.05 var(--hue));
+  --btn-regular-bg-active: oklch(0.85 0.08 var(--hue));
+  --btn-plain-bg-hover: oklch(0.95 0.025 var(--hue));
+  --btn-plain-bg-active: oklch(0.98 0.01 var(--hue));
+  --btn-card-bg-hover: oklch(0.98 0.005 var(--hue));
+  --btn-card-bg-active: oklch(0.9 0.03 var(--hue));
+
+  --deep-text: oklch(0.25 0.02 var(--hue));
+  --text-1: oklch(0.2 0.01 var(--hue));
+  --text-2: oklch(0.45 0.015 var(--hue));
+  --text-3: oklch(0.65 0.015 var(--hue));
+  --title-active: oklch(0.6 0.1 var(--hue));
+
+  --line-divider: rgba(0, 0, 0, 0.08);
+  --line-color: rgba(0, 0, 0, 0.1);
+  --selection-bg: oklch(0.9 0.05 var(--hue));
+  --codeblock-bg: oklch(0.17 0.015 var(--hue));
+  --inline-code-bg: var(--btn-regular-bg);
+  --inline-code-color: var(--btn-content);
+
+  --success: oklch(0.7 0.14 160);
+  --success-soft: oklch(0.94 0.05 160);
+  --warning: oklch(0.78 0.15 70);
+  --warning-soft: oklch(0.95 0.06 80);
+  --danger: oklch(0.62 0.2 25);
+  --danger-soft: oklch(0.94 0.05 25);
+
+  --shadow-float: 0 16px 40px -16px rgba(0, 0, 0, 0.25), 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 12px 32px -12px oklch(0.6 0.12 var(--hue) / 0.35);
+
+  --color-selection-bar: linear-gradient(
+    to right,
+    oklch(0.8 0.1 0),
+    oklch(0.8 0.1 30),
+    oklch(0.8 0.1 60),
+    oklch(0.8 0.1 90),
+    oklch(0.8 0.1 120),
+    oklch(0.8 0.1 150),
+    oklch(0.8 0.1 180),
+    oklch(0.8 0.1 210),
+    oklch(0.8 0.1 240),
+    oklch(0.8 0.1 270),
+    oklch(0.8 0.1 300),
+    oklch(0.8 0.1 330),
+    oklch(0.8 0.1 360)
+  );
+
+  --scrollbar-bg: rgba(0, 0, 0, 0.25);
+  --scrollbar-bg-hover: rgba(0, 0, 0, 0.4);
+}
+
+:root.dark {
+  --primary: oklch(0.75 0.14 var(--hue));
+  --primary-soft: oklch(0.32 0.05 var(--hue));
+  --primary-strong: oklch(0.82 0.12 var(--hue));
+  --page-bg: oklch(0.16 0.014 var(--hue));
+  --card-bg: oklch(0.23 0.015 var(--hue));
+  --card-bg-transparent: rgba(23, 23, 23, 0.8);
+  --float-panel-bg: oklch(0.19 0.015 var(--hue));
+
+  --btn-content: oklch(0.75 0.1 var(--hue));
+  --btn-regular-bg: oklch(0.33 0.035 var(--hue));
+  --btn-regular-bg-hover: oklch(0.38 0.04 var(--hue));
+  --btn-regular-bg-active: oklch(0.43 0.045 var(--hue));
+  --btn-plain-bg-hover: oklch(0.3 0.035 var(--hue));
+  --btn-plain-bg-active: oklch(0.27 0.025 var(--hue));
+  --btn-card-bg-hover: oklch(0.3 0.03 var(--hue));
+  --btn-card-bg-active: oklch(0.35 0.035 var(--hue));
+
+  --deep-text: oklch(0.85 0.02 var(--hue));
+  --text-1: oklch(0.93 0.01 var(--hue));
+  --text-2: oklch(0.75 0.015 var(--hue));
+  --text-3: oklch(0.55 0.015 var(--hue));
+  --title-active: oklch(0.75 0.1 var(--hue));
+
+  --line-divider: rgba(255, 255, 255, 0.08);
+  --line-color: rgba(255, 255, 255, 0.1);
+  --selection-bg: oklch(0.4 0.08 var(--hue));
+  --codeblock-bg: oklch(0.14 0.015 var(--hue));
+
+  --success: oklch(0.75 0.13 160);
+  --success-soft: oklch(0.32 0.05 160);
+  --warning: oklch(0.8 0.14 75);
+  --warning-soft: oklch(0.34 0.06 75);
+  --danger: oklch(0.7 0.18 25);
+  --danger-soft: oklch(0.32 0.07 25);
+
+  --shadow-float: 0 16px 40px -16px rgba(0, 0, 0, 0.6), 0 2px 8px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+
+  --scrollbar-bg: rgba(255, 255, 255, 0.25);
+  --scrollbar-bg-hover: rgba(255, 255, 255, 0.4);
+}

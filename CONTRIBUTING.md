@@ -117,8 +117,23 @@ resolve: {
 - `@/stores/userInfoStore` - 用户信息
 - `@/stores/announcementStore` - 公告
 - `@/stores/themeStore` - 主题管理
-- `@/utils/*` - 工具函数
+- `@/utils/*` - 工具函数（JSON-RPC、复制、格式化、节点连接串 `nodeConnect`、流量聚合 `trafficHistory`、教程内容 `tutorialContent`、一键导入 `importClients`）
 - `@/config/*` - 配置文件
+- `@/composables/*` - 与界面无关的页面逻辑，主题只需负责渲染：
+  - `useAuth` 登录（邮件链接 / 密码 / Google / Telegram、邀请码、login_key）
+  - `useAccount` 账户页（改邮箱 / 密码 / 绑定 TG、营销邮件、两步确认注销）
+  - `useSubscription` 订阅页（各客户端链接、一键导入、密钥重置）
+  - `useBalance` 财务页（余额 / 积分 / 返利、流量历史、推广链接）
+  - `useNodeList` 节点页（搜索 / 排序、连接信息）
+  - `useCustomConfig` 个性化配置（筛选、增删改查）
+  - `useAnnouncements` / `usePinAnnouncement` 公告列表与置顶弹窗
+  - `useAddCredit` 充值流程
+  - `useColorMode` 浅色 / 深色 / 跟随系统（含 View Transitions 扩散动画）
+  - `useViewport` 响应式视口尺寸
+- `@/components/icons/LucideIcon.vue` - 共享线性图标（`name` 见 `lucide.ts`）
+- `@/assets/img/tutorial/*` - 教程截图，通过 `tutorialContent.ts` 的 `tutorialImage(key)` 获取
+
+这些共享逻辑统一使用 Element Plus 的 `ElMessage` / `ElMessageBox` 反馈，主题可通过覆盖 `--el-*` CSS 变量让它们贴合自己的视觉（参见 `kohara-fuwari/assets/style/_element-plus.scss`）。
 
 ### 主题特定资源
 
@@ -204,7 +219,8 @@ npm run format
 查看现有主题作为参考：
 
 - `src/themes/bujidao/` - 主主题，完整实现
-- `src/themes/test/` - 测试主题，正在开发中的岛
+- `src/themes/kohara-fuwari/` - 单一响应式路由表 + 共享 composables 的参考实现，含可调色相与 Element Plus 变量桥接
+- `src/themes/claude/` - 可折叠侧栏布局的参考实现
 
 ## 提交规范
 

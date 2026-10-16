@@ -34,10 +34,10 @@ export default defineConfig(({ mode }) => {
         '@': fileURLToPath(new URL('./src', import.meta.url)),
         // 指向主题目录 需要同时更改 tsconfig.app.json
         '@bujidao': fileURLToPath(new URL('./src/themes/bujidao', import.meta.url)),
-        '@test': fileURLToPath(new URL('./src/themes/test', import.meta.url)),
         '@kohara-fuwari': fileURLToPath(new URL('./src/themes/kohara-fuwari', import.meta.url)),
         '@blush-cherry-blossoms': fileURLToPath(new URL('./src/themes/blush-cherry-blossoms', import.meta.url)),
         '@violet-rose': fileURLToPath(new URL('./src/themes/violet-rose', import.meta.url)),
+        '@claude': fileURLToPath(new URL('./src/themes/claude', import.meta.url)),
       },
     },
     // 代理 /json_rpc/

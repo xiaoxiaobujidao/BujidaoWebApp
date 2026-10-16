@@ -1,0 +1,233 @@
+/**
+ * Element Plus 变量桥接：让弹窗、输入框、表格等组件跟随主题色相与明暗模式。
+ * 暗色规则写在 :root.dark 下，需在 element-plus/theme-chalk/dark/css-vars.css 之后加载（主题样式总是后加载）。
+ */
+
+:root {
+  --el-font-family: inherit;
+  --el-color-primary: var(--primary);
+  --el-color-primary-light-3: oklch(0.78 0.11 var(--hue));
+  --el-color-primary-light-5: oklch(0.85 0.08 var(--hue));
+  --el-color-primary-light-7: oklch(0.91 0.05 var(--hue));
+  --el-color-primary-light-8: oklch(0.94 0.035 var(--hue));
+  --el-color-primary-light-9: oklch(0.97 0.02 var(--hue));
+  --el-color-primary-dark-2: oklch(0.6 0.14 var(--hue));
+
+  --el-color-success: var(--success);
+  --el-color-warning: var(--warning);
+  --el-color-danger: var(--danger);
+  --el-color-error: var(--danger);
+
+  --el-bg-color: var(--card-bg);
+  --el-bg-color-page: var(--page-bg);
+  --el-bg-color-overlay: var(--float-panel-bg);
+  --el-fill-color-blank: var(--card-bg);
+  --el-fill-color: oklch(0.95 0.01 var(--hue));
+  --el-fill-color-light: oklch(0.965 0.008 var(--hue));
+  --el-fill-color-lighter: oklch(0.975 0.006 var(--hue));
+  --el-fill-color-extra-light: oklch(0.985 0.004 var(--hue));
+  --el-fill-color-dark: oklch(0.93 0.012 var(--hue));
+  --el-fill-color-darker: oklch(0.9 0.014 var(--hue));
+
+  --el-text-color-primary: var(--text-1);
+  --el-text-color-regular: oklch(0.35 0.015 var(--hue));
+  --el-text-color-secondary: var(--text-2);
+  --el-text-color-placeholder: var(--text-3);
+  --el-text-color-disabled: oklch(0.75 0.01 var(--hue));
+
+  --el-border-color: oklch(0.87 0.012 var(--hue));
+  --el-border-color-light: oklch(0.9 0.01 var(--hue));
+  --el-border-color-lighter: oklch(0.93 0.008 var(--hue));
+  --el-border-color-extra-light: oklch(0.95 0.006 var(--hue));
+  --el-border-color-dark: oklch(0.8 0.015 var(--hue));
+  --el-border-color-darker: oklch(0.75 0.018 var(--hue));
+
+  --el-border-radius-base: 0.625rem;
+  --el-border-radius-small: 0.45rem;
+  --el-border-radius-round: 999px;
+
+  --el-box-shadow: var(--shadow-float);
+  --el-box-shadow-light: 0 8px 24px -12px rgba(0, 0, 0, 0.18);
+  --el-box-shadow-lighter: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --el-overlay-color-lighter: rgba(10, 12, 20, 0.45);
+}
+
+:root.dark {
+  --el-color-primary-light-3: oklch(0.62 0.12 var(--hue));
+  --el-color-primary-light-5: oklch(0.5 0.1 var(--hue));
+  --el-color-primary-light-7: oklch(0.4 0.07 var(--hue));
+  --el-color-primary-light-8: oklch(0.34 0.05 var(--hue));
+  --el-color-primary-light-9: oklch(0.29 0.04 var(--hue));
+  --el-color-primary-dark-2: oklch(0.82 0.12 var(--hue));
+
+  --el-bg-color: var(--card-bg);
+  --el-bg-color-page: var(--page-bg);
+  --el-bg-color-overlay: var(--float-panel-bg);
+  --el-fill-color-blank: transparent;
+  --el-fill-color: oklch(0.3 0.02 var(--hue));
+  --el-fill-color-light: oklch(0.28 0.018 var(--hue));
+  --el-fill-color-lighter: oklch(0.26 0.016 var(--hue));
+  --el-fill-color-extra-light: oklch(0.25 0.015 var(--hue));
+  --el-fill-color-dark: oklch(0.33 0.022 var(--hue));
+  --el-fill-color-darker: oklch(0.36 0.024 var(--hue));
+
+  --el-text-color-primary: var(--text-1);
+  --el-text-color-regular: oklch(0.85 0.012 var(--hue));
+  --el-text-color-secondary: var(--text-2);
+  --el-text-color-placeholder: var(--text-3);
+  --el-text-color-disabled: oklch(0.45 0.01 var(--hue));
+
+  --el-border-color: oklch(0.36 0.02 var(--hue));
+  --el-border-color-light: oklch(0.33 0.018 var(--hue));
+  --el-border-color-lighter: oklch(0.3 0.016 var(--hue));
+  --el-border-color-extra-light: oklch(0.28 0.014 var(--hue));
+  --el-border-color-dark: oklch(0.42 0.022 var(--hue));
+  --el-border-color-darker: oklch(0.46 0.024 var(--hue));
+
+  --el-box-shadow-light: 0 8px 24px -12px rgba(0, 0, 0, 0.5);
+  --el-box-shadow-lighter: 0 2px 8px rgba(0, 0, 0, 0.3);
+  --el-overlay-color-lighter: rgba(0, 0, 0, 0.6);
+}
+
+/* 弹窗：圆角大卡片 + 标题色条 */
+.el-dialog {
+  --el-dialog-border-radius: var(--radius-large);
+  --el-dialog-padding-primary: 1.5rem;
+  --el-dialog-bg-color: var(--card-bg);
+  box-shadow: var(--shadow-float);
+  border: 1px solid var(--line-divider);
+}
+
+.el-dialog__header {
+  padding-bottom: 0.75rem;
+}
+
+.el-dialog__title {
+  position: relative;
+  padding-left: 0.9rem;
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--text-1);
+}
+
+.el-dialog__title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0.25rem;
+  height: 1rem;
+  border-radius: 0.25rem;
+  background: var(--primary);
+}
+
+.el-dialog__headerbtn .el-dialog__close {
+  color: var(--text-3);
+}
+
+.el-dialog__headerbtn:hover .el-dialog__close {
+  color: var(--primary);
+}
+
+.el-dialog__body {
+  color: var(--text-1);
+}
+
+.el-overlay {
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+/* MessageBox */
+.el-message-box {
+  --el-messagebox-border-radius: var(--radius-large);
+  --el-messagebox-padding-primary: 1.25rem;
+  border: 1px solid var(--line-divider);
+  box-shadow: var(--shadow-float);
+  max-width: calc(100vw - 2rem);
+}
+
+.el-message-box__title {
+  font-weight: 700;
+}
+
+.el-message-box__input .el-input__wrapper {
+  border-radius: var(--radius-sm);
+}
+
+.app-prompt-body p + p {
+  margin-top: 0.5rem;
+}
+
+.app-prompt-body strong {
+  color: var(--danger);
+}
+
+.app-prompt-tip {
+  font-size: 0.85rem;
+  color: var(--text-2);
+}
+
+.app-prompt-tip a {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+/* Message 提示条 */
+.el-message {
+  --el-message-bg-color: var(--float-panel-bg);
+  --el-message-border-color: var(--line-divider);
+  border-radius: 999px;
+  box-shadow: var(--shadow-float);
+}
+
+.el-message--success {
+  --el-message-text-color: var(--success);
+}
+
+.el-message--error {
+  --el-message-text-color: var(--danger);
+}
+
+/* 输入框 / 选择器 */
+.el-input__wrapper,
+.el-textarea__inner,
+.el-select__wrapper {
+  border-radius: var(--radius-sm);
+  background-color: var(--card-bg);
+}
+
+.el-input__wrapper.is-focus,
+.el-select__wrapper.is-focused {
+  box-shadow: 0 0 0 1px var(--primary) inset;
+}
+
+/* Tooltip */
+.el-popper.is-dark {
+  --el-text-color-primary: #fff;
+  background: oklch(0.25 0.02 var(--hue));
+  border-radius: var(--radius-sm);
+  border-color: transparent;
+}
+
+.el-popper.is-dark .el-popper__arrow::before {
+  background: oklch(0.25 0.02 var(--hue));
+  border-color: transparent;
+}
+
+/* 开关 */
+.el-switch {
+  --el-switch-on-color: var(--primary);
+  --el-switch-off-color: oklch(0.8 0.01 var(--hue));
+}
+
+:root.dark .el-switch {
+  --el-switch-off-color: oklch(0.4 0.02 var(--hue));
+}
+
+/* 图片预览 */
+.el-image-viewer__wrapper {
+  backdrop-filter: blur(8px);
+}
