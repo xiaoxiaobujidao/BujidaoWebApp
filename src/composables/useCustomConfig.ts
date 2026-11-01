@@ -6,6 +6,7 @@ import {
   uploadCustomizedConfiguration,
 } from '@/utils/user'
 import { touchCopy } from '@/utils/copy'
+import { buildClashVergeConfigImportHref, isClashConfigType } from '@/utils/importClients'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 
 export interface CustomConfig {
@@ -70,6 +71,14 @@ export function useCustomConfig() {
   function copySubscription(item: CustomConfig) {
     const link = subscriptionFor(item)
     if (link) touchCopy(link)
+  }
+
+  /** Clash 配置的一键导入链接；其他类型暂不处理 */
+  function clashImportHref(item: CustomConfig) {
+    if (!isClashConfigType(item.type)) return ''
+    const sub = userInfo.value?.sub_address[0]
+    if (!sub) return ''
+    return buildClashVergeConfigImportHref(sub, item.name)
   }
 
   function openCreate() {
@@ -173,6 +182,7 @@ export function useCustomConfig() {
     isMine,
     subscriptionFor,
     copySubscription,
+    clashImportHref,
     openCreate,
     openEdit,
     openView,

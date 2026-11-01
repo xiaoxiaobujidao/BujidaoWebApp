@@ -6,6 +6,7 @@ import {
   deleteCustomizedConfiguration,
 } from '@/utils/user'
 import { touchCopy } from '@/utils/copy'
+import { buildClashVergeConfigImportHref, isClashConfigType } from '@/utils/importClients'
 import { ElMessage } from 'element-plus'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import UserMainView from './UserMainView.vue'
@@ -126,6 +127,18 @@ function upload_cc(v: any) {
 const userInfoStore = useUserInfoStore()
 userInfoStore.updateUserInfo()
 const user_info = computed(() => userInfoStore.getUserInfo())
+
+function clashImportHref(row: { type: string; name: string }) {
+  const sub = user_info.value?.sub_address?.[0]
+  if (!sub || !isClashConfigType(row.type)) return ''
+  return buildClashVergeConfigImportHref(sub, row.name)
+}
+
+function openClashImport(row: { type: string; name: string }) {
+  const href = clashImportHref(row)
+  if (href) window.location.href = href
+}
+
 const init = () => {
   getCustomizedConfiguration().then((res) => {
     configuration_list.value = res.result
@@ -182,6 +195,9 @@ init()
                     @click="touchCopy(user_info?.sub_address[0] + '&cc=' + row.name)"
                   >
                     复制订阅
+                  </BjButton>
+                  <BjButton v-if="clashImportHref(row)" size="sm" @click="openClashImport(row)">
+                    导入 Clash
                   </BjButton>
                   <BjButton
                     v-if="row.user_id == user_info?.user_id"

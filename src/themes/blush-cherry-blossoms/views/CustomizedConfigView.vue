@@ -7,6 +7,7 @@ import {
   deleteCustomizedConfiguration,
 } from '@/utils/user'
 import { touchCopy } from '@/utils/copy'
+import { buildClashVergeConfigImportHref, isClashConfigType } from '@/utils/importClients'
 import { useUserInfoStore } from '@/stores/userInfoStore'
 import DashboardLayout from '@blush-cherry-blossoms/components/layout/DashboardLayout.vue'
 import SakuraCard from '@blush-cherry-blossoms/components/ui/SakuraCard.vue'
@@ -80,6 +81,17 @@ function save() {
   })
 }
 
+function clashImportHref(item: CustomConfig) {
+  const sub = userInfo.value?.sub_address?.[0]
+  if (!sub || !isClashConfigType(item.type)) return ''
+  return buildClashVergeConfigImportHref(sub, item.name)
+}
+
+function openClashImport(item: CustomConfig) {
+  const href = clashImportHref(item)
+  if (href) window.location.href = href
+}
+
 function remove(item: CustomConfig) {
   if (!confirm(`确认删除「${item.name}」？`)) return
   deleteCustomizedConfiguration(item.type, item.name).then((res) => {
@@ -118,6 +130,14 @@ function remove(item: CustomConfig) {
             {{ item.allow_share ? '允许共享' : '个人专用' }}
           </p>
           <div class="config-item__actions">
+            <SakuraBtn
+              v-if="clashImportHref(item)"
+              variant="text"
+              size="sm"
+              @click="openClashImport(item)"
+            >
+              导入 Clash
+            </SakuraBtn>
             <SakuraBtn variant="text" size="sm" @click="openView(item)">查看</SakuraBtn>
             <SakuraBtn variant="text" size="sm" @click="openEdit(item)">编辑</SakuraBtn>
             <SakuraBtn variant="text" size="sm" @click="remove(item)">删除</SakuraBtn>

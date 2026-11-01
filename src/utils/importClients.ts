@@ -5,6 +5,21 @@ import v2rayngIcon from '@/assets/icons/clients/v2rayng.png'
 
 const REMARK = '布吉岛'
 
+/** 当前仅 Clash YAML 配置支持一键导入 */
+export function isClashConfigType(type: string) {
+  return type === 'clash_yaml' || type.startsWith('clash')
+}
+
+/**
+ * 自定义配置导入 Clash Verge。
+ * 订阅地址附带 type=clash_verge，导入名称使用配置名称。
+ * url 整体编码，避免 &cc=、&type= 被客户端拆出订阅地址。
+ */
+export function buildClashVergeConfigImportHref(sub: string, configName: string) {
+  const profile = `${sub}&cc=${encodeURIComponent(configName)}&type=clash_verge`
+  return `clash://install-config?url=${encodeURIComponent(profile)}&name=${encodeURIComponent(configName)}`
+}
+
 export type ImportClient = {
   id: string
   name: string
@@ -20,10 +35,7 @@ export const importClients: ImportClient[] = [
     // 官方 1.8.28+：v2rayng://install-sub/?url=urlencode(url)#NAME
     buildHref: (sub) =>
       encodeURI(
-        'v2rayng://install-sub/?url=' +
-          encodeURIComponent(sub + '&type=v2rayN') +
-          '#' +
-          REMARK,
+        'v2rayng://install-sub/?url=' + encodeURIComponent(sub + '&type=v2rayN') + '#' + REMARK,
       ),
   },
   {

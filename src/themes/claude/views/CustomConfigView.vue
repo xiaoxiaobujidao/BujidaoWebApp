@@ -26,6 +26,7 @@ const {
   isMine,
   subscriptionFor,
   copySubscription,
+  clashImportHref,
   openCreate,
   openEdit,
   openView,
@@ -104,6 +105,13 @@ const readonly = computed(() => editorMode.value === 'view')
           </div>
           <div class="row__actions">
             <ClButton size="sm" icon="copy" @click="copySubscription(item)">复制订阅</ClButton>
+            <ClButton
+              v-if="clashImportHref(item)"
+              size="sm"
+              icon="download"
+              :href="clashImportHref(item)"
+              >导入 Clash</ClButton
+            >
             <ClButton
               v-if="isMine(item)"
               size="sm"
